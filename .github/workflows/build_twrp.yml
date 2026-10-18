@@ -100,15 +100,54 @@ jobs:
           echo ">>> mka rc=$rc"
           exit $rc
 
-      - name: Diagnose (if failed)
-        if: failure()
+      - name: Summary (always)
+        if: always()
         run: |
-          echo "===== 错误上下文 ====="
-          grep -n -B2 -A25 "FAILED\|ninja: build stopped\|error:" twrp/build.log 2>/dev/null | tail -150 || true
-          echo "===== recovery root 体积 TOP40 ====="
-          du -a twrp/out/target/product/q5c62q_njx/recovery/root 2>/dev/null | sort -rn | head -40 || true
-          echo "===== 镜像文件 ====="
-          ls -l twrp/out/target/product/q5c62q_njx/ramdisk-recovery.img twrp/out/target/product/q5c62q_njx/recovery.img 2>/dev/null || true
+          set +e
+          IMG=twrp/out/target/product/q5c62q_njx/recovery.img
+          {
+            echo "# TWRP 编译结果 (q5c62q_njx / MT6737T)"
+            echo
+            if [ -f "$IMG" ]; then
+              SIZE=$(stat -c %s "$IMG")
+              HASH=$(sha256sum "$IMG" | cut -d' ' -f1)
+              echo "## ✅ 编译成功"
+              echo
+              echo "| 项目 | 值 |"
+              echo "|---|---|"
+              echo "| 镜像 | \`recovery.img\` |"
+              echo "| 大小 | ${SIZE} 字节 (约 $((SIZE/1048576)) MB) |"
+              echo "| 分区余量 | $((16777216 - SIZE)) 字节 (上限 16777216) |"
+              echo "| SHA256 | \`${HASH}\` |"
+              echo "| 下载 | 本页底部 Artifacts → \`TWRP-recovery-q5c62q_njx\` |"
+              echo
+              echo "### 镜像头部校验"
+              echo
+              echo '```'
+              python3 tools/unpack_bootimg.py --info "$IMG" 2>/dev/null || echo "(解析失败)"
+              echo '```'
+            else
+              echo "## ❌ 编译失败"
+              echo
+              echo "未产出 recovery.img。错误摘要（完整日志见上方 Build recovery 步骤）："
+              echo
+              echo '```'
+              grep -n -B2 -A25 "FAILED\|ninja: build stopped\|error:" twrp/build.log 2>/dev/null | tail -80 || echo "(未捕获到 build.log)"
+              echo '```'
+              echo
+              echo "### recovery root 体积 TOP25（定位体积超限的大头）"
+              echo
+              echo '```'
+              du -a twrp/out/target/product/q5c62q_njx/recovery/root 2>/dev/null | sort -rn | head -25 || true
+              echo '```'
+              echo
+              for f in twrp/out/target/product/q5c62q_njx/*.img; do
+                [ -f "$f" ] && echo "- 已生成: \`$f\` = $(stat -c %s "$f") 字节"
+              done
+            fi
+            echo
+            echo "> 完整日志见本页 Job 的 Build recovery 步骤；产物在 Artifacts 区域。"
+          } 2>&1 | tee -a "$GITHUB_STEP_SUMMARY"
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4

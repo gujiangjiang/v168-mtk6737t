@@ -86,17 +86,66 @@ jobs:
           done
           exit $rc
 
-      - name: Diagnose (if failed)
-        if: failure()
+      - name: Summary (always)
+        if: always()
         run: |
+          set +e
+          OUT=$HOME/fox_12.1/out/target/product/q5c62q_njx
           LOG=$HOME/fox_12.1/build.log
-          echo "===== 错误上下文 ====="
-          grep -n -B2 -A30 "FAILED\|ninja: build stopped\|error:" "$LOG" 2>/dev/null | tail -180 || true
-          echo "===== recovery root / system 体积 TOP40 ====="
-          du -a $HOME/fox_12.1/out/target/product/q5c62q_njx/recovery/root 2>/dev/null | sort -rn | head -40 || true
-          du -a $HOME/fox_12.1/out/target/product/q5c62q_njx/system 2>/dev/null | sort -rn | head -25 || true
-          echo "===== 镜像文件 ====="
-          ls -l $HOME/fox_12.1/out/target/product/q5c62q_njx/*.img 2>/dev/null || true
+          OFOX_IMG=$(ls $OUT/OrangeFox-*.img 2>/dev/null | head -1)
+          REC_IMG=""
+          [ -f "$OUT/recovery.img" ] && REC_IMG=$OUT/recovery.img
+          {
+            echo "# OrangeFox (fox_12.1) 编译结果 (q5c62q_njx / MT6737T)"
+            echo
+            if [ -n "$OFOX_IMG" ] || [ -n "$REC_IMG" ]; then
+              echo "## ✅ 编译成功"
+              echo
+              echo "| 镜像 | 大小 | SHA256 |"
+              echo "|---|---|---|"
+              for f in $OFOX_IMG $REC_IMG; do
+                [ -f "$f" ] || continue
+                S=$(stat -c %s "$f")
+                echo "| \`$(basename "$f")\` | ${S} 字节 (约 $((S/1048576)) MB) | \`$(sha256sum "$f" | cut -d' ' -f1)\` |"
+                if [ "$S" -gt 16777216 ]; then
+                  echo "| ⚠️ 超限警告 | 超过 16MB recovery 分区, 刷入前必须裁剪 | - |"
+                fi
+              done
+              echo
+              echo "| 项目 | 值 |"
+              echo "|---|---|"
+              echo "| 下载 | Artifacts → \`OrangeFox-recovery-q5c62q_njx\` |"
+              if [ -n "$REC_IMG" ]; then
+                echo
+                echo "### recovery.img 头部校验"
+                echo
+                echo '```'
+                python3 tools/unpack_bootimg.py --info "$REC_IMG" 2>/dev/null || echo "(解析失败)"
+                echo '```'
+              fi
+            else
+              echo "## ❌ 编译失败"
+              echo
+              echo "错误摘要（完整日志见上方 Build recovery 步骤）："
+              echo
+              echo '```'
+              grep -n -B2 -A30 "FAILED\|ninja: build stopped\|error:" "$LOG" 2>/dev/null | tail -80 || echo "(未捕获到 build.log)"
+              echo '```'
+              echo
+              echo "### 体积 TOP25（recovery root 与 system，定位体积超限的大头）"
+              echo
+              echo '```'
+              du -a $OUT/recovery/root 2>/dev/null | sort -rn | head -25 || true
+              du -a $OUT/system 2>/dev/null | sort -rn | head -15 || true
+              echo '```'
+              echo
+              for f in $OUT/*.img; do
+                [ -f "$f" ] && echo "- 已生成: \`$f\` = $(stat -c %s "$f") 字节"
+              done
+            fi
+            echo
+            echo "> 完整日志见本页 Job 的 Build recovery 步骤；产物在 Artifacts 区域。"
+          } 2>&1 | tee -a "$GITHUB_STEP_SUMMARY"
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
