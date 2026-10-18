@@ -48,3 +48,21 @@ if [ -f "$MAP" ]; then
 else
     echo "[ofox_ci_patch] 未找到 $MAP, 跳过"
 fi
+
+# ---------------------------------------------------------------------------
+# 补丁 3: recovery ramdisk 组装的 rsync 在"无 vendor 分区"设备上失败
+#   could not make way for new symlink: root/vendor
+#   cannot delete non-empty directory: root/vendor
+# A12 build/make/core/Makefile 用 rsync 把 $OUT/root 合并进 recovery/root,
+# 本机无 vendor 分区, $OUT/root/vendor 是符号链接(-> /system/vendor),
+# 而 recovery/root/vendor 已被安装成非空目录, rsync 默认拒绝替换 ->
+# 需 --force 才允许"以符号链接替换非空目录"。
+# ---------------------------------------------------------------------------
+MKFILE=build/make/core/Makefile
+if grep -q "rsync -a --exclude=sdcard" "$MKFILE" 2>/dev/null; then
+    sed 's/rsync -a --exclude=sdcard/rsync -a --force --exclude=sdcard/' "$MKFILE" > "$MKFILE.__patch_tmp"
+    mv "$MKFILE.__patch_tmp" "$MKFILE"
+    echo "[ofox_ci_patch] 已为 recovery ramdisk rsync 添加 --force"
+else
+    echo "[ofox_ci_patch] 未找到目标 rsync 行 (可能上游已修复), 跳过"
+fi
