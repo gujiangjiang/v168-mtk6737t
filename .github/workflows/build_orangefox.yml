@@ -60,16 +60,24 @@ jobs:
 
       - name: Build recovery
         run: |
+          set +e
           cd ~/fox_12.1
           export FOX_BUILD_DEVICE=q5c62q_njx
           export FOX_VANILLA_BUILD=1
           export OF_FORCE_PREBUILT_KERNEL=1
           export ALLOW_MISSING_DEPENDENCIES=true
           export LC_ALL=C
+          echo ">>> source build/envsetup.sh"
           source build/envsetup.sh
+          echo ">>> envsetup rc=$?"
+          echo ">>> lunch"
           lunch twrp_q5c62q_njx-eng || lunch omni_q5c62q_njx-eng
+          echo ">>> lunch rc=$?"
           mka recoveryimage -j$(nproc --all)
-          ls -la out/target/product/q5c62q_njx/
+          rc=$?
+          echo ">>> mka rc=$rc"
+          ls -la out/target/product/q5c62q_njx/ 2>/dev/null
+          exit $rc
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4

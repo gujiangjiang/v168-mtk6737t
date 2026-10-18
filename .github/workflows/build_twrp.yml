@@ -34,9 +34,11 @@ jobs:
               lib32ncurses5-dev x11proto-core-dev libx11-dev lib32z1-dev \
               libgl1-mesa-dev libxml2-utils xsltproc unzip ccache \
               libtinfo5 libncurses5
-          # TWRP 9.0 构建需要 python2; jammy 上失败则回退 python2.7
-          sudo apt-get install -y python2 python-is-python2 || \
-              sudo apt-get install -y python2.7 || true
+          # TWRP 9.0 构建脚本为 python2 (如 check_radio_versions.py);
+          # 逐个安装容错, 并注意后面会给 ~/bin/python 建 python2 软链
+          for p in python2 python2.7 python-is-python2; do
+            sudo apt-get install -y $p || true
+          done
 
       - name: Install repo tool
         run: |
@@ -46,6 +48,16 @@ jobs:
           echo "$HOME/bin" >> $GITHUB_PATH
           git config --global user.name "github-actions"
           git config --global user.email "ci@localhost"
+          # jammy runner 的 /usr/local/bin/python 是 python3, 会抢先于
+          # python-is-python2 的 /usr/bin/python; 因此在 ~/bin(最高优先级) 放 python2
+          py2=/usr/bin/python2.7
+          [ -x "$py2" ] || py2=/usr/bin/python2
+          if [ -x "$py2" ]; then
+            ln -sf "$py2" "$HOME/bin/python"
+            "$HOME/bin/python" --version
+          else
+            echo "警告: 未找到 python2, TWRP 9.0 构建可能失败"
+          fi
 
       - name: Sync TWRP minimal manifest (twrp-9.0)
         run: |
@@ -72,13 +84,21 @@ jobs:
 
       - name: Build recovery
         run: |
+          set +e
           cd twrp
-          source build/envsetup.sh
           export ALLOW_MISSING_DEPENDENCIES=true
           export LC_ALL=C
+          echo ">>> source build/envsetup.sh"
+          source build/envsetup.sh
+          echo ">>> envsetup rc=$?"
+          echo ">>> lunch"
           # twrp-9.0 分支为 omni 命名; 若 manifest 变更为 twrp 命名则自动回退
           lunch omni_q5c62q_njx-eng || lunch twrp_q5c62q_njx-eng
+          echo ">>> lunch rc=$?"
           mka recoveryimage -j$(nproc --all)
+          rc=$?
+          echo ">>> mka rc=$rc"
+          exit $rc
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
