@@ -121,6 +121,7 @@ mka recoveryimage -j$(nproc)
 | ninja: `...libopenaes.so.toc ... missing and no known rule`（OrangeFox） | fox_12.1 上游语义 bug：`TW_EXCLUDE_ENCRYPTED_BACKUPS` 非空即链接 libopenaes，但模块只在值≠true 时安装；BoardConfig 已平台条件化（该树留空=正常排除，A9 用 true） |
 | ninja: `...busybox... missing and no known rule`（TWRP，假设未来出现） | twrp-9.0 minimal manifest 无 external/busybox；`TW_USE_TOOLBOX` 必须保持 `true`（BoardConfig 已按平台固定） |
 | `partitionmanager.cpp: ... use of undeclared identifier 'AID_MEDIA_RW'`（OrangeFox） | 关闭 `TW_INCLUDE_CRYPTO` 后该宏失去传递性 include 链（原本经 crypto 头文件带入）；宏值恒为 1023，工作流已内置 `tools/ofox_ci_patch.sh` 做等价替换（本地构建也要先跑该脚本） |
+| `ld.lld: error: version script assignment of 'LIBBINDER' to symbol ... failed: symbol not defined`（OrangeFox 32位专属） | fox_12.1 的 `libbinder.arm32.map` 引用了 VNDK 变体中不再编译的历史符号（freeBuffer / ipcSetDataReference / TextOutput 运算符）；64 位设备不使用该 map 故无人踩坑。工作流已内置 `tools/ofox_ci_patch.sh` 自动从 map 移除（对本机 Android 6 无任何影响） |
 
 ## 四、产物校验（编完必做）
 
