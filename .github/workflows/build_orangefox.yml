@@ -71,12 +71,19 @@ jobs:
           source build/envsetup.sh
           echo ">>> envsetup rc=$?"
           echo ">>> lunch"
-          lunch twrp_q5c62q_njx-eng || lunch omni_q5c62q_njx-eng
+          # fox_12.1 树没有 vendor/omni, 只能使用 twrp_ 命名目标
+          lunch twrp_q5c62q_njx-eng
           echo ">>> lunch rc=$?"
           mka recoveryimage -j$(nproc --all)
           rc=$?
           echo ">>> mka rc=$rc"
           ls -la out/target/product/q5c62q_njx/ 2>/dev/null
+          for f in out/target/product/q5c62q_njx/*.img; do
+            [ -f "$f" ] || continue
+            s=$(stat -c %s "$f")
+            echo "IMAGE $f = $s bytes"
+            [ "$s" -gt 16777216 ] && echo "警告: $f 超过 16MB recovery 分区, 刷入前必须裁剪!"
+          done
           exit $rc
 
       - name: Upload artifact
