@@ -144,6 +144,10 @@ jobs:
             fi
           done
           echo ">>> 已 strip $N 个 ELF 文件"
+          # 附加裁剪: 离线充电动画二进制(约1MB, TWRP 正常使用不需要; 充电由硬件/内核完成)
+          if [ -f "$ROOT/sbin/charger" ]; then
+            rm -f "$ROOT/sbin/charger" && echo ">>> 已移除 sbin/charger (~1MB)"
+          fi
           "$HOST/mkbootfs" -d "$OUT/system" "$ROOT" | "$HOST/minigzip" > /tmp/ramdisk-salvage.gz || exit 0
           python3 tools/mkbootimg_mtk.py \
             --kernel "$OUT/kernel" \
@@ -181,6 +185,10 @@ jobs:
             ls -l $OUT/ramdisk-recovery.img 2>/dev/null || true
             echo "-- 目录 TOP15 --"
             du -sk $ROOT/* 2>/dev/null | sort -rn | head -15
+            echo "-- 大目录细分 (sbin / etc / twres) --"
+            du -sk $ROOT/sbin/* 2>/dev/null | sort -rn | head -10
+            du -sk $ROOT/etc/* 2>/dev/null | sort -rn | head -10
+            du -sk $ROOT/twres/* 2>/dev/null | sort -rn | head -8
             echo "-- 单文件 TOP40 (>200KB) --"
             find $ROOT -type f -size +200k -exec du -k {} + 2>/dev/null | sort -rn | head -40
             echo '```'
