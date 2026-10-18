@@ -99,37 +99,78 @@ jobs:
           set +e
           OUT=$HOME/fox_12.1/out/target/product/q5c62q_njx
           LOG=$HOME/fox_12.1/build.log
-          OFOX_IMG=$(ls $OUT/OrangeFox-*.img 2>/dev/null | head -1)
-          REC_IMG=""
-          [ -f "$OUT/recovery.img" ] && REC_IMG=$OUT/recovery.img
+          LIMIT=16777216
+          IMGS=""
+          for f in $OUT/OrangeFox-*.img $OUT/recovery.img; do
+            [ -f "$f" ] && IMGS="$IMGS $f"
+          done
+          HAS=0
+          OVER=0
+          OVER_LIST=""
+          for f in $IMGS; do
+            HAS=1
+            S=$(stat -c %s "$f")
+            if [ "$S" -gt "$LIMIT" ]; then
+              OVER=1
+              OVER_LIST="$OVER_LIST $f(${S}B)"
+            fi
+          done
+
+          volume_breakdown() {
+            echo "### 体积明细"
+            echo
+            echo '```'
+            echo "== recovery/root =="
+            echo "解压总体积: $(du -sh $OUT/recovery/root 2>/dev/null | cut -f1), 文件数: $(find $OUT/recovery/root -type f 2>/dev/null | wc -l)"
+            echo "-- 单文件 TOP40 (>200KB) --"
+            find $OUT/recovery/root -type f -size +200k -exec du -k {} + 2>/dev/null | sort -rn | head -40
+            echo "== system =="
+            echo "解压总体积: $(du -sh $OUT/system 2>/dev/null | cut -f1)"
+            echo "-- 单文件 TOP20 (>500KB) --"
+            find $OUT/system -type f -size +500k -exec du -k {} + 2>/dev/null | sort -rn | head -20
+            echo '```'
+          }
+
           {
             echo "# OrangeFox (fox_12.1) 编译结果 (q5c62q_njx / MT6737T)"
             echo
-            if [ -n "$OFOX_IMG" ] || [ -n "$REC_IMG" ]; then
+            if [ "$HAS" -eq 1 ] && [ "$OVER" -eq 0 ]; then
               echo "## ✅ 编译成功"
               echo
               echo "| 镜像 | 大小 | SHA256 |"
               echo "|---|---|---|"
-              for f in $OFOX_IMG $REC_IMG; do
-                [ -f "$f" ] || continue
+              for f in $IMGS; do
                 S=$(stat -c %s "$f")
                 echo "| \`$(basename "$f")\` | ${S} 字节 (约 $((S/1048576)) MB) | \`$(sha256sum "$f" | cut -d' ' -f1)\` |"
-                if [ "$S" -gt 16777216 ]; then
-                  echo "| ⚠️ 超限警告 | 超过 16MB recovery 分区, 刷入前必须裁剪 | - |"
-                fi
               done
               echo
               echo "| 项目 | 值 |"
               echo "|---|---|"
               echo "| 下载 | Artifacts → \`OrangeFox-recovery-q5c62q_njx\` |"
-              if [ -n "$REC_IMG" ]; then
+              for f in $OUT/recovery.img; do
+                [ -f "$f" ] || continue
                 echo
                 echo "### recovery.img 头部校验"
                 echo
                 echo '```'
-                python3 tools/unpack_bootimg.py --info "$REC_IMG" 2>/dev/null || echo "(解析失败)"
+                python3 tools/unpack_bootimg.py --info "$f" 2>/dev/null || echo "(解析失败)"
                 echo '```'
-              fi
+              done
+            elif [ "$OVER" -eq 1 ]; then
+              echo "## ⚠️ 构建完成, 但存在超过 16MB 分区的镜像"
+              echo
+              echo "超限: \`$OVER_LIST\` （上限 ${LIMIT} 字节）"
+              echo
+              echo "| 镜像 | 大小 |"
+              echo "|---|---|"
+              for f in $IMGS; do
+                S=$(stat -c %s "$f")
+                echo "| \`$(basename "$f")\` | ${S} 字节 (约 $((S/1048576)) MB) |"
+              done
+              echo
+              volume_breakdown
+              echo
+              echo "> 处理: 增加裁剪开关（FOX_DRASTIC_SIZE_REDUCTION 等, 见 build-guide）"
             else
               echo "## ❌ 编译失败"
               echo
@@ -139,18 +180,7 @@ jobs:
               grep -n -B2 -A30 "FAILED\|ninja: build stopped\|error:" "$LOG" 2>/dev/null | tail -80 || echo "(未捕获到 build.log)"
               echo '```'
               echo
-              echo "### 体积明细（定位超限大头）"
-              echo
-              echo '```'
-              echo "== recovery/root =="
-              echo "解压总体积: $(du -sh $OUT/recovery/root 2>/dev/null | cut -f1), 文件数: $(find $OUT/recovery/root -type f 2>/dev/null | wc -l)"
-              echo "-- 单文件 TOP40 (>200KB) --"
-              find $OUT/recovery/root -type f -size +200k -exec du -k {} + 2>/dev/null | sort -rn | head -40
-              echo "== system =="
-              echo "解压总体积: $(du -sh $OUT/system 2>/dev/null | cut -f1)"
-              echo "-- 单文件 TOP20 (>500KB) --"
-              find $OUT/system -type f -size +500k -exec du -k {} + 2>/dev/null | sort -rn | head -20
-              echo '```'
+              volume_breakdown
               echo
               for f in $OUT/*.img; do
                 [ -f "$f" ] && echo "- 已生成: \`$f\` = $(stat -c %s "$f") 字节"

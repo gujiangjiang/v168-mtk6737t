@@ -2,6 +2,16 @@ name: Build TWRP (q5c62q_njx / MT6737T)
 
 on:
   workflow_dispatch:
+    inputs:
+      twrp_branch:
+        description: "TWRP minimal manifest 分支: twrp-8.1=体积友好(推荐默认) / twrp-9.0=现代分支(裁剪后仍 ~18.7MB, 需进一步瘦身) / twrp-7.1=最小"
+        required: true
+        default: "twrp-8.1"
+        type: choice
+        options:
+          - twrp-8.1
+          - twrp-9.0
+          - twrp-7.1
 
 jobs:
   build:
@@ -59,11 +69,14 @@ jobs:
             echo "警告: 未找到 python2, TWRP 9.0 构建可能失败"
           fi
 
-      - name: Sync TWRP minimal manifest (twrp-9.0)
+      - name: Sync TWRP minimal manifest (${{ inputs.twrp_branch }})
         run: |
+          TWRP_BRANCH="${{ inputs.twrp_branch }}"
+          [ -n "$TWRP_BRANCH" ] || TWRP_BRANCH=twrp-8.1
+          echo ">>> 使用分支: $TWRP_BRANCH"
           mkdir -p $GITHUB_WORKSPACE/twrp
           cd $GITHUB_WORKSPACE/twrp
-          ~/bin/repo init --depth=1 -u https://github.com/minimal-manifest-twrp/platform_manifest_twrp_omni.git -b twrp-9.0
+          ~/bin/repo init --depth=1 -u https://github.com/minimal-manifest-twrp/platform_manifest_twrp_omni.git -b "$TWRP_BRANCH"
           ~/bin/repo sync -j$(nproc --all) --force-sync --no-clone-bundle --no-tags
 
       - name: Copy device tree
@@ -104,12 +117,30 @@ jobs:
         if: always()
         run: |
           set +e
-          IMG=twrp/out/target/product/q5c62q_njx/recovery.img
+          OUT=twrp/out/target/product/q5c62q_njx
+          IMG=$OUT/recovery.img
+          LIMIT=16777216
+          SIZE=0
+          [ -f "$IMG" ] && SIZE=$(stat -c %s "$IMG")
+
+          volume_breakdown() {
+            ROOT=$OUT/recovery/root
+            echo "### recovery root 体积明细"
+            echo
+            echo '```'
+            echo "解压总体积: $(du -sh $ROOT 2>/dev/null | cut -f1), 文件数: $(find $ROOT -type f 2>/dev/null | wc -l)"
+            ls -l $OUT/ramdisk-recovery.img 2>/dev/null || true
+            echo "-- 目录 TOP15 --"
+            du -sk $ROOT/* 2>/dev/null | sort -rn | head -15
+            echo "-- 单文件 TOP40 (>200KB) --"
+            find $ROOT -type f -size +200k -exec du -k {} + 2>/dev/null | sort -rn | head -40
+            echo '```'
+          }
+
           {
             echo "# TWRP 编译结果 (q5c62q_njx / MT6737T)"
             echo
-            if [ -f "$IMG" ]; then
-              SIZE=$(stat -c %s "$IMG")
+            if [ "$SIZE" -gt 0 ] && [ "$SIZE" -le "$LIMIT" ]; then
               HASH=$(sha256sum "$IMG" | cut -d' ' -f1)
               echo "## ✅ 编译成功"
               echo
@@ -117,7 +148,7 @@ jobs:
               echo "|---|---|"
               echo "| 镜像 | \`recovery.img\` |"
               echo "| 大小 | ${SIZE} 字节 (约 $((SIZE/1048576)) MB) |"
-              echo "| 分区余量 | $((16777216 - SIZE)) 字节 (上限 16777216) |"
+              echo "| 分区余量 | $((LIMIT - SIZE)) 字节 (上限 ${LIMIT}) |"
               echo "| SHA256 | \`${HASH}\` |"
               echo "| 下载 | 本页底部 Artifacts → \`TWRP-recovery-q5c62q_njx\` |"
               echo
@@ -126,6 +157,17 @@ jobs:
               echo '```'
               python3 tools/unpack_bootimg.py --info "$IMG" 2>/dev/null || echo "(解析失败)"
               echo '```'
+            elif [ "$SIZE" -gt "$LIMIT" ]; then
+              echo "## ⚠️ 构建完成, 但镜像超过 16MB 分区"
+              echo
+              echo "| 项目 | 值 |"
+              echo "|---|---|"
+              echo "| 大小 | ${SIZE} 字节 (约 $((SIZE/1048576)) MB) |"
+              echo "| 超出分区 | $((SIZE - LIMIT)) 字节 (上限 ${LIMIT}) |"
+              echo
+              volume_breakdown
+              echo
+              echo "> 处理: 在 BoardConfig.mk 增加裁剪开关, 或换用体积更小的分支（本工作流输入 \`twrp_branch\`，如默认的 twrp-8.1）"
             else
               echo "## ❌ 编译失败"
               echo
@@ -135,19 +177,9 @@ jobs:
               grep -n -B2 -A25 "FAILED\|ninja: build stopped\|error:" twrp/build.log 2>/dev/null | tail -80 || echo "(未捕获到 build.log)"
               echo '```'
               echo
-              echo "### recovery root 体积明细（定位超限大头）"
+              volume_breakdown
               echo
-              echo '```'
-              ROOT=twrp/out/target/product/q5c62q_njx/recovery/root
-              echo "解压总体积: $(du -sh $ROOT 2>/dev/null | cut -f1), 文件数: $(find $ROOT -type f 2>/dev/null | wc -l)"
-              ls -l twrp/out/target/product/q5c62q_njx/ramdisk-recovery.img 2>/dev/null || true
-              echo "-- 目录 TOP15 --"
-              du -sk $ROOT/* 2>/dev/null | sort -rn | head -15
-              echo "-- 单文件 TOP40 (>200KB) --"
-              find $ROOT -type f -size +200k -exec du -k {} + 2>/dev/null | sort -rn | head -40
-              echo '```'
-              echo
-              for f in twrp/out/target/product/q5c62q_njx/*.img; do
+              for f in $OUT/*.img; do
                 [ -f "$f" ] && echo "- 已生成: \`$f\` = $(stat -c %s "$f") 字节"
               done
             fi
