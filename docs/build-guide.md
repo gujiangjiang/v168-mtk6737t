@@ -21,7 +21,7 @@
 
 > **运行页 Summary（推荐先看）**：工作流每次运行结束（无论成功/失败）都会在运行页面自动生成
 > 汇总报告——成功时显示镜像大小、分区余量、SHA256、bootimg 头部校验与下载位置；
-> 失败时显示错误摘要和 recovery root 体积 TOP25，无需翻日志即可定位问题。
+> 失败时显示错误摘要和 recovery root 体积明细（目录 TOP15 + 单文件 TOP40），无需翻日志即可定位问题。
 
 ### 工作流内部做了什么
 | 步骤 | 说明 |
@@ -110,7 +110,7 @@ mka recoveryimage -j$(nproc)
 | `check_radio_versions.py ... SyntaxError: Missing parentheses in call to 'print'` | python2 脚本被 python3 执行；工作流已在最高优先级 `~/bin/python` 建 python2 软链（runner 的 /usr/local/bin/python 是 python3，会抢先生效） |
 | OrangeFox `source build/envsetup.sh` 后无声退出（exit 1） | `bash -e` 与 A12 envsetup 尾部（addcompletions 加载补全脚本）偶发冲突；工作流构建步骤已 `set +e` 并输出 `>>> xxx rc=` 标记便于定位 |
 | `Incorrect TARGET_ARCH_VARIANT, armv7-a-neon. Use armv8-a instead.`（OrangeFox） | A12 对 cortex-a53 强制 armv8-a；BoardConfig 已按 `PLATFORM_SDK_VERSION` 自动切换（SDK>30 用 armv8-a，A9 仍用 armv7-a-neon） |
-| `recovery.img too large (NNN > 16777216)`（TWRP） | twrp-9.0 默认集合超出 16MB 分区；BoardConfig 已默认启用整组裁剪（见 device-tree.md「镜像超 16MB」）。仍超限时查看失败运行自动打印的 "recovery root 体积 TOPxx" 再定裁剪方向（该诊断已内置在工作流 Summary） |
+| `recovery.img too large (NNN > 16777216)`（TWRP） | twrp-9.0 默认集合超出 16MB 分区；BoardConfig 已默认启用整组裁剪（见 device-tree.md「镜像超 16MB」）。仍超限时查看失败运行 Summary 中的 "recovery root 体积明细"（目录 TOP15 + 单文件 TOP40）再定裁剪方向 |
 | `Could not find ui.xml for TW_THEME: not set`（OrangeFox soong） | 通常是 lunch/dumpvars 先失败（如 arch variant 报错）的连锁反应；修好前置错误即消失 |
 | ninja: `...libopenaes.so.toc ... missing and no known rule`（OrangeFox） | fox_12.1 上游语义 bug：`TW_EXCLUDE_ENCRYPTED_BACKUPS` 非空即链接 libopenaes，但模块只在值≠true 时安装；BoardConfig 已平台条件化（该树留空=正常排除，A9 用 true） |
 | ninja: `...busybox... missing and no known rule`（TWRP，假设未来出现） | twrp-9.0 minimal manifest 无 external/busybox；`TW_USE_TOOLBOX` 必须保持 `true`（BoardConfig 已按平台固定） |
