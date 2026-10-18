@@ -122,6 +122,8 @@ mka recoveryimage -j$(nproc)
 | ninja: `...busybox... missing and no known rule`（TWRP，假设未来出现） | twrp-9.0 minimal manifest 无 external/busybox；`TW_USE_TOOLBOX` 必须保持 `true`（BoardConfig 已按平台固定） |
 | `partitionmanager.cpp: ... use of undeclared identifier 'AID_MEDIA_RW'`（OrangeFox） | 关闭 `TW_INCLUDE_CRYPTO` 后该宏失去传递性 include 链（原本经 crypto 头文件带入）；宏值恒为 1023，工作流已内置 `tools/ofox_ci_patch.sh` 做等价替换（本地构建也要先跑该脚本） |
 | `ld.lld: error: version script assignment of 'LIBBINDER' to symbol ... failed: symbol not defined`（OrangeFox 32位专属） | fox_12.1 的 `libbinder.arm32.map` 引用了 VNDK 变体中不再编译的历史符号（freeBuffer / ipcSetDataReference / TextOutput 运算符）；64 位设备不使用该 map 故无人踩坑。工作流已内置 `tools/ofox_ci_patch.sh` 自动从 map 移除（对本机 Android 6 无任何影响） |
+| `You are attempting to build with the incorrect version of java ... required 1.8.x`（TWRP 7.1/8.1/9.0） | Android 7.1-9 构建系统强制 JDK 8（jammy 已无 openjdk-8 apt 包）；工作流已用 `actions/setup-java` 固定 temurin 8 |
+| `schedtool: command not found`（`mka rc=127`，TWRP 7.1） | 旧版 envsetup 的 `mka` 依赖 schedtool；已加入依赖安装列表 |
 
 ## 四、产物校验（编完必做）
 
