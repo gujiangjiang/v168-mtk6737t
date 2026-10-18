@@ -9,7 +9,7 @@ jobs:
     timeout-minutes: 480
     steps:
       - name: Checkout device tree
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Free disk space
         run: |
@@ -32,7 +32,19 @@ jobs:
           sudo apt-get install -y git-core gnupg flex bison gperf build-essential \
               zip curl zlib1g-dev gcc-multilib g++-multilib libc6-dev-i386 \
               lib32ncurses5-dev x11proto-core-dev libx11-dev lib32z1-dev \
-              libgl1-mesa-dev libxml2-utils xsltproc unzip ccache rsync
+              libgl1-mesa-dev libxml2-utils xsltproc unzip ccache rsync \
+              libtinfo5 libncurses5
+
+      - name: Install repo tool
+        run: |
+          mkdir -p ~/bin
+          curl -s https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
+          chmod a+x ~/bin/repo
+          echo "$HOME/bin" >> $GITHUB_PATH
+          export PATH="$HOME/bin:$PATH"
+          repo --version
+          git config --global user.name "github-actions"
+          git config --global user.email "ci@localhost"
 
       - name: Sync OrangeFox sources (fox_12.1)
         run: |

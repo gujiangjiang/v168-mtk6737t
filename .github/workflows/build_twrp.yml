@@ -9,7 +9,7 @@ jobs:
     timeout-minutes: 240
     steps:
       - name: Checkout device tree
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Free disk space
         run: |
@@ -32,7 +32,8 @@ jobs:
           sudo apt-get install -y git-core gnupg flex bison gperf build-essential \
               zip curl zlib1g-dev gcc-multilib g++-multilib libc6-dev-i386 \
               lib32ncurses5-dev x11proto-core-dev libx11-dev lib32z1-dev \
-              libgl1-mesa-dev libxml2-utils xsltproc unzip ccache
+              libgl1-mesa-dev libxml2-utils xsltproc unzip ccache \
+              libtinfo5 libncurses5
           # TWRP 9.0 构建需要 python2; jammy 上失败则回退 python2.7
           sudo apt-get install -y python2 python-is-python2 || \
               sudo apt-get install -y python2.7 || true
