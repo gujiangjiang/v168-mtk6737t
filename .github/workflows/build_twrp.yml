@@ -4,13 +4,13 @@ on:
   workflow_dispatch:
     inputs:
       twrp_branch:
-        description: "TWRP minimal manifest 分支: twrp-8.1=体积友好(推荐默认) / twrp-9.0=现代分支(裁剪后仍偏大, 视选项而定)"
+        description: "TWRP minimal manifest 分支: twrp-9.0=现代版(推荐默认, 已实测可进16MB) / twrp-8.1=体积裕量大(配中文字体用) / twrp-7.1=最小"
         required: true
-        default: "twrp-8.1"
+        default: "twrp-9.0"
         type: choice
         options:
-          - twrp-8.1
           - twrp-9.0
+          - twrp-8.1
           - twrp-7.1
       keep_fonts:
         description: "额外字体/语言包(中文界面需要; 约 +2.5MB, 16MB 分区下可能超限)"
@@ -202,6 +202,16 @@ jobs:
           SSIZE=0
           [ -f "$SAL" ] && SSIZE=$(stat -c %s "$SAL")
 
+          # ---- 构建详情检测 (供核对) ----
+          BUILD_ROOT=$OUT/recovery/root
+          TW_VERSION=$(strings -a "$BUILD_ROOT/sbin/recovery" 2>/dev/null | grep -m1 -E '^3\.[0-9]+\.[0-9]+_[0-9]+-[0-9]+$' || true)
+          if [ -z "$TW_VERSION" ]; then
+            TW_VERSION=$(grep -h -m1 "ro.twrp.version" "$BUILD_ROOT/prop.default" "$BUILD_ROOT/default.prop" 2>/dev/null | cut -d= -f2 || true)
+          fi
+          [ -n "$TW_VERSION" ] || TW_VERSION="(未识别)"
+          if [ -e "$BUILD_ROOT/sbin/charger" ] || [ -L "$BUILD_ROOT/sbin/charger" ]; then CHARGER_STATE="保留"; else CHARGER_STATE="未包含"; fi
+          if [ -e "$BUILD_ROOT/twres/fonts/DroidSansFallback.ttf" ] || [ -L "$BUILD_ROOT/twres/fonts/DroidSansFallback.ttf" ]; then FONTS_STATE="已启用 (含 CJK 字体)"; else FONTS_STATE="未启用"; fi
+
           volume_breakdown() {
             ROOT=$OUT/recovery/root
             echo "### recovery root 体积明细"
@@ -229,6 +239,10 @@ jobs:
               echo
               echo "| 项目 | 值 |"
               echo "|---|---|"
+              echo "| TWRP 版本 | ${TW_VERSION} |"
+              echo "| 编译分支 | \`${{ inputs.twrp_branch }}\` |"
+              echo "| 额外字体/语言包 | ${FONTS_STATE} |"
+              echo "| 关机充电动画 | ${CHARGER_STATE} |"
               echo "| 镜像 | \`recovery.img\` |"
               echo "| 大小 | ${SIZE} 字节 (约 $((SIZE/1048576)) MB) |"
               echo "| 分区余量 | $((LIMIT - SIZE)) 字节 (上限 ${LIMIT}) |"
@@ -247,6 +261,10 @@ jobs:
               echo
               echo "| 项目 | 值 |"
               echo "|---|---|"
+              echo "| TWRP 版本 | ${TW_VERSION} |"
+              echo "| 编译分支 | \`${{ inputs.twrp_branch }}\` |"
+              echo "| 额外字体/语言包 | ${FONTS_STATE} |"
+              echo "| 关机充电动画 | ${CHARGER_STATE} |"
               echo "| 原镜像 | ${SIZE} 字节 (超出 $((SIZE - LIMIT))) |"
               echo "| 瘦身后 | ${SSIZE} 字节 (约 $((SSIZE/1048576)) MB), 余量 $((LIMIT - SSIZE)) |"
               echo "| SHA256 | \`$(sha256sum "$SAL" | cut -d' ' -f1)\` |"
