@@ -58,6 +58,13 @@ jobs:
           mkdir -p ~/fox_12.1/device/mediatek
           cp -r device/q5c62q_njx ~/fox_12.1/device/mediatek/q5c62q_njx
 
+      - name: Patch known build issues
+        run: |
+          # A12 bionic/libcutils 移除了 AID_MEDIA_RW 宏(历史值 1023),
+          # 而 partitionmanager.cpp 仍引用 -> 用可复用脚本统一补丁
+          cd ~/fox_12.1
+          sh "$GITHUB_WORKSPACE/tools/ofox_ci_patch.sh"
+
       - name: Build recovery
         run: |
           set +e
