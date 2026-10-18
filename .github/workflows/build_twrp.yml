@@ -113,15 +113,57 @@ jobs:
           echo ">>> mka rc=$rc"
           exit $rc
 
+      - name: Salvage oversize image (strip + repack)
+        if: always()
+        run: |
+          set +e
+          OUT=twrp/out/target/product/q5c62q_njx
+          ROOT=$OUT/recovery/root
+          IMG=$OUT/recovery.img
+          LIMIT=16777216
+          SIZE=$(stat -c %s "$IMG" 2>/dev/null || echo 0)
+          if [ "$SIZE" -le "$LIMIT" ]; then
+            echo ">>> 镜像未超限 (size=$SIZE), 无需瘦身"
+            exit 0
+          fi
+          HOST=twrp/out/host/linux-x86/bin
+          CSTRIP=twrp/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9/bin/arm-linux-androideabi-strip
+          [ -x "$CSTRIP" ] || CSTRIP=strip
+          echo ">>> 原镜像 $SIZE 字节, 开始 strip 瘦身 ($CSTRIP)"
+          N=0
+          for f in $(find "$ROOT" -type f); do
+            if file -b "$f" 2>/dev/null | grep -q "ELF"; then
+              if "$CSTRIP" "$f" 2>/dev/null; then N=$((N+1)); fi
+            fi
+          done
+          echo ">>> 已 strip $N 个 ELF 文件"
+          "$HOST/mkbootfs" -d "$OUT/system" "$ROOT" | "$HOST/minigzip" > /tmp/ramdisk-salvage.gz || exit 0
+          python3 tools/mkbootimg_mtk.py \
+            --kernel "$OUT/kernel" \
+            --ramdisk /tmp/ramdisk-salvage.gz \
+            --out "$OUT/recovery-salvage.img" \
+            --cmdline "bootopt=64S3,32N2,32N2 androidboot.selinux=permissive buildvariant=eng" \
+            --name 1505127327
+          S2=$(stat -c %s "$OUT/recovery-salvage.img" 2>/dev/null || echo 0)
+          echo ">>> 瘦身后: $S2 字节 (原 $SIZE, 上限 $LIMIT)"
+          if [ "$S2" -gt 0 ] && [ "$S2" -le "$LIMIT" ]; then
+            echo ">>> ✅ 瘦身成功, 见 Summary 与 TWRP-recovery-salvage-q5c62q_njx"
+          else
+            echo ">>> ❌ 瘦身后仍超限, 见 Summary 体积明细"
+          fi
+
       - name: Summary (always)
         if: always()
         run: |
           set +e
           OUT=twrp/out/target/product/q5c62q_njx
           IMG=$OUT/recovery.img
+          SAL=$OUT/recovery-salvage.img
           LIMIT=16777216
           SIZE=0
           [ -f "$IMG" ] && SIZE=$(stat -c %s "$IMG")
+          SSIZE=0
+          [ -f "$SAL" ] && SSIZE=$(stat -c %s "$SAL")
 
           volume_breakdown() {
             ROOT=$OUT/recovery/root
@@ -157,8 +199,25 @@ jobs:
               echo '```'
               python3 tools/unpack_bootimg.py --info "$IMG" 2>/dev/null || echo "(解析失败)"
               echo '```'
+            elif [ "$SSIZE" -gt 0 ] && [ "$SSIZE" -le "$LIMIT" ]; then
+              echo "## ✅ 编译成功（经自动瘦身）"
+              echo
+              echo "原始镜像超限，已自动 strip + 重打包为 \`recovery-salvage.img\`："
+              echo
+              echo "| 项目 | 值 |"
+              echo "|---|---|"
+              echo "| 原镜像 | ${SIZE} 字节 (超出 $((SIZE - LIMIT))) |"
+              echo "| 瘦身后 | ${SSIZE} 字节 (约 $((SSIZE/1048576)) MB), 余量 $((LIMIT - SSIZE)) |"
+              echo "| SHA256 | \`$(sha256sum "$SAL" | cut -d' ' -f1)\` |"
+              echo "| 下载 | 本页底部 Artifacts → \`TWRP-recovery-salvage-q5c62q_njx\`（文件名 recovery-salvage.img） |"
+              echo
+              echo "### 瘦身后镜像头部校验"
+              echo
+              echo '```'
+              python3 tools/unpack_bootimg.py --info "$SAL" 2>/dev/null || echo "(解析失败)"
+              echo '```'
             elif [ "$SIZE" -gt "$LIMIT" ]; then
-              echo "## ⚠️ 构建完成, 但镜像超过 16MB 分区"
+              echo "## ⚠️ 构建完成, 但镜像超过 16MB 分区（自动瘦身也未能压入）"
               echo
               echo "| 项目 | 值 |"
               echo "|---|---|"
@@ -193,3 +252,11 @@ jobs:
           name: TWRP-recovery-q5c62q_njx
           path: twrp/out/target/product/q5c62q_njx/recovery.img
           if-no-files-found: error
+
+      - name: Upload salvage artifact (if any)
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: TWRP-recovery-salvage-q5c62q_njx
+          path: twrp/out/target/product/q5c62q_njx/recovery-salvage.img
+          if-no-files-found: ignore
