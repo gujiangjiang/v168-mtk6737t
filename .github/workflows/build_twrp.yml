@@ -59,6 +59,17 @@ jobs:
           mkdir -p twrp/device/mediatek
           cp -r device/q5c62q_njx twrp/device/mediatek/q5c62q_njx
 
+      - name: Patch known build issues
+        run: |
+          # TWRP 9.0 fb2png 的 -Wsign-compare 编译错误
+          # (仅在本项目启用 TW_INCLUDE_FB2PNG 时触发, 上游修复见 TWRP 后续分支)
+          f=twrp/bootable/recovery/fb2png/fb2png.c
+          if [ -f "$f" ]; then
+            sed -i 's|read(fd, x ,fb->size) != fb->size|read(fd, x ,fb->size) != (ssize_t)fb->size|' "$f"
+            echo "--- fb2png.c sign-compare 修复结果:"
+            grep -n "ssize_t)fb->size" "$f" || echo "警告: 未匹配到目标行(上游可能已修复)"
+          fi
+
       - name: Build recovery
         run: |
           cd twrp
