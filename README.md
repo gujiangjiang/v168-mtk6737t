@@ -66,6 +66,8 @@ fastboot flash recovery prebuilt/TWRP-3.6.1_q5c62q_njx_20261018.img
 
 **② 云端编译 TWRP / OrangeFox**（见 [docs/build-guide.md](docs/build-guide.md)）
 把本仓库推到 GitHub → Actions → 选择对应 workflow → Run workflow → 下载 Artifacts。
+每次运行结束（无论成功/失败）都会自动生成 **Summary** 报告：镜像大小/SHA256/头部校验，
+或失败时的错误摘要与体积诊断，一屏可见。
 
 **③ 后续移植（Debian / 新 Android 等）**
 直接使用本库素材：设备树 `analysis/boot/device.dtb`、解包后的内核/ramdisk、

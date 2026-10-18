@@ -19,6 +19,10 @@
    - `TWRP-recovery-q5c62q_njx` → `recovery.img`
    - `OrangeFox-recovery-q5c62q_njx` → `OrangeFox-unofficial-q5c62q_njx.img`
 
+> **运行页 Summary（推荐先看）**：工作流每次运行结束（无论成功/失败）都会在运行页面自动生成
+> 汇总报告——成功时显示镜像大小、分区余量、SHA256、bootimg 头部校验与下载位置；
+> 失败时显示错误摘要和 recovery root 体积 TOP25，无需翻日志即可定位问题。
+
 ### 工作流内部做了什么
 | 步骤 | 说明 |
 |---|---|
