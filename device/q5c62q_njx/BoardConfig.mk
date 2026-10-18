@@ -10,8 +10,14 @@ TARGET_BOOTLOADER_BOARD_NAME := mt6735
 TARGET_BOARD_PLATFORM := mt6735
 
 # CPU: 4x Cortex-A53 (64 位 SoC, 本机用户态为 32 位)
+# 说明: Android 12+ (fox_12.1) 对 cortex-a53 强制要求 TARGET_ARCH_VARIANT=armv8-a,
+#       Android 9 (twrp-9.0) 则沿用 armv7-a-neon, 故按平台 SDK 自动切换。
 TARGET_ARCH := arm
+ifeq ($(shell test $(PLATFORM_SDK_VERSION) -gt 30 2>/dev/null && echo modern),modern)
+TARGET_ARCH_VARIANT := armv8-a
+else
 TARGET_ARCH_VARIANT := armv7-a-neon
+endif
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_CPU_VARIANT := cortex-a53
@@ -52,6 +58,11 @@ TW_USE_TOOLBOX := true
 TW_HAS_MTP := true
 TW_USE_MODEL_HARDWARE_ID_FOR_DEVICE_ID := true
 TW_NO_CPU_TEMP := true
+
+# ---- 体积控制 (recovery 分区仅 16777216 字节) ----
+# twrp-9.0 默认捆绑 python3_twrp(约 7MB), 必须排除才能压进 16MB;
+# 若仍超限, 依次考虑: TW_EXTRA_LANGUAGES=false / TW_INCLUDE_CRYPTO=false / TW_NO_EXFAT=true
+TW_EXCLUDE_PYTHON := true
 
 # 背光 / 亮度 (MT65xx 标准路径)
 TW_BRIGHTNESS_PATH := /sys/class/leds/lcd-backlight/brightness
