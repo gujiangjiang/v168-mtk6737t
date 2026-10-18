@@ -63,6 +63,8 @@ if grep -q "rsync -a --exclude=sdcard" "$MKFILE" 2>/dev/null; then
     sed 's/rsync -a --exclude=sdcard/rsync -a --force --exclude=sdcard/' "$MKFILE" > "$MKFILE.__patch_tmp"
     mv "$MKFILE.__patch_tmp" "$MKFILE"
     echo "[ofox_ci_patch] 已为 recovery ramdisk rsync 添加 --force"
+    echo "[ofox_ci_patch] 生效验证 (应显示 --force):"
+    grep -n "rsync -a --force --exclude=sdcard" "$MKFILE" | head -1
 else
     echo "[ofox_ci_patch] 未找到目标 rsync 行 (可能上游已修复), 跳过"
 fi
