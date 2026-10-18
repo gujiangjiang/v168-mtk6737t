@@ -81,6 +81,8 @@ mkdir -p ~/fox_12.1/device/mediatek
 cp -r <本仓库>/device/q5c62q_njx ~/fox_12.1/device/mediatek/q5c62q_njx
 
 cd ~/fox_12.1
+# 应用已知源码补丁(AID_MEDIA_RW 等, 与 CI 一致)
+sh <本仓库路径>/tools/ofox_ci_patch.sh
 export FOX_BUILD_DEVICE=q5c62q_njx
 export FOX_VANILLA_BUILD=1
 export OF_FORCE_PREBUILT_KERNEL=1
@@ -114,6 +116,7 @@ mka recoveryimage -j$(nproc)
 | `Could not find ui.xml for TW_THEME: not set`（OrangeFox soong） | 通常是 lunch/dumpvars 先失败（如 arch variant 报错）的连锁反应；修好前置错误即消失 |
 | ninja: `...libopenaes.so.toc ... missing and no known rule`（OrangeFox） | fox_12.1 上游语义 bug：`TW_EXCLUDE_ENCRYPTED_BACKUPS` 非空即链接 libopenaes，但模块只在值≠true 时安装；BoardConfig 已平台条件化（该树留空=正常排除，A9 用 true） |
 | ninja: `...busybox... missing and no known rule`（TWRP，假设未来出现） | twrp-9.0 minimal manifest 无 external/busybox；`TW_USE_TOOLBOX` 必须保持 `true`（BoardConfig 已按平台固定） |
+| `partitionmanager.cpp: ... use of undeclared identifier 'AID_MEDIA_RW'`（OrangeFox） | 关闭 `TW_INCLUDE_CRYPTO` 后该宏失去传递性 include 链（原本经 crypto 头文件带入）；宏值恒为 1023，工作流已内置 `tools/ofox_ci_patch.sh` 做等价替换（本地构建也要先跑该脚本） |
 
 ## 四、产物校验（编完必做）
 

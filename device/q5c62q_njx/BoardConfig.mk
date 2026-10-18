@@ -76,6 +76,8 @@ ifeq ($(shell test $(PLATFORM_SDK_VERSION) -gt 30 2>/dev/null && echo modern),mo
 #     而其模块又只在"值不等于 true"时安装 → 设为 true 必然链接失败, 必须留空;
 #     留空时该功能本身仍被 -DTW_EXCLUDE_ENCRYPTED_BACKUPS 关闭(且模块会被构建, 无害)。
 #   - toolbox 由源码内部强制启用; 该树没有 busybox 模块, 不要设置 TW_USE_TOOLBOX。
+#   - 关闭 TW_INCLUDE_CRYPTO 会使 partitionmanager.cpp 的 AID_MEDIA_RW 失去
+#     传递性 include 链 -> CI 已用 tools/ofox_ci_patch.sh 等价替换(1023), 勿删。
 else
 # twrp-9.0 (A9):
 #   - true 语义正常, 可安全排除 openaes
