@@ -1,0 +1,31 @@
+#
+# ADDITIONAL_DEFAULT_PROPERTIES
+#
+ro.adb.secure=1
+persist.service.acm.enable=0
+ro.secure=1
+security.perf_harden=1
+ro.allow.mock.location=0
+ro.debuggable=0
+ro.zygote=zygote32
+dalvik.vm.image-dex2oat-Xms=64m
+dalvik.vm.image-dex2oat-Xmx=64m
+dalvik.vm.dex2oat-Xms=64m
+dalvik.vm.dex2oat-Xmx=512m
+ro.dalvik.vm.native.bridge=0
+debug.atrace.tags.enableflags=0
+ro.config.low_ram=true
+ro.hwui.path_cache_size=0
+ro.hwui.text_small_cache_width=512
+ro.hwui.text_small_cache_height=256
+ro.hwui.disable_asset_atlas=true
+ro.mtk_perf_fast_start_win=0
+persist.sys.usb.config=mtp
+ro.mount.fs=EXT4
+camera.disable_zsl_mode=1
+#
+# BOOTIMAGE_BUILD_PROPERTIES
+#
+ro.bootimage.build.date=2017年 09月 11日 星期一 19:04:38 CST
+ro.bootimage.build.date.utc=1505127878
+ro.bootimage.build.fingerprint=alps/full_q5c62q_njx/q5c62q_njx:6.0/MRA58K/1505127327:user/dev-keys

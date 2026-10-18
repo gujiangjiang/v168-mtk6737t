@@ -1,0 +1,62 @@
+block_size=4096 inode_size=256
+
+== / (system 根目录) ==
+   [d] .
+   [d] ..
+   [d] app
+   [d] bin
+   [f] build.prop size=8808
+   [d] data
+   [d] etc
+   [d] fonts
+   [d] framework
+   [d] lib
+   [d] lost+found
+   [d] media
+   [d] plugin
+   [d] priv-app
+   [f] recovery-from-boot.p size=143616
+   [d] res
+   [d] tts
+   [d] usr
+   [d] vendor
+   [d] xbin
+
+== /lib64 == MISSING (确认纯 32 位用户态)
+
+== /lib/hw == 
+   [f] audio.a2dp.default.so size=22148
+   [f] audio.primary.default.so size=18048
+   [f] audio.primary.mt6737t.so size=1150768
+   [f] audio.r_submix.default.so size=38596
+   [f] audio.usb.default.so size=22160
+   [f] audio_policy.default.so size=96048
+   [f] audio_policy.stub.so size=13952
+   [f] bluetooth.default.so size=1817300
+   [f] camera.mt6737t.so size=42800
+   [f] gps.mt6737t.so size=87816
+   [f] gralloc.default.so size=22476
+   [f] gralloc.mt6737t.so size=51444
+   [f] hwcomposer.mt6737t.so size=190204
+   [f] keystore.default.so size=13872
+   [f] lights.mt6737t.so size=18052
+   [f] local_time.default.so size=13952
+   [f] memtrack.mt6737t.so size=18072
+   [f] power.default.so size=13964
+   [f] sensors.mt6737t.so size=124876
+   [f] vibrator.default.so size=13952
+
+== /lib/egl == 
+   [f] egl.cfg size=76
+   [f] libGLES_android.so size=99944
+   [f] libGLES_mali.so size=22557356
+
+== /lib/modules == MISSING
+== /vendor == 
+   [d] NewsPage
+   [d] lib
+   [d] operator
+
+/lib/libart.so -> ELF32 ARM
+/lib/libbinder.so -> ELF32 ARM
+/bin/app_process32 -> ELF32 ARM

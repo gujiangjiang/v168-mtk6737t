@@ -1,0 +1,16 @@
+== boot.img
+   kernel_size=0x5fe7e0 load=0x40008000
+   ramdisk_size=0x11f02c load=0x44000000
+   second_size=0x0 second_addr=0x40f00000 tags=0x4e000000
+   page_size=2048 header_version=0 os_version=0x0
+   name=1505127327
+   cmdline=bootopt=64S3,32N2,32N2
+   extra_cmdline=
+== recovery.img
+   kernel_size=0x5fe7e0 load=0x40008000
+   ramdisk_size=0x241d93 load=0x44000000
+   second_size=0x0 second_addr=0x40f00000 tags=0x4e000000
+   page_size=2048 header_version=0 os_version=0x0
+   name=1505127327
+   cmdline=bootopt=64S3,32N2,32N2
+   extra_cmdline=

@@ -1,0 +1,2610 @@
+d          /system/app
+d          /system/app/ApplicationsProvider
+f 14298      /system/app/ApplicationsProvider/ApplicationsProvider.apk
+d          /system/app/ApplicationsProvider/oat
+d          /system/app/ApplicationsProvider/oat/arm
+f 61932      /system/app/ApplicationsProvider/oat/arm/ApplicationsProvider.odex
+d          /system/app/AtciService
+f 3068       /system/app/AtciService/AtciService.apk
+d          /system/app/AtciService/oat
+d          /system/app/AtciService/oat/arm
+f 197100     /system/app/AtciService/oat/arm/AtciService.odex
+d          /system/app/BaiduSearch
+f 23597968   /system/app/BaiduSearch/BaiduSearch.apk
+d          /system/app/BaiduSearch/oat
+d          /system/app/BaiduSearch/oat/arm
+f 49934828   /system/app/BaiduSearch/oat/arm/BaiduSearch.odex
+d          /system/app/BasicDreams
+f 18432      /system/app/BasicDreams/BasicDreams.apk
+d          /system/app/BasicDreams/oat
+d          /system/app/BasicDreams/oat/arm
+f 49644      /system/app/BasicDreams/oat/arm/BasicDreams.odex
+d          /system/app/BatteryWarning
+f 35046      /system/app/BatteryWarning/BatteryWarning.apk
+d          /system/app/BatteryWarning/oat
+d          /system/app/BatteryWarning/oat/arm
+f 25068      /system/app/BatteryWarning/oat/arm/BatteryWarning.odex
+d          /system/app/Bluetooth
+f 117223     /system/app/Bluetooth/Bluetooth.apk
+d          /system/app/Bluetooth/lib
+d          /system/app/Bluetooth/lib/arm
+l          /system/app/Bluetooth/lib/arm/libbluetooth_jni.so
+d          /system/app/Bluetooth/oat
+d          /system/app/Bluetooth/oat/arm
+f 4358636    /system/app/Bluetooth/oat/arm/Bluetooth.odex
+d          /system/app/BluetoothMidiService
+f 3755       /system/app/BluetoothMidiService/BluetoothMidiService.apk
+d          /system/app/BluetoothMidiService/oat
+d          /system/app/BluetoothMidiService/oat/arm
+f 45548      /system/app/BluetoothMidiService/oat/arm/BluetoothMidiService.odex
+d          /system/app/BtTool
+f 212704     /system/app/BtTool/BtTool.apk
+d          /system/app/BtTool/oat
+d          /system/app/BtTool/oat/arm
+f 2179564    /system/app/BtTool/oat/arm/BtTool.odex
+d          /system/app/Bypass
+f 22347      /system/app/Bypass/Bypass.apk
+d          /system/app/Bypass/oat
+d          /system/app/Bypass/oat/arm
+f 57836      /system/app/Bypass/oat/arm/Bypass.odex
+d          /system/app/CalendarImporter
+f 16872      /system/app/CalendarImporter/CalendarImporter.apk
+d          /system/app/CalendarImporter/oat
+d          /system/app/CalendarImporter/oat/arm
+f 405996     /system/app/CalendarImporter/oat/arm/CalendarImporter.odex
+d          /system/app/CaptivePortalLogin
+f 8583       /system/app/CaptivePortalLogin/CaptivePortalLogin.apk
+d          /system/app/CaptivePortalLogin/oat
+d          /system/app/CaptivePortalLogin/oat/arm
+f 41452      /system/app/CaptivePortalLogin/oat/arm/CaptivePortalLogin.odex
+d          /system/app/CertInstaller
+f 21002      /system/app/CertInstaller/CertInstaller.apk
+d          /system/app/CertInstaller/oat
+d          /system/app/CertInstaller/oat/arm
+f 98796      /system/app/CertInstaller/oat/arm/CertInstaller.odex
+d          /system/app/DeviceRegister
+f 10986      /system/app/DeviceRegister/DeviceRegister.apk
+d          /system/app/DeviceRegister/oat
+d          /system/app/DeviceRegister/oat/arm
+f 127468     /system/app/DeviceRegister/oat/arm/DeviceRegister.odex
+d          /system/app/DocumentsUI
+f 96879      /system/app/DocumentsUI/DocumentsUI.apk
+d          /system/app/DocumentsUI/oat
+d          /system/app/DocumentsUI/oat/arm
+f 1380844    /system/app/DocumentsUI/oat/arm/DocumentsUI.odex
+d          /system/app/DownloadProviderUi
+f 54423      /system/app/DownloadProviderUi/DownloadProviderUi.apk
+d          /system/app/DownloadProviderUi/oat
+d          /system/app/DownloadProviderUi/oat/arm
+f 86508      /system/app/DownloadProviderUi/oat/arm/DownloadProviderUi.odex
+d          /system/app/DrmProvider
+f 5652       /system/app/DrmProvider/DrmProvider.apk
+d          /system/app/DrmProvider/oat
+d          /system/app/DrmProvider/oat/arm
+f 78316      /system/app/DrmProvider/oat/arm/DrmProvider.odex
+d          /system/app/Email
+f 1527769    /system/app/Email/Email.apk
+d          /system/app/Email/oat
+d          /system/app/Email/oat/arm
+f 14713324   /system/app/Email/oat/arm/Email.odex
+d          /system/app/EngineerMode
+f 556128     /system/app/EngineerMode/EngineerMode.apk
+d          /system/app/EngineerMode/oat
+d          /system/app/EngineerMode/oat/arm
+f 7447020    /system/app/EngineerMode/oat/arm/EngineerMode.odex
+d          /system/app/Euro2016
+f 14302906   /system/app/Euro2016/Euro2016.apk
+d          /system/app/Exchange2
+f 65674      /system/app/Exchange2/Exchange2.apk
+d          /system/app/Exchange2/oat
+d          /system/app/Exchange2/oat/arm
+f 6676972    /system/app/Exchange2/oat/arm/Exchange2.odex
+d          /system/app/FreemeBigLauncher
+f 1612473    /system/app/FreemeBigLauncher/FreemeBigLauncher.apk
+d          /system/app/FreemeBigLauncher/oat
+d          /system/app/FreemeBigLauncher/oat/arm
+f 1823212    /system/app/FreemeBigLauncher/oat/arm/FreemeBigLauncher.odex
+d          /system/app/FreemeChannelInfo
+f 17839      /system/app/FreemeChannelInfo/FreemeChannelInfo.apk
+d          /system/app/FreemeChannelInfo/oat
+d          /system/app/FreemeChannelInfo/oat/arm
+f 33260      /system/app/FreemeChannelInfo/oat/arm/FreemeChannelInfo.odex
+d          /system/app/FreemeCrontab
+f 275859     /system/app/FreemeCrontab/FreemeCrontab.apk
+d          /system/app/FreemeCrontab/oat
+d          /system/app/FreemeCrontab/oat/arm
+f 213484     /system/app/FreemeCrontab/oat/arm/FreemeCrontab.odex
+d          /system/app/FreemeFactoryMode
+f 10940749   /system/app/FreemeFactoryMode/FreemeFactoryMode.apk
+d          /system/app/FreemeFactoryMode/oat
+d          /system/app/FreemeFactoryMode/oat/arm
+f 639468     /system/app/FreemeFactoryMode/oat/arm/FreemeFactoryMode.odex
+d          /system/app/FreemeFestivalWallpaper
+f 6633083    /system/app/FreemeFestivalWallpaper/FreemeFestivalWallpaper.apk
+d          /system/app/FreemeFestivalWallpaper/oat
+d          /system/app/FreemeFestivalWallpaper/oat/arm
+f 61932      /system/app/FreemeFestivalWallpaper/oat/arm/FreemeFestivalWallpaper.odex
+d          /system/app/FreemeLegalNotices
+f 404431     /system/app/FreemeLegalNotices/FreemeLegalNotices.apk
+d          /system/app/FreemeLegalNotices/oat
+d          /system/app/FreemeLegalNotices/oat/arm
+f 2195948    /system/app/FreemeLegalNotices/oat/arm/FreemeLegalNotices.odex
+d          /system/app/FreemeLockNow
+f 10100      /system/app/FreemeLockNow/FreemeLockNow.apk
+d          /system/app/FreemeLockNow/oat
+d          /system/app/FreemeLockNow/oat/arm
+f 12780      /system/app/FreemeLockNow/oat/arm/FreemeLockNow.odex
+d          /system/app/FreemeLockscreenBlinds
+f 1498332    /system/app/FreemeLockscreenBlinds/FreemeLockscreenBlinds.apk
+d          /system/app/FreemeLockscreenHalo
+f 1707750    /system/app/FreemeLockscreenHalo/FreemeLockscreenHalo.apk
+d          /system/app/FreemeLockscreenHexagram
+f 816064     /system/app/FreemeLockscreenHexagram/FreemeLockscreenHexagram.apk
+d          /system/app/FreemeLockscreenMood
+f 10273616   /system/app/FreemeLockscreenMood/FreemeLockscreenMood.apk
+d          /system/app/FreemeLockscreenQuick
+f 1923900    /system/app/FreemeLockscreenQuick/FreemeLockscreenQuick.apk
+d          /system/app/FreemeLuckyMoney
+f 313561     /system/app/FreemeLuckyMoney/FreemeLuckyMoney.apk
+d          /system/app/FreemeLuckyMoney/lib
+d          /system/app/FreemeLuckyMoney/lib/arm
+f 116628     /system/app/FreemeLuckyMoney/lib/arm/libTydEngine_mbed_jni.so
+d          /system/app/FreemeLuckyMoney/oat
+d          /system/app/FreemeLuckyMoney/oat/arm
+f 2019820    /system/app/FreemeLuckyMoney/oat/arm/FreemeLuckyMoney.odex
+d          /system/app/FreemeOTA
+f 162822     /system/app/FreemeOTA/FreemeOTA.apk
+d          /system/app/FreemeOTA/oat
+d          /system/app/FreemeOTA/oat/arm
+f 2990572    /system/app/FreemeOTA/oat/arm/FreemeOTA.odex
+d          /system/app/FreemePrivateMoodAlbum
+f 724014     /system/app/FreemePrivateMoodAlbum/FreemePrivateMoodAlbum.apk
+d          /system/app/FreemePrivateMoodAlbum/oat
+d          /system/app/FreemePrivateMoodAlbum/oat/arm
+f 541164     /system/app/FreemePrivateMoodAlbum/oat/arm/FreemePrivateMoodAlbum.odex
+d          /system/app/FreemePrivateMusicPage
+f 243945     /system/app/FreemePrivateMusicPage/FreemePrivateMusicPage.apk
+d          /system/app/FreemePrivateMusicPage/oat
+d          /system/app/FreemePrivateMusicPage/oat/arm
+f 1860076    /system/app/FreemePrivateMusicPage/oat/arm/FreemePrivateMusicPage.odex
+d          /system/app/FreemePublicInfo
+f 12325961   /system/app/FreemePublicInfo/FreemePublicInfo.apk
+d          /system/app/FreemePublicInfo/oat
+d          /system/app/FreemePublicInfo/oat/arm
+f 168428     /system/app/FreemePublicInfo/oat/arm/FreemePublicInfo.odex
+d          /system/app/FreemeScreenRecorder
+f 17012      /system/app/FreemeScreenRecorder/FreemeScreenRecorder.apk
+d          /system/app/FreemeScreenRecorder/oat
+d          /system/app/FreemeScreenRecorder/oat/arm
+f 45548      /system/app/FreemeScreenRecorder/oat/arm/FreemeScreenRecorder.odex
+d          /system/app/FreemeShared
+f 1571099    /system/app/FreemeShared/FreemeShared.apk
+d          /system/app/FreemeShared/oat
+d          /system/app/FreemeShared/oat/arm
+f 7639532    /system/app/FreemeShared/oat/arm/FreemeShared.odex
+d          /system/app/FreemeSoundRecorder
+f 4880362    /system/app/FreemeSoundRecorder/FreemeSoundRecorder.apk
+d          /system/app/FreemeSoundRecorder/oat
+d          /system/app/FreemeSoundRecorder/oat/arm
+f 516588     /system/app/FreemeSoundRecorder/oat/arm/FreemeSoundRecorder.odex
+d          /system/app/FreemeThemeClubCore
+f 3488275    /system/app/FreemeThemeClubCore/FreemeThemeClubCore.apk
+d          /system/app/FreemeThemeClubCore/oat
+d          /system/app/FreemeThemeClubCore/oat/arm
+f 193004     /system/app/FreemeThemeClubCore/oat/arm/FreemeThemeClubCore.odex
+d          /system/app/FreemeWeatherWidget
+f 10552179   /system/app/FreemeWeatherWidget/FreemeWeatherWidget.apk
+d          /system/app/FreemeWeatherWidget/oat
+d          /system/app/FreemeWeatherWidget/oat/arm
+f 78316      /system/app/FreemeWeatherWidget/oat/arm/FreemeWeatherWidget.odex
+d          /system/app/Galaxy4
+f 50994      /system/app/Galaxy4/Galaxy4.apk
+d          /system/app/Galaxy4/oat
+d          /system/app/Galaxy4/oat/arm
+f 49644      /system/app/Galaxy4/oat/arm/Galaxy4.odex
+d          /system/app/GaodeMap
+f 62580458   /system/app/GaodeMap/GaodeMap.apk
+d          /system/app/GaodeMap/oat
+d          /system/app/GaodeMap/oat/arm
+f 60592620   /system/app/GaodeMap/oat/arm/GaodeMap.odex
+d          /system/app/Gba
+f 11315      /system/app/Gba/Gba.apk
+d          /system/app/Gba/oat
+d          /system/app/Gba/oat/arm
+f 176620     /system/app/Gba/oat/arm/Gba.odex
+d          /system/app/HTMLViewer
+f 5205       /system/app/HTMLViewer/HTMLViewer.apk
+d          /system/app/HTMLViewer/oat
+d          /system/app/HTMLViewer/oat/arm
+f 20972      /system/app/HTMLViewer/oat/arm/HTMLViewer.odex
+d          /system/app/HetComm
+f 35221      /system/app/HetComm/HetComm.apk
+d          /system/app/HetComm/oat
+d          /system/app/HetComm/oat/arm
+f 102892     /system/app/HetComm/oat/arm/HetComm.odex
+d          /system/app/HoloSpiralWallpaper
+f 17532      /system/app/HoloSpiralWallpaper/HoloSpiralWallpaper.apk
+d          /system/app/HoloSpiralWallpaper/oat
+d          /system/app/HoloSpiralWallpaper/oat/arm
+f 53740      /system/app/HoloSpiralWallpaper/oat/arm/HoloSpiralWallpaper.odex
+d          /system/app/JustYoung
+f 11933024   /system/app/JustYoung/JustYoung.apk
+d          /system/app/KeyChain
+f 9891       /system/app/KeyChain/KeyChain.apk
+d          /system/app/KeyChain/oat
+d          /system/app/KeyChain/oat/arm
+f 78316      /system/app/KeyChain/oat/arm/KeyChain.odex
+d          /system/app/LatinIME
+f 10405957   /system/app/LatinIME/LatinIME.apk
+d          /system/app/LatinIME/lib
+d          /system/app/LatinIME/lib/arm
+l          /system/app/LatinIME/lib/arm/libjni_latinime.so
+d          /system/app/LatinIME/oat
+d          /system/app/LatinIME/oat/arm
+f 2458092    /system/app/LatinIME/oat/arm/LatinIME.odex
+d          /system/app/LiveWallpapers
+f 540112     /system/app/LiveWallpapers/LiveWallpapers.apk
+d          /system/app/LiveWallpapers/oat
+d          /system/app/LiveWallpapers/oat/arm
+f 131564     /system/app/LiveWallpapers/oat/arm/LiveWallpapers.odex
+d          /system/app/LiveWallpapersPicker
+f 149979     /system/app/LiveWallpapersPicker/LiveWallpapersPicker.apk
+d          /system/app/LiveWallpapersPicker/oat
+d          /system/app/LiveWallpapersPicker/oat/arm
+f 53740      /system/app/LiveWallpapersPicker/oat/arm/LiveWallpapersPicker.odex
+d          /system/app/LocationEM2
+f 110698     /system/app/LocationEM2/LocationEM2.apk
+d          /system/app/LocationEM2/oat
+d          /system/app/LocationEM2/oat/arm
+f 541164     /system/app/LocationEM2/oat/arm/LocationEM2.odex
+d          /system/app/MTKLogger
+f 339863     /system/app/MTKLogger/MTKLogger.apk
+d          /system/app/MTKLogger/oat
+d          /system/app/MTKLogger/oat/arm
+f 1479148    /system/app/MTKLogger/oat/arm/MTKLogger.odex
+d          /system/app/MTKThermalManager
+f 14157      /system/app/MTKThermalManager/MTKThermalManager.apk
+d          /system/app/MTKThermalManager/oat
+d          /system/app/MTKThermalManager/oat/arm
+f 82412      /system/app/MTKThermalManager/oat/arm/MTKThermalManager.odex
+d          /system/app/MiraVision
+f 24246143   /system/app/MiraVision/MiraVision.apk
+d          /system/app/MiraVision/oat
+d          /system/app/MiraVision/oat/arm
+f 2699756    /system/app/MiraVision/oat/arm/MiraVision.odex
+d          /system/app/MusicFX
+f 44485      /system/app/MusicFX/MusicFX.apk
+d          /system/app/MusicFX/oat
+d          /system/app/MusicFX/oat/arm
+f 217580     /system/app/MusicFX/oat/arm/MusicFX.odex
+d          /system/app/NoiseField
+f 35881      /system/app/NoiseField/NoiseField.apk
+d          /system/app/NoiseField/oat
+d          /system/app/NoiseField/oat/arm
+f 53740      /system/app/NoiseField/oat/arm/NoiseField.odex
+d          /system/app/OOBE
+f 6636406    /system/app/OOBE/OOBE.apk
+d          /system/app/OOBE/oat
+d          /system/app/OOBE/oat/arm
+f 426476     /system/app/OOBE/oat/arm/OOBE.odex
+d          /system/app/PacProcessor
+f 3528       /system/app/PacProcessor/PacProcessor.apk
+d          /system/app/PacProcessor/lib
+d          /system/app/PacProcessor/lib/arm
+l          /system/app/PacProcessor/lib/arm/libjni_pacprocessor.so
+d          /system/app/PacProcessor/oat
+d          /system/app/PacProcessor/oat/arm
+f 16876      /system/app/PacProcessor/oat/arm/PacProcessor.odex
+d          /system/app/PhaseBeam
+f 30883      /system/app/PhaseBeam/PhaseBeam.apk
+d          /system/app/PhaseBeam/oat
+d          /system/app/PhaseBeam/oat/arm
+f 49644      /system/app/PhaseBeam/oat/arm/PhaseBeam.odex
+d          /system/app/PhotoTable
+f 397492     /system/app/PhotoTable/PhotoTable.apk
+d          /system/app/PhotoTable/oat
+d          /system/app/PhotoTable/oat/arm
+f 254444     /system/app/PhotoTable/oat/arm/PhotoTable.odex
+d          /system/app/PicoTts
+f 8638       /system/app/PicoTts/PicoTts.apk
+d          /system/app/PicoTts/lib
+d          /system/app/PicoTts/lib/arm
+l          /system/app/PicoTts/lib/arm/libttscompat.so
+l          /system/app/PicoTts/lib/arm/libttspico.so
+d          /system/app/PicoTts/oat
+d          /system/app/PicoTts/oat/arm
+f 49644      /system/app/PicoTts/oat/arm/PicoTts.odex
+d          /system/app/PrintSpooler
+f 49976      /system/app/PrintSpooler/PrintSpooler.apk
+d          /system/app/PrintSpooler/lib
+d          /system/app/PrintSpooler/lib/arm
+l          /system/app/PrintSpooler/lib/arm/libprintspooler_jni.so
+d          /system/app/PrintSpooler/oat
+d          /system/app/PrintSpooler/oat/arm
+f 1311212    /system/app/PrintSpooler/oat/arm/PrintSpooler.odex
+d          /system/app/SchedulePowerOnOff
+f 18741      /system/app/SchedulePowerOnOff/SchedulePowerOnOff.apk
+d          /system/app/SchedulePowerOnOff/oat
+d          /system/app/SchedulePowerOnOff/oat/arm
+f 139756     /system/app/SchedulePowerOnOff/oat/arm/SchedulePowerOnOff.odex
+d          /system/app/SelfRegister
+f 10814      /system/app/SelfRegister/SelfRegister.apk
+d          /system/app/SelfRegister/oat
+d          /system/app/SelfRegister/oat/arm
+f 152044     /system/app/SelfRegister/oat/arm/SelfRegister.odex
+d          /system/app/SogouIME
+f 22546509   /system/app/SogouIME/SogouIME.apk
+d          /system/app/SogouIME/oat
+d          /system/app/SogouIME/oat/arm
+f 30888428   /system/app/SogouIME/oat/arm/SogouIME.odex
+d          /system/app/UserDictionaryProvider
+f 3973       /system/app/UserDictionaryProvider/UserDictionaryProvider.apk
+d          /system/app/UserDictionaryProvider/oat
+d          /system/app/UserDictionaryProvider/oat/arm
+f 49644      /system/app/UserDictionaryProvider/oat/arm/UserDictionaryProvider.odex
+d          /system/app/Utk
+f 19423      /system/app/Utk/Utk.apk
+d          /system/app/Utk/oat
+d          /system/app/Utk/oat/arm
+f 180716     /system/app/Utk/oat/arm/Utk.odex
+d          /system/app/YGPS
+f 28766      /system/app/YGPS/YGPS.apk
+d          /system/app/YGPS/oat
+d          /system/app/YGPS/oat/arm
+f 418284     /system/app/YGPS/oat/arm/YGPS.odex
+d          /system/app/theme-biglauncher
+f 756794     /system/app/theme-biglauncher/theme-biglauncher.apk
+d          /system/app/theme_forwoman
+f 5908444    /system/app/theme_forwoman/theme_forwoman.apk
+d          /system/app/theme_xinjing
+f 6444284    /system/app/theme_xinjing/theme_xinjing.apk
+d          /system/app/theme_xuji
+f 9699406    /system/app/theme_xuji/theme_xuji.apk
+d          /system/app/theme_zhujue
+f 8092987    /system/app/theme_zhujue/theme_zhujue.apk
+d          /system/app/webview
+d          /system/app/webview/oat
+d          /system/app/webview/oat/arm
+f 3052012    /system/app/webview/oat/arm/webview.odex
+f 38692133   /system/app/webview/webview.apk
+d          /system/bin
+f 31256      /system/bin/6620_launcher
+f 18008      /system/bin/6620_wmt_concurrency
+f 17920      /system/bin/6620_wmt_lpbk
+f 79512      /system/bin/AcdApiDaemon
+f 17992      /system/bin/MATest
+f 13824      /system/bin/MtkCodecService
+f 13824      /system/bin/NativeMisc
+l          /system/bin/acpi
+f 25868      /system/bin/aee
+f 17676      /system/bin/aee_archive
+f 21968      /system/bin/aee_core_forwarder
+f 38232      /system/bin/aee_dumpstate
+f 54952      /system/bin/akmd09911
+f 46876      /system/bin/akmd8963
+f 38692      /system/bin/akmd8975
+f 210        /system/bin/am
+f 38552      /system/bin/ami304d
+l          /system/bin/app_process
+f 89240      /system/bin/app_process32
+f 66176      /system/bin/applypatch
+f 26176      /system/bin/applysig
+f 213        /system/bin/appops
+f 215        /system/bin/appwidget
+f 57584      /system/bin/atci_service
+f 50628      /system/bin/atcid
+f 30420      /system/bin/atrace
+f 71352      /system/bin/audiocmdservice_atci
+f 22444      /system/bin/autobt
+f 30208      /system/bin/autokd
+f 30260      /system/bin/badblocks
+l          /system/bin/basename
+f 17920      /system/bin/batterywarning
+f 42548      /system/bin/bcc
+f 17988      /system/bin/blkid
+l          /system/bin/blockdev
+f 199        /system/bin/bmgr
+f 72296      /system/bin/bmm050d
+f 17920      /system/bin/boot_logo_updater
+f 46792      /system/bin/bootanimation
+f 156        /system/bin/bu
+f 13824      /system/bin/bugreport
+f 359        /system/bin/bypass
+l          /system/bin/bzcat
+l          /system/bin/cal
+l          /system/bin/cat
+f 96984      /system/bin/ccci_fsd
+f 76492      /system/bin/ccci_mdinit
+l          /system/bin/chcon
+l          /system/bin/chgrp
+l          /system/bin/chmod
+l          /system/bin/chown
+l          /system/bin/chroot
+l          /system/bin/cksum
+f 46796      /system/bin/clatd
+l          /system/bin/clear
+f 126696     /system/bin/climax_hostSW
+f 38468      /system/bin/cmddumper
+l          /system/bin/cmp
+l          /system/bin/comm
+f 207        /system/bin/content
+l          /system/bin/cp
+l          /system/bin/cpio
+f 17976      /system/bin/ctclient
+l          /system/bin/cut
+l          /system/bin/dalvikvm
+f 17920      /system/bin/dalvikvm32
+l          /system/bin/date
+l          /system/bin/dd
+f 406204     /system/bin/debuggerd
+f 116276     /system/bin/dex2oat
+l          /system/bin/df
+f 124764     /system/bin/dhcp6c
+f 22016      /system/bin/dhcp6ctl
+f 116380     /system/bin/dhcp6s
+f 75404      /system/bin/dhcpcd
+l          /system/bin/dirname
+f 58984      /system/bin/dm_agent_binder
+l          /system/bin/dmesg
+f 13824      /system/bin/dmlog
+f 122420     /system/bin/dnsmasq
+l          /system/bin/dos2unix
+f 120556     /system/bin/downloader
+f 156        /system/bin/dpm
+f 71224      /system/bin/drmserver
+l          /system/bin/du
+f 54860      /system/bin/dumpstate
+f 17972      /system/bin/dumpsys
+f 162952     /system/bin/e2fsck
+l          /system/bin/echo
+l          /system/bin/egrep
+f 174264     /system/bin/emdlogger1
+l          /system/bin/env
+f 141148     /system/bin/epdg_wod
+l          /system/bin/expand
+l          /system/bin/expr
+f 408448     /system/bin/factory
+l          /system/bin/fallocate
+l          /system/bin/false
+l          /system/bin/fgrep
+l          /system/bin/find
+f 100524     /system/bin/flashlessd
+l          /system/bin/free
+f 54872      /system/bin/fsck.f2fs
+f 46592      /system/bin/fsck_msdos
+f 59016      /system/bin/fsck_msdos_mtk
+f 13880      /system/bin/fuelgauged
+f 13888      /system/bin/gas_srv
+f 42548      /system/bin/gatekeeperd
+f 22128      /system/bin/ged_srv
+f 30736      /system/bin/geomagneticd
+l          /system/bin/getenforce
+l          /system/bin/getevent
+l          /system/bin/getprop
+f 26968      /system/bin/grep
+l          /system/bin/groups
+f 79932      /system/bin/gsm0710muxd
+f 79932      /system/bin/gsm0710muxdmd2
+f 13824      /system/bin/guiext-server
+f 17920      /system/bin/gzip
+f 141044     /system/bin/gzip_static
+l          /system/bin/head
+f 213        /system/bin/hid
+f 396500     /system/bin/hostapd
+f 38460      /system/bin/hostapd_cli
+l          /system/bin/hostname
+l          /system/bin/hwclock
+l          /system/bin/id
+f 30208      /system/bin/idmap
+l          /system/bin/ifconfig
+l          /system/bin/iftop
+f 194        /system/bin/ime
+l          /system/bin/inotifyd
+f 203        /system/bin/input
+l          /system/bin/insmod
+f 1405       /system/bin/install-recovery.sh
+f 63320      /system/bin/installd
+l          /system/bin/ioctl
+l          /system/bin/ionice
+f 173884     /system/bin/ip
+f 241420     /system/bin/ip6tables
+f 237160     /system/bin/iptables
+f 71400      /system/bin/keystore
+l          /system/bin/kill
+f 26188      /system/bin/kpoc_charger
+f 17920      /system/bin/lcdc_screen_cap
+f 526176     /system/bin/ld.mc
+f 195424     /system/bin/linker
+f 22068      /system/bin/lmkd
+l          /system/bin/ln
+l          /system/bin/load_policy
+l          /system/bin/log
+f 30260      /system/bin/logcat
+f 50792      /system/bin/logd
+l          /system/bin/logname
+f 22088      /system/bin/logwrapper
+l          /system/bin/losetup
+l          /system/bin/ls
+f 38568      /system/bin/lsm303md
+l          /system/bin/lsmod
+l          /system/bin/lsof
+l          /system/bin/lsusb
+f 38568      /system/bin/magd
+f 17972      /system/bin/make_ext4fs
+f 30364      /system/bin/make_f2fs
+f 13824      /system/bin/matv
+f 39016      /system/bin/mc6420d
+l          /system/bin/md5sum
+f 17920      /system/bin/md_ctrl
+f 137484     /system/bin/mdlogger
+f 427944     /system/bin/mdnsd
+f 210        /system/bin/media
+f 26168      /system/bin/mediaserver
+f 13824      /system/bin/memorydumper
+f 34632      /system/bin/memsicd
+f 34640      /system/bin/memsicd3416x
+f 17764      /system/bin/memsicp
+f 421340     /system/bin/meta_tst
+l          /system/bin/mkdir
+f 58984      /system/bin/mke2fs
+l          /system/bin/mknod
+l          /system/bin/mkswap
+l          /system/bin/mktemp
+f 26224      /system/bin/mmp
+f 64056      /system/bin/mobile_log_d
+l          /system/bin/modinfo
+f 217        /system/bin/monkey
+l          /system/bin/more
+l          /system/bin/mount
+l          /system/bin/mountpoint
+f 17988      /system/bin/msensord
+f 1596312    /system/bin/mtk_agpsd
+f 30272      /system/bin/mtkmal
+f 22108      /system/bin/mtkrild
+f 22108      /system/bin/mtkrildmd2
+f 26268      /system/bin/mtpd
+f 26700      /system/bin/muxreport
+l          /system/bin/mv
+l          /system/bin/nandread
+f 17920      /system/bin/ndc
+f 169852     /system/bin/netd
+f 46768      /system/bin/netdiag
+l          /system/bin/netstat
+l          /system/bin/newfs_msdos
+l          /system/bin/nice
+l          /system/bin/nl
+l          /system/bin/nohup
+f 30340      /system/bin/nvram_agent_binder
+f 22296      /system/bin/nvram_daemon
+f 140928     /system/bin/oatdump
+l          /system/bin/od
+f 23200      /system/bin/orientationd
+l          /system/bin/paste
+l          /system/bin/patch
+f 67072      /system/bin/patchoat
+f 17920      /system/bin/perf_native_test
+l          /system/bin/pgrep
+l          /system/bin/pidof
+f 38652      /system/bin/ping
+f 38916      /system/bin/ping6
+l          /system/bin/pkill
+f 191        /system/bin/pm
+l          /system/bin/pmap
+f 30260      /system/bin/ppl_agent
+f 168164     /system/bin/pppd
+f 168164     /system/bin/pppd_dt
+f 13828      /system/bin/pq
+l          /system/bin/printenv
+l          /system/bin/printf
+l          /system/bin/prlimit
+f 34516      /system/bin/program_binary_service
+l          /system/bin/ps
+l          /system/bin/pwd
+f 171128     /system/bin/racoon
+f 63976      /system/bin/radvd
+l          /system/bin/readlink
+l          /system/bin/realpath
+f 13824      /system/bin/reboot
+l          /system/bin/renice
+f 188        /system/bin/requestsync
+f 50688      /system/bin/resize2fs
+f 17920      /system/bin/resize_ext4
+l          /system/bin/restorecon
+l          /system/bin/rm
+l          /system/bin/rmdir
+l          /system/bin/rmmod
+l          /system/bin/route
+f 3671808    /system/bin/rs2spir
+f 13580      /system/bin/rtt
+f 17920      /system/bin/run-as
+l          /system/bin/runcon
+f 34440      /system/bin/s62xd
+f 13824      /system/bin/schedtest
+f 17976      /system/bin/screencap
+f 104080     /system/bin/screenrecord
+f 30208      /system/bin/sdcard
+l          /system/bin/sed
+l          /system/bin/sendevent
+f 13824      /system/bin/sensorservice
+l          /system/bin/seq
+f 22068      /system/bin/service
+f 18020      /system/bin/servicemanager
+l          /system/bin/setenforce
+l          /system/bin/setprop
+l          /system/bin/setsid
+f 178        /system/bin/settings
+f 112240     /system/bin/sgdisk
+f 169948     /system/bin/sh
+l          /system/bin/sha1sum
+f 30332      /system/bin/sink
+l          /system/bin/sleep
+f 128708     /system/bin/slpd
+f 190        /system/bin/sm
+f 17920      /system/bin/sn
+l          /system/bin/sort
+f 26236      /system/bin/source
+f 3143476    /system/bin/spir2cl
+l          /system/bin/split
+f 13872      /system/bin/spm_loader
+l          /system/bin/start
+l          /system/bin/stat
+f 116380     /system/bin/statusd
+l          /system/bin/stop
+f 30252      /system/bin/stp_dump3
+l          /system/bin/strings
+f 42552      /system/bin/superumount
+f 17924      /system/bin/surfaceflinger
+f 192        /system/bin/svc
+l          /system/bin/swapoff
+l          /system/bin/swapon
+l          /system/bin/sync
+l          /system/bin/sysctl
+l          /system/bin/tac
+l          /system/bin/tail
+l          /system/bin/tar
+l          /system/bin/taskset
+f 79632      /system/bin/tc
+l          /system/bin/tee
+f 172        /system/bin/telecom
+f 13824      /system/bin/terservice
+f 13824      /system/bin/tertestclient
+f 31244      /system/bin/thermal
+f 18152      /system/bin/thermal_manager
+f 17920      /system/bin/thermald
+l          /system/bin/time
+l          /system/bin/timeout
+f 13824      /system/bin/tiny_fallocate
+f 13824      /system/bin/tiny_mkswap
+f 13824      /system/bin/tiny_swapoff
+f 13824      /system/bin/tiny_swapon
+f 97264      /system/bin/toolbox
+l          /system/bin/top
+l          /system/bin/touch
+f 254284     /system/bin/toybox
+l          /system/bin/tr
+l          /system/bin/true
+l          /system/bin/truncate
+f 46676      /system/bin/tune2fs
+f 22016      /system/bin/tzdatacheck
+f 3814       /system/bin/uiautomator
+l          /system/bin/umount
+l          /system/bin/uname
+f 38748      /system/bin/uncrypt
+l          /system/bin/uniq
+l          /system/bin/unix2dos
+l          /system/bin/uptime
+l          /system/bin/usleep
+f 17920      /system/bin/vdc
+f 13824      /system/bin/viaradiooptions
+f 17988      /system/bin/viarild
+l          /system/bin/vmstat
+f 387060     /system/bin/vold
+f 559288     /system/bin/volte_imcb
+f 837532     /system/bin/volte_stack
+f 1607700    /system/bin/volte_ua
+f 13900      /system/bin/vtservice
+l          /system/bin/watchprops
+l          /system/bin/wc
+l          /system/bin/which
+l          /system/bin/whoami
+f 22016      /system/bin/wifi2agps
+f 190        /system/bin/wm
+f 17968      /system/bin/wmt_loader
+f 80336      /system/bin/wpa_cli
+f 1125608    /system/bin/wpa_supplicant
+l          /system/bin/xargs
+f 22016      /system/bin/xlog
+l          /system/bin/yes
+f 8808       /system/build.prop
+d          /system/data
+d          /system/data/misc
+f 36784      /system/data/misc/ProjectConfig.mk
+f 88935      /system/data/recovery_rootcheck
+d          /system/etc
+d          /system/etc/.tp
+f 3352       /system/etc/.tp/.ht120.mtc
+f 3598       /system/etc/.tp/thermal.conf
+f 3915       /system/etc/.tp/thermal.off.conf
+f 72         /system/etc/FreemeGalleryCustom.json
+f 191353     /system/etc/NOTICE.html.gz
+f 1027752    /system/etc/NumberHeadWithIDToByte
+f 15885      /system/etc/agps_profiles_conf2.xml
+f 62         /system/etc/alarmplus.config
+f 326332     /system/etc/apns-conf.xml
+d          /system/etc/appwidget
+f 154        /system/etc/appwidget/3dwidgets.xml
+f 11586      /system/etc/audio_device.xml
+f 5433       /system/etc/audio_effects.conf
+f 2738       /system/etc/audio_em.xml
+d          /system/etc/audio_param
+f 2256       /system/etc/audio_param/AudioParamOptions.xml
+f 6234       /system/etc/audio_policy.conf
+d          /system/etc/bluetooth
+f 1566       /system/etc/bluetooth/auto_pair_devlist.conf
+f 2618       /system/etc/bluetooth/bt_did.conf
+f 9241       /system/etc/bluetooth/bt_stack.conf
+f 1837       /system/etc/bluetooth/bt_stack.conf.debug
+f 1838       /system/etc/bluetooth/bt_stack.conf.sqc
+f 766        /system/etc/cdma_ecc_list.xml
+f 1045       /system/etc/clatd.conf
+f 1015       /system/etc/custom.conf
+d          /system/etc/dhcpcd
+d          /system/etc/dhcpcd/dhcpcd-hooks
+f 1073       /system/etc/dhcpcd/dhcpcd-hooks/20-dns.conf
+f 1055       /system/etc/dhcpcd/dhcpcd-hooks/95-configured
+f 1009       /system/etc/dhcpcd/dhcpcd-run-hooks
+f 478        /system/etc/disableapplist.txt
+f 819        /system/etc/ecc_list.xml
+f 112        /system/etc/emdlogger_usb_config.prop
+f 18113      /system/etc/event-log-tags
+f 2639       /system/etc/factory.ini
+f 14513      /system/etc/fallback_fonts.xml
+d          /system/etc/firmware
+f 128816     /system/etc/firmware/ROMv2_lm_patch_1_0_hdr.bin
+f 62804      /system/etc/firmware/ROMv2_lm_patch_1_1_hdr.bin
+f 415408     /system/etc/firmware/WIFI_RAM_CODE_6735
+f 80         /system/etc/firmware/WMT_SOC.cfg
+f 13364      /system/etc/firmware/boot_3_3g_n.rom
+f 5120       /system/etc/firmware/catcher_filter_1_ltg_n.bin
+f 5185       /system/etc/firmware/catcher_filter_1_lwg_n.bin
+f 7254       /system/etc/firmware/catcher_filter_3_3g_n.bin
+f 1416284    /system/etc/firmware/dsp_1_ltg_n.bin
+f 1416284    /system/etc/firmware/dsp_1_lwg_n.bin
+f 2084       /system/etc/firmware/em_filter_1_ltg_n.bin
+f 2084       /system/etc/firmware/em_filter_1_lwg_n.bin
+f 22816      /system/etc/firmware/fsm_cust_df_3_3g_n.img
+f 5648       /system/etc/firmware/fsm_rf_df_3_3g_n.img
+f 18393      /system/etc/firmware/fsm_rw_df_3_3g_n.img
+f 8774964    /system/etc/firmware/modem_1_ltg_n.img
+f 9722040    /system/etc/firmware/modem_1_lwg_n.img
+f 3473468    /system/etc/firmware/modem_3_3g_n.img
+d          /system/etc/firmware/mt6627
+f 1092       /system/etc/firmware/mt6627/mt6627_fm_v1_coeff.bin
+f 1028       /system/etc/firmware/mt6627/mt6627_fm_v1_patch.bin
+f 2          /system/etc/firmware/mt6627/mt6627_fm_v2_coeff.bin
+f 0          /system/etc/firmware/mt6627/mt6627_fm_v2_patch.bin
+f 0          /system/etc/firmware/mt6627/mt6627_fm_v3_coeff.bin
+f 0          /system/etc/firmware/mt6627/mt6627_fm_v3_patch.bin
+f 0          /system/etc/firmware/mt6627/mt6627_fm_v4_coeff.bin
+f 0          /system/etc/firmware/mt6627/mt6627_fm_v4_patch.bin
+f 0          /system/etc/firmware/mt6627/mt6627_fm_v5_coeff.bin
+f 0          /system/etc/firmware/mt6627/mt6627_fm_v5_patch.bin
+d          /system/etc/fmr
+f 345        /system/etc/fmr/mt6627_fm_cust.cfg
+f 16441      /system/etc/fonts.xml
+d          /system/etc/freeme
+f 54         /system/etc/freeme/freeme_build.prop
+f 63         /system/etc/freeme/freeme_default.ini
+f 5127       /system/etc/freemeCamConfig.xml
+f 256        /system/etc/freeme_ota.properties
+f 662        /system/etc/general_config.xml
+f 8478720    /system/etc/geocoding.db
+f 56         /system/etc/hosts
+d          /system/etc/ipsec
+f 211        /system/etc/ipsec/ipsec.conf
+d          /system/etc/ipsec/ipsec.d
+d          /system/etc/ipsec/ipsec.d/cacerts
+f 1500       /system/etc/ipsec/ipsec.d/cacerts/Entrust.net_Certification_Authority_2048.cer
+f 1026       /system/etc/ipsec/ipsec.d/cacerts/GeoTrust_PCA_G3_Root.der
+f 896        /system/etc/ipsec/ipsec.d/cacerts/GeoTrust_Primary_CA.der
+f 690        /system/etc/ipsec/ipsec.d/cacerts/GeoTrust_Primary_CA_G2_ECC.der
+f 1586       /system/etc/ipsec/ipsec.d/cacerts/Root_CA_1003.crt
+f 683        /system/etc/ipsec/ipsec.d/cacerts/VeriSignClass3G4.der
+f 1239       /system/etc/ipsec/ipsec.d/cacerts/VeriSignClass3G5.der
+f 1213       /system/etc/ipsec/ipsec.d/cacerts/VeriSignUniversalRootCertification.der
+f 1060       /system/etc/ipsec/ipsec.d/cacerts/thawte.der
+d          /system/etc/ipsec/ssl
+f 0          /system/etc/ipsec/ssl/openssl.cnf
+f 1175       /system/etc/ipsec/strongswan.conf
+f 219        /system/etc/ipsec/updown_script
+f 589        /system/etc/ipsec/wod_cust.conf
+f 10826      /system/etc/ipsec/wod_optr.conf
+d          /system/etc/mddb
+f 7825145    /system/etc/mddb/BPLGUInfoCustomAppSrcP_MT6735_S00_MOLY_LR9_W1444_MD_LWTG_MP_V88_P96_1_ltg_n
+f 8412072    /system/etc/mddb/BPLGUInfoCustomAppSrcP_MT6735_S00_MOLY_LR9_W1444_MD_LWTG_MP_V88_P96_1_lwg_n
+f 58660      /system/etc/mddb/BPMdMetaDatabase_MOLY_LR9_W1444_MD_LWTG_MP_V88_P96_1_ltg_n
+f 62638      /system/etc/mddb/BPMdMetaDatabase_MOLY_LR9_W1444_MD_LWTG_MP_V88_P96_1_lwg_n
+f 1538419    /system/etc/mddb/DbgInfo_LR9.W1444.MD.LWTG.MP_DROI6737M_65_M0_MOLY_LR9_W1444_MD_LWTG_MP_V88_P96_2017_07_15_16_54_1_ltg_n
+f 1759470    /system/etc/mddb/DbgInfo_LR9.W1444.MD.LWTG.MP_DROI6737M_65_M0_MOLY_LR9_W1444_MD_LWTG_MP_V88_P96_2017_07_15_16_55_1_lwg_n
+f 230117     /system/etc/mddb/mdm_layout_desc_1_ltg_n.dat
+f 186875     /system/etc/mddb/mdm_layout_desc_1_lwg_n.dat
+f 3503       /system/etc/media_codecs.xml
+f 4572       /system/etc/media_codecs_google_audio.xml
+f 5473       /system/etc/media_codecs_google_video_le.xml
+f 5529       /system/etc/media_codecs_mediatek_audio.xml
+f 9417       /system/etc/media_codecs_mediatek_video.xml
+f 9697       /system/etc/media_codecs_performance.xml
+f 1492       /system/etc/mkshrc
+f 23         /system/etc/mtconfig.ini
+f 2398       /system/etc/mtk_omx_core.cfg
+f 334        /system/etc/mtklog-config.prop
+f 3751       /system/etc/nativemisc_config.json
+f 676        /system/etc/partition_permission.sh
+f 24         /system/etc/perfservapplist.txt
+f 420        /system/etc/perfservscntbl.txt
+d          /system/etc/permissions
+f 820        /system/etc/permissions/android.hardware.bluetooth.xml
+f 830        /system/etc/permissions/android.hardware.bluetooth_le.xml
+f 1096       /system/etc/permissions/android.hardware.camera.xml
+f 927        /system/etc/permissions/android.hardware.faketouch.xml
+f 942        /system/etc/permissions/android.hardware.location.gps.xml
+f 841        /system/etc/permissions/android.hardware.microphone.xml
+f 824        /system/etc/permissions/android.hardware.sensor.accelerometer.xml
+f 804        /system/etc/permissions/android.hardware.sensor.compass.xml
+f 806        /system/etc/permissions/android.hardware.sensor.gyroscope.xml
+f 816        /system/etc/permissions/android.hardware.sensor.light.xml
+f 815        /system/etc/permissions/android.hardware.sensor.proximity.xml
+f 883        /system/etc/permissions/android.hardware.telephony.cdma.xml
+f 881        /system/etc/permissions/android.hardware.telephony.gsm.xml
+f 1076       /system/etc/permissions/android.hardware.touchscreen.multitouch.distinct.xml
+f 1144       /system/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml
+f 1035       /system/etc/permissions/android.hardware.touchscreen.multitouch.xml
+f 909        /system/etc/permissions/android.hardware.touchscreen.xml
+f 975        /system/etc/permissions/android.hardware.usb.accessory.xml
+f 868        /system/etc/permissions/android.hardware.usb.host.xml
+f 843        /system/etc/permissions/android.hardware.wifi.direct.xml
+f 829        /system/etc/permissions/android.hardware.wifi.xml
+f 1050       /system/etc/permissions/android.software.live_wallpaper.xml
+f 883        /system/etc/permissions/android.software.sip.voip.xml
+f 829        /system/etc/permissions/android.software.sip.xml
+f 748        /system/etc/permissions/android.software.webview.xml
+f 828        /system/etc/permissions/com.android.location.provider.xml
+f 828        /system/etc/permissions/com.android.media.remotedisplay.xml
+f 820        /system/etc/permissions/com.android.mediadrm.signer.xml
+f 261        /system/etc/permissions/com.google.widevine.software.drm.xml
+f 3924       /system/etc/permissions/handheld_core_hardware.xml
+f 3503       /system/etc/permissions/media_codecs.xml
+f 6790       /system/etc/permissions/platform.xml
+d          /system/etc/ppp
+f 17920      /system/etc/ppp/ip-up-vpn
+f 143140     /system/etc/preloaded-classes
+d          /system/etc/radvd
+f 443        /system/etc/radvd/radvd.conf
+f 812258     /system/etc/recovery-resource.dat
+f 244        /system/etc/recovery.fstab
+f 256        /system/etc/recovery.sig
+f 558        /system/etc/recovery.xml
+f 1034       /system/etc/resmonwhitelist.txt
+d          /system/etc/security
+d          /system/etc/security/cacerts
+f 4767       /system/etc/security/cacerts/00673b5b.0
+f 4919       /system/etc/security/cacerts/02b73561.0
+f 7142       /system/etc/security/cacerts/03f2b8cf.0
+f 2877       /system/etc/security/cacerts/04f60c28.0
+f 4836       /system/etc/security/cacerts/052e396b.0
+f 5322       /system/etc/security/cacerts/08aef7bb.0
+f 4922       /system/etc/security/cacerts/0d5a4e1c.0
+f 2308       /system/etc/security/cacerts/0d69c7e1.0
+f 4614       /system/etc/security/cacerts/10531352.0
+f 4716       /system/etc/security/cacerts/111e6273.0
+f 5375       /system/etc/security/cacerts/119afc2e.0
+f 4927       /system/etc/security/cacerts/124bbd54.0
+f 4300       /system/etc/security/cacerts/12d55845.0
+f 4765       /system/etc/security/cacerts/1676090a.0
+f 4578       /system/etc/security/cacerts/17b51fe6.0
+f 4890       /system/etc/security/cacerts/1dac3003.0
+f 7088       /system/etc/security/cacerts/1dcd6f4c.0
+f 4923       /system/etc/security/cacerts/1df5a75f.0
+f 4527       /system/etc/security/cacerts/1e1eab7c.0
+f 4332       /system/etc/security/cacerts/1e8e7201.0
+f 8405       /system/etc/security/cacerts/1eb37bdf.0
+f 7076       /system/etc/security/cacerts/1f58a078.0
+f 7060       /system/etc/security/cacerts/21855f49.0
+f 4712       /system/etc/security/cacerts/219d9499.0
+f 4747       /system/etc/security/cacerts/23f4c490.0
+f 2961       /system/etc/security/cacerts/27af790d.0
+f 2642       /system/etc/security/cacerts/2add47b6.0
+f 7016       /system/etc/security/cacerts/2d9dafe4.0
+f 4729       /system/etc/security/cacerts/2fa87019.0
+f 8903       /system/etc/security/cacerts/33815e15.0
+f 8687       /system/etc/security/cacerts/33815e15.1
+f 4667       /system/etc/security/cacerts/343eb6cb.0
+f 7337       /system/etc/security/cacerts/35105088.0
+f 4628       /system/etc/security/cacerts/399e7759.0
+f 4706       /system/etc/security/cacerts/3a3b02ce.0
+f 4361       /system/etc/security/cacerts/3ad48a91.0
+f 4892       /system/etc/security/cacerts/3c58f906.0
+f 7081       /system/etc/security/cacerts/3c6676aa.0
+f 7432       /system/etc/security/cacerts/3c860d51.0
+f 8642       /system/etc/security/cacerts/3c9a4d3b.0
+f 7364       /system/etc/security/cacerts/3d441de8.0
+f 4778       /system/etc/security/cacerts/3e7271e8.0
+f 4997       /system/etc/security/cacerts/40dc992e.0
+f 5512       /system/etc/security/cacerts/418595b9.0
+f 7523       /system/etc/security/cacerts/450c6e38.0
+f 4817       /system/etc/security/cacerts/455f1b52.0
+f 7453       /system/etc/security/cacerts/48a195d8.0
+f 7082       /system/etc/security/cacerts/4be590e0.0
+f 2680       /system/etc/security/cacerts/4d654d1d.0
+f 4445       /system/etc/security/cacerts/4e18c148.0
+f 5106       /system/etc/security/cacerts/4fbd6bfa.0
+f 7439       /system/etc/security/cacerts/5046c355.0
+f 5165       /system/etc/security/cacerts/524d9b43.0
+f 7076       /system/etc/security/cacerts/52b525c7.0
+f 4959       /system/etc/security/cacerts/56b8a0b6.0
+f 4433       /system/etc/security/cacerts/57692373.0
+f 4827       /system/etc/security/cacerts/58a44af1.0
+f 3647       /system/etc/security/cacerts/594f1775.0
+f 7089       /system/etc/security/cacerts/5a250ea7.0
+f 4834       /system/etc/security/cacerts/5a3f0ff8.0
+f 6031       /system/etc/security/cacerts/5cf9d536.0
+f 3491       /system/etc/security/cacerts/5e4e69e7.0
+f 7356       /system/etc/security/cacerts/5f47b495.0
+f 4826       /system/etc/security/cacerts/60afe812.0
+f 6979       /system/etc/security/cacerts/63a2c897.0
+f 4922       /system/etc/security/cacerts/6645de82.0
+f 4793       /system/etc/security/cacerts/67495436.0
+f 4648       /system/etc/security/cacerts/69105f4f.0
+f 3957       /system/etc/security/cacerts/6e8bf996.0
+f 4484       /system/etc/security/cacerts/6fcc125d.0
+f 4270       /system/etc/security/cacerts/72f369af.0
+f 4891       /system/etc/security/cacerts/75680d2e.0
+f 2657       /system/etc/security/cacerts/7651b327.0
+f 4979       /system/etc/security/cacerts/76579174.0
+f 7233       /system/etc/security/cacerts/7672ac4b.0
+f 4312       /system/etc/security/cacerts/7999be0d.0
+f 7346       /system/etc/security/cacerts/7a819ef2.0
+f 3003       /system/etc/security/cacerts/7d3cd826.0
+f 4524       /system/etc/security/cacerts/7d453d8f.0
+f 4679       /system/etc/security/cacerts/81b9768f.0
+f 7016       /system/etc/security/cacerts/82223c44.0
+f 4452       /system/etc/security/cacerts/8470719d.0
+f 4634       /system/etc/security/cacerts/84cba82f.0
+f 4571       /system/etc/security/cacerts/85cde254.0
+f 4281       /system/etc/security/cacerts/86212b19.0
+f 7170       /system/etc/security/cacerts/87753b0d.0
+f 4262       /system/etc/security/cacerts/882de061.0
+f 4535       /system/etc/security/cacerts/895cad1a.0
+f 2863       /system/etc/security/cacerts/89c02a45.0
+f 4479       /system/etc/security/cacerts/8d6437c3.0
+f 4819       /system/etc/security/cacerts/91739615.0
+f 7245       /system/etc/security/cacerts/9282e51c.0
+f 8002       /system/etc/security/cacerts/9339512a.0
+f 7064       /system/etc/security/cacerts/9576d26b.0
+f 4511       /system/etc/security/cacerts/95aff9e3.0
+f 7119       /system/etc/security/cacerts/961f5451.0
+f 4150       /system/etc/security/cacerts/9685a493.0
+f 4405       /system/etc/security/cacerts/9772ca32.0
+f 7537       /system/etc/security/cacerts/9ab62355.0
+f 7223       /system/etc/security/cacerts/9d6523ce.0
+f 4369       /system/etc/security/cacerts/9dbefe7b.0
+f 8390       /system/etc/security/cacerts/9f533518.0
+f 5461       /system/etc/security/cacerts/a0bc6fbb.0
+f 7188       /system/etc/security/cacerts/a2c66da8.0
+f 4814       /system/etc/security/cacerts/a2df7ad7.0
+f 4284       /system/etc/security/cacerts/a3896b44.0
+f 4123       /system/etc/security/cacerts/a7605362.0
+f 2878       /system/etc/security/cacerts/a7d2cf64.0
+f 4333       /system/etc/security/cacerts/ab5346f4.0
+f 6145       /system/etc/security/cacerts/add67345.0
+f 5675       /system/etc/security/cacerts/aeb67534.0
+f 6863       /system/etc/security/cacerts/b0ed035a.0
+f 4368       /system/etc/security/cacerts/b0f3e76e.0
+f 3116       /system/etc/security/cacerts/b3fb433b.0
+f 4355       /system/etc/security/cacerts/b7db1890.0
+f 4566       /system/etc/security/cacerts/b872f2b4.0
+f 4515       /system/etc/security/cacerts/bc3f2570.0
+f 4718       /system/etc/security/cacerts/bdacca6f.0
+f 5229       /system/etc/security/cacerts/bf64f35b.0
+f 4533       /system/etc/security/cacerts/c3a6a9ad.0
+f 2740       /system/etc/security/cacerts/c491639e.0
+f 4386       /system/etc/security/cacerts/c51c224c.0
+f 4524       /system/etc/security/cacerts/c527e4ab.0
+f 4700       /system/etc/security/cacerts/c7e2a638.0
+f 4459       /system/etc/security/cacerts/c90bc37d.0
+f 7717       /system/etc/security/cacerts/cb156124.0
+f 2552       /system/etc/security/cacerts/ccc52f49.0
+f 4591       /system/etc/security/cacerts/cdaebb72.0
+f 4710       /system/etc/security/cacerts/cf701eeb.0
+f 4527       /system/etc/security/cacerts/d06393bb.0
+f 7539       /system/etc/security/cacerts/d16a5865.0
+f 7068       /system/etc/security/cacerts/d18e9066.0
+f 7323       /system/etc/security/cacerts/d4c339cb.0
+f 4359       /system/etc/security/cacerts/d59297b8.0
+f 4947       /system/etc/security/cacerts/d64f06f3.0
+f 4961       /system/etc/security/cacerts/d66b55d9.0
+f 7234       /system/etc/security/cacerts/d6e6eab9.0
+f 4957       /system/etc/security/cacerts/d7746a63.0
+f 6999       /system/etc/security/cacerts/dbc54cab.0
+f 4821       /system/etc/security/cacerts/e268a4c5.0
+f 7076       /system/etc/security/cacerts/e442e424.0
+f 4285       /system/etc/security/cacerts/e48193cf.0
+f 7519       /system/etc/security/cacerts/e60bf0c0.0
+f 7162       /system/etc/security/cacerts/e775ed2d.0
+f 4860       /system/etc/security/cacerts/e8651083.0
+f 7431       /system/etc/security/cacerts/ea169617.0
+f 2723       /system/etc/security/cacerts/ed39abd0.0
+f 4764       /system/etc/security/cacerts/ed524cf5.0
+f 5441       /system/etc/security/cacerts/ee7cd6fb.0
+f 7040       /system/etc/security/cacerts/ee90b008.0
+f 4702       /system/etc/security/cacerts/f58a60fe.0
+f 7038       /system/etc/security/cacerts/f61bff45.0
+f 7536       /system/etc/security/cacerts/f80cc7f6.0
+f 4603       /system/etc/security/cacerts/fac084d7.0
+f 5219       /system/etc/security/cacerts/facacbc6.0
+f 5940       /system/etc/security/cacerts/fb126c6d.0
+f 4692       /system/etc/security/cacerts/fde84897.0
+f 5136       /system/etc/security/cacerts/ff783690.0
+d          /system/etc/security/cacerts_supl
+f 2624       /system/etc/security/cacerts_supl/848ea856.0
+f 2927       /system/etc/security/cacerts_supl/c542733d.0
+f 3152       /system/etc/security/cacerts_supl/f336e3d1.0
+f 2227       /system/etc/security/mac_permissions.xml
+f 1108       /system/etc/security/otacerts.zip
+d          /system/etc/settings
+f 4117       /system/etc/settings/mono_mtk.cnt
+f 220        /system/etc/slp_conf
+f 48208      /system/etc/spn-conf.xml
+f 495847     /system/etc/swizz
+f 4953       /system/etc/system_fonts.xml
+f 633        /system/etc/throttle.sh
+f 60928      /system/etc/trustzone.bin
+f 186        /system/etc/virtual-spn-conf-by-efgid1.xml
+f 241        /system/etc/virtual-spn-conf-by-efpnn.xml
+f 3265       /system/etc/virtual-spn-conf-by-efspn.xml
+f 196        /system/etc/virtual-spn-conf-by-imsi.xml
+d          /system/etc/wide-dhcpv6
+f 222        /system/etc/wide-dhcpv6/dhcp6c.conf
+f 1244       /system/etc/wide-dhcpv6/dhcp6c.script
+f 160        /system/etc/wide-dhcpv6/dhcp6cDNS.conf
+f 25         /system/etc/wide-dhcpv6/dhcp6cctlkey
+f 487        /system/etc/wide-dhcpv6/dhcp6s.conf
+d          /system/etc/wifi
+f 115        /system/etc/wifi/p2p_supplicant_overlay.conf
+f 305        /system/etc/wifi/wpa_supplicant.conf
+f 87         /system/etc/wifi/wpa_supplicant_overlay.conf
+f 67         /system/etc/xlog-filter-default
+f 10         /system/etc/xlog-filter-tags
+d          /system/fonts
+f 4540       /system/fonts/AndroidClock.ttf
+f 4464       /system/fonts/AndroidClock_Highlight.ttf
+f 4464       /system/fonts/AndroidClock_Solid.ttf
+f 40308      /system/fonts/CarroisGothicSC-Regular.ttf
+f 6564       /system/fonts/Clockopia.ttf
+f 59136      /system/fonts/ComingSoon.ttf
+f 69180      /system/fonts/CutiveMono.ttf
+f 115568     /system/fonts/DancingScript-Bold.ttf
+f 116580     /system/fonts/DancingScript-Regular.ttf
+l          /system/fonts/DroidSans-Bold.ttf
+l          /system/fonts/DroidSans.ttf
+f 108128     /system/fonts/DroidSansMono.ttf
+f 2317800    /system/fonts/NotoColorEmoji.ttf
+f 115412     /system/fonts/NotoNaskhArabic-Bold.ttf
+f 116364     /system/fonts/NotoNaskhArabic-Regular.ttf
+f 115488     /system/fonts/NotoNaskhArabicUI-Bold.ttf
+f 116600     /system/fonts/NotoNaskhArabicUI-Regular.ttf
+f 15624      /system/fonts/NotoSansArmenian-Bold.ttf
+f 15200      /system/fonts/NotoSansArmenian-Regular.ttf
+f 31604      /system/fonts/NotoSansBalinese-Regular.ttf
+f 133228     /system/fonts/NotoSansBamum-Regular.ttf
+f 12380      /system/fonts/NotoSansBatak-Regular.ttf
+f 98076      /system/fonts/NotoSansBengali-Bold.ttf
+f 101276     /system/fonts/NotoSansBengali-Regular.ttf
+f 103448     /system/fonts/NotoSansBengaliUI-Bold.ttf
+f 106548     /system/fonts/NotoSansBengaliUI-Regular.ttf
+f 7028       /system/fonts/NotoSansBuginese-Regular.ttf
+f 4460       /system/fonts/NotoSansBuhid-Regular.ttf
+f 45936      /system/fonts/NotoSansCanadianAboriginal-Regular.ttf
+f 22056      /system/fonts/NotoSansCham-Bold.ttf
+f 22048      /system/fonts/NotoSansCham-Regular.ttf
+f 34032      /system/fonts/NotoSansCherokee-Regular.ttf
+f 20956      /system/fonts/NotoSansCoptic-Regular.ttf
+f 131228     /system/fonts/NotoSansDevanagari-Bold.ttf
+f 135464     /system/fonts/NotoSansDevanagari-Regular.ttf
+f 120416     /system/fonts/NotoSansDevanagariUI-Bold.ttf
+f 124680     /system/fonts/NotoSansDevanagariUI-Regular.ttf
+f 136916     /system/fonts/NotoSansEthiopic-Bold.ttf
+f 136756     /system/fonts/NotoSansEthiopic-Regular.ttf
+f 19544      /system/fonts/NotoSansGeorgian-Bold.ttf
+f 19588      /system/fonts/NotoSansGeorgian-Regular.ttf
+f 15272      /system/fonts/NotoSansGlagolitic-Regular.ttf
+f 116576     /system/fonts/NotoSansGujarati-Bold.ttf
+f 119596     /system/fonts/NotoSansGujarati-Regular.ttf
+f 113864     /system/fonts/NotoSansGujaratiUI-Bold.ttf
+f 116936     /system/fonts/NotoSansGujaratiUI-Regular.ttf
+f 31160      /system/fonts/NotoSansGurmukhi-Bold.ttf
+f 31320      /system/fonts/NotoSansGurmukhi-Regular.ttf
+f 31912      /system/fonts/NotoSansGurmukhiUI-Bold.ttf
+f 31676      /system/fonts/NotoSansGurmukhiUI-Regular.ttf
+f 6340       /system/fonts/NotoSansHanunoo-Regular.ttf
+f 17000      /system/fonts/NotoSansHebrew-Bold.ttf
+f 16812      /system/fonts/NotoSansHebrew-Regular.ttf
+f 4441896    /system/fonts/NotoSansJP-Light.otf
+f 3202244    /system/fonts/NotoSansJP-Regular.otf
+f 32772      /system/fonts/NotoSansJavanese-Regular.ttf
+f 4517908    /system/fonts/NotoSansKR-Light.otf
+f 1834188    /system/fonts/NotoSansKR-Regular.otf
+f 80312      /system/fonts/NotoSansKannada-Bold.ttf
+f 81608      /system/fonts/NotoSansKannada-Regular.ttf
+f 79040      /system/fonts/NotoSansKannadaUI-Bold.ttf
+f 80548      /system/fonts/NotoSansKannadaUI-Regular.ttf
+f 7540       /system/fonts/NotoSansKayahLi-Regular.ttf
+f 33588      /system/fonts/NotoSansKhmer-Bold.ttf
+f 34580      /system/fonts/NotoSansKhmer-Regular.ttf
+f 36424      /system/fonts/NotoSansKhmerUI-Bold.ttf
+f 38128      /system/fonts/NotoSansKhmerUI-Regular.ttf
+f 29004      /system/fonts/NotoSansLao-Bold.ttf
+f 30352      /system/fonts/NotoSansLao-Regular.ttf
+f 29064      /system/fonts/NotoSansLaoUI-Bold.ttf
+f 30372      /system/fonts/NotoSansLaoUI-Regular.ttf
+f 101584     /system/fonts/NotoSansLepcha-Regular.ttf
+f 10672      /system/fonts/NotoSansLimbu-Regular.ttf
+f 5272       /system/fonts/NotoSansLisu-Regular.ttf
+f 56144      /system/fonts/NotoSansMalayalam-Bold.ttf
+f 56252      /system/fonts/NotoSansMalayalam-Regular.ttf
+f 56220      /system/fonts/NotoSansMalayalamUI-Bold.ttf
+f 56316      /system/fonts/NotoSansMalayalamUI-Regular.ttf
+f 14844      /system/fonts/NotoSansMandaic-Regular.ttf
+f 13512      /system/fonts/NotoSansMeeteiMayek-Regular.ttf
+f 112320     /system/fonts/NotoSansMongolian-Regular.ttf
+f 108336     /system/fonts/NotoSansMyanmar-Bold.ttf
+f 107616     /system/fonts/NotoSansMyanmar-Regular.ttf
+f 103940     /system/fonts/NotoSansMyanmarUI-Bold.ttf
+f 102048     /system/fonts/NotoSansMyanmarUI-Regular.ttf
+f 18232      /system/fonts/NotoSansNKo-Regular.ttf
+f 14376      /system/fonts/NotoSansNewTaiLue-Regular.ttf
+f 7144       /system/fonts/NotoSansOlChiki-Regular.ttf
+f 84084      /system/fonts/NotoSansOriya-Bold.ttf
+f 84680      /system/fonts/NotoSansOriya-Regular.ttf
+f 79636      /system/fonts/NotoSansOriyaUI-Bold.ttf
+f 80184      /system/fonts/NotoSansOriyaUI-Regular.ttf
+f 6004       /system/fonts/NotoSansRejang-Regular.ttf
+f 8304272    /system/fonts/NotoSansSC-Light.otf
+f 8156644    /system/fonts/NotoSansSC-Regular.otf
+f 18296      /system/fonts/NotoSansSaurashtra-Regular.ttf
+f 152948     /system/fonts/NotoSansSinhala-Bold.ttf
+f 159212     /system/fonts/NotoSansSinhala-Regular.ttf
+f 10032      /system/fonts/NotoSansSundanese-Regular.ttf
+f 14476      /system/fonts/NotoSansSylotiNagri-Regular.ttf
+f 270216     /system/fonts/NotoSansSymbols-Regular-Subsetted.ttf
+f 45828      /system/fonts/NotoSansSyriacEstrangela-Regular.ttf
+f 5605584    /system/fonts/NotoSansTC-Light.otf
+f 3094308    /system/fonts/NotoSansTC-Regular.otf
+f 5124       /system/fonts/NotoSansTagbanwa-Regular.ttf
+f 8340       /system/fonts/NotoSansTaiLe-Regular.ttf
+f 46068      /system/fonts/NotoSansTaiTham-Regular.ttf
+f 15376      /system/fonts/NotoSansTaiViet-Regular.ttf
+f 33804      /system/fonts/NotoSansTamil-Bold.ttf
+f 33692      /system/fonts/NotoSansTamil-Regular.ttf
+f 33828      /system/fonts/NotoSansTamilUI-Bold.ttf
+f 33708      /system/fonts/NotoSansTamilUI-Regular.ttf
+f 109920     /system/fonts/NotoSansTelugu-Bold.ttf
+f 110160     /system/fonts/NotoSansTelugu-Regular.ttf
+f 111172     /system/fonts/NotoSansTeluguUI-Bold.ttf
+f 111436     /system/fonts/NotoSansTeluguUI-Regular.ttf
+f 13964      /system/fonts/NotoSansThaana-Bold.ttf
+f 13872      /system/fonts/NotoSansThaana-Regular.ttf
+f 17796      /system/fonts/NotoSansThai-Bold.ttf
+f 20840      /system/fonts/NotoSansThai-Regular.ttf
+f 18456      /system/fonts/NotoSansThaiUI-Bold.ttf
+f 21484      /system/fonts/NotoSansThaiUI-Regular.ttf
+f 401220     /system/fonts/NotoSansTibetan-Regular.ttf
+f 13084      /system/fonts/NotoSansTifinagh-Regular.ttf
+f 63808      /system/fonts/NotoSansVai-Regular.ttf
+f 120936     /system/fonts/NotoSansYi-Regular.ttf
+f 247960     /system/fonts/NotoSerif-Bold.ttf
+f 263124     /system/fonts/NotoSerif-BoldItalic.ttf
+f 249796     /system/fonts/NotoSerif-Italic.ttf
+f 246816     /system/fonts/NotoSerif-Regular.ttf
+f 297292     /system/fonts/Roboto-Black.ttf
+f 316680     /system/fonts/Roboto-BlackItalic.ttf
+f 297068     /system/fonts/Roboto-Bold.ttf
+f 320520     /system/fonts/Roboto-BoldItalic.ttf
+f 316908     /system/fonts/Roboto-Italic.ttf
+f 298568     /system/fonts/Roboto-Light.ttf
+f 321904     /system/fonts/Roboto-LightItalic.ttf
+f 296060     /system/fonts/Roboto-Medium.ttf
+f 317324     /system/fonts/Roboto-MediumItalic.ttf
+f 299060     /system/fonts/Roboto-Regular.ttf
+f 300708     /system/fonts/Roboto-Thin.ttf
+f 320752     /system/fonts/Roboto-ThinItalic.ttf
+f 293024     /system/fonts/RobotoCondensed-Bold.ttf
+f 313596     /system/fonts/RobotoCondensed-BoldItalic.ttf
+f 315248     /system/fonts/RobotoCondensed-Italic.ttf
+f 293356     /system/fonts/RobotoCondensed-Light.ttf
+f 317340     /system/fonts/RobotoCondensed-LightItalic.ttf
+f 295012     /system/fonts/RobotoCondensed-Regular.ttf
+d          /system/fonts/custom
+f 7244728    /system/fonts/custom/fzjinglei.ttf
+f 2657200    /system/fonts/custom/fzlantinghei.ttf
+f 5665596    /system/fonts/custom/fzmiaowu.ttf
+f 1942968    /system/fonts/custom/fzyouxian.ttf
+f 9021584    /system/fonts/custom/fzzhunyuan.ttf
+f 3917324    /system/fonts/custom/hkshaonv.ttf
+f 16413756   /system/fonts/custom/msyh.ttf
+f 11076208   /system/fonts/custom/qingyuan.ttf
+d          /system/framework
+f 309        /system/framework/CustomPropInterface.jar
+f 309        /system/framework/am.jar
+f 309        /system/framework/android.test.runner.jar
+f 17815      /system/framework/apache-xml.jar
+f 309        /system/framework/appops.jar
+f 309        /system/framework/appwidget.jar
+d          /system/framework/arm
+f 12148736   /system/framework/arm/boot.art
+f 67576300   /system/framework/arm/boot.oat
+f 309        /system/framework/bmgr.jar
+f 309        /system/framework/bouncycastle.jar
+f 309        /system/framework/bu.jar
+f 309        /system/framework/com.android.future.usb.accessory.jar
+f 309        /system/framework/com.android.location.provider.jar
+f 309        /system/framework/com.android.media.remotedisplay.jar
+f 309        /system/framework/com.android.mediadrm.signer.jar
+f 761        /system/framework/com.google.widevine.software.drm.jar
+f 309        /system/framework/conscrypt.jar
+f 309        /system/framework/content.jar
+f 309        /system/framework/core-junit.jar
+f 19886      /system/framework/core-libart.jar
+f 309        /system/framework/dpm.jar
+f 309        /system/framework/ethernet-service.jar
+f 1596347    /system/framework/ext.jar
+f 10567064   /system/framework/framework-res.apk
+f 5929       /system/framework/framework.jar
+f 309        /system/framework/freeme-framework.jar
+f 309        /system/framework/hid.jar
+f 309        /system/framework/ime.jar
+f 309        /system/framework/ims-common.jar
+f 309        /system/framework/input.jar
+f 309        /system/framework/javax.obex.jar
+f 309        /system/framework/media_cmd.jar
+f 309        /system/framework/mediatek-common.jar
+f 309        /system/framework/mediatek-framework.jar
+d          /system/framework/mediatek-res
+f 873259     /system/framework/mediatek-res/mediatek-res.apk
+f 309        /system/framework/mediatek-telephony-common.jar
+f 309        /system/framework/monkey.jar
+d          /system/framework/oat
+d          /system/framework/oat/arm
+f 16876      /system/framework/oat/arm/CustomPropInterface.odex
+f 160236     /system/framework/oat/arm/am.odex
+f 401900     /system/framework/oat/arm/android.test.runner.odex
+f 33260      /system/framework/oat/arm/appops.odex
+f 16876      /system/framework/oat/arm/appwidget.odex
+f 45548      /system/framework/oat/arm/bmgr.odex
+f 16876      /system/framework/oat/arm/bu.odex
+f 16876      /system/framework/oat/arm/com.android.future.usb.accessory.odex
+f 61932      /system/framework/oat/arm/com.android.location.provider.odex
+f 25068      /system/framework/oat/arm/com.android.media.remotedisplay.odex
+f 12780      /system/framework/oat/arm/com.android.mediadrm.signer.odex
+f 49644      /system/framework/oat/arm/content.odex
+f 16876      /system/framework/oat/arm/dpm.odex
+f 53740      /system/framework/oat/arm/ethernet-service.odex
+f 41452      /system/framework/oat/arm/hid.odex
+f 25068      /system/framework/oat/arm/ime.odex
+f 25068      /system/framework/oat/arm/input.odex
+f 147948     /system/framework/oat/arm/javax.obex.odex
+f 33260      /system/framework/oat/arm/media_cmd.odex
+f 287212     /system/framework/oat/arm/monkey.odex
+f 143852     /system/framework/oat/arm/pm.odex
+f 33260      /system/framework/oat/arm/requestsync.odex
+f 20722156   /system/framework/oat/arm/services.odex
+f 33260      /system/framework/oat/arm/settings.odex
+f 25068      /system/framework/oat/arm/sm.odex
+f 25068      /system/framework/oat/arm/svc.odex
+f 25068      /system/framework/oat/arm/telecom.odex
+f 274924     /system/framework/oat/arm/uiautomator.odex
+f 5767660    /system/framework/oat/arm/wifi-service.odex
+f 25068      /system/framework/oat/arm/wm.odex
+f 309        /system/framework/okhttp.jar
+f 309        /system/framework/org.apache.http.legacy.boot.jar
+f 309        /system/framework/pm.jar
+f 309        /system/framework/requestsync.jar
+f 309        /system/framework/services.jar
+f 309        /system/framework/settings.jar
+f 309        /system/framework/sm.jar
+f 309        /system/framework/svc.jar
+f 309        /system/framework/telecom.jar
+f 309        /system/framework/telephony-common.jar
+f 309        /system/framework/uiautomator.jar
+f 309        /system/framework/voip-common.jar
+f 309        /system/framework/wifi-service.jar
+f 309        /system/framework/wm.jar
+d          /system/lib
+f 1660       /system/lib/crtbegin_so.o
+f 620        /system/lib/crtend_so.o
+d          /system/lib/drm
+f 71384      /system/lib/drm/libdrmctaplugin.so
+f 83664      /system/lib/drm/libdrmmtkplugin.so
+d          /system/lib/egl
+f 76         /system/lib/egl/egl.cfg
+f 99944      /system/lib/egl/libGLES_android.so
+f 22557356   /system/lib/egl/libGLES_mali.so
+d          /system/lib/hw
+f 22148      /system/lib/hw/audio.a2dp.default.so
+f 18048      /system/lib/hw/audio.primary.default.so
+f 1150768    /system/lib/hw/audio.primary.mt6737t.so
+f 38596      /system/lib/hw/audio.r_submix.default.so
+f 22160      /system/lib/hw/audio.usb.default.so
+f 96048      /system/lib/hw/audio_policy.default.so
+f 13952      /system/lib/hw/audio_policy.stub.so
+f 1817300    /system/lib/hw/bluetooth.default.so
+f 42800      /system/lib/hw/camera.mt6737t.so
+f 87816      /system/lib/hw/gps.mt6737t.so
+f 22476      /system/lib/hw/gralloc.default.so
+f 51444      /system/lib/hw/gralloc.mt6737t.so
+f 190204     /system/lib/hw/hwcomposer.mt6737t.so
+f 13872      /system/lib/hw/keystore.default.so
+f 18052      /system/lib/hw/lights.mt6737t.so
+f 13952      /system/lib/hw/local_time.default.so
+f 18072      /system/lib/hw/memtrack.mt6737t.so
+f 13964      /system/lib/hw/power.default.so
+f 124876     /system/lib/hw/sensors.mt6737t.so
+f 13952      /system/lib/hw/vibrator.default.so
+f 450748     /system/lib/lib3a.so
+f 63100      /system/lib/lib3a_sample.so
+f 69         /system/lib/libBDoeminfo_baidusearch.so
+f 75312      /system/lib/libBnMtkCodec.so
+f 420296     /system/lib/libEGL.so
+f 17916      /system/lib/libETC1.so
+f 214592     /system/lib/libFFTEm.so
+f 456160     /system/lib/libGLES_trace.so
+f 34340      /system/lib/libGLESv1_CM.so
+f 54820      /system/lib/libGLESv2.so
+l          /system/lib/libGLESv3.so
+f 294332     /system/lib/libHEVCdec_sa.ca7.android.so
+f 34796      /system/lib/libJniAtvService.so
+f 54972      /system/lib/libJpgDecPipe.so
+f 30340      /system/lib/libJpgEncPipe.so
+f 10858036   /system/lib/libLLVM.so
+f 38508      /system/lib/libMTKAudioTimeStretch.so
+f 13840      /system/lib/libMiraVision_jni.so
+f 67248      /system/lib/libMtkOmxAdpcmDec.so
+f 67248      /system/lib/libMtkOmxAdpcmEnc.so
+f 59024      /system/lib/libMtkOmxAlacDec.so
+f 63112      /system/lib/libMtkOmxApeDec.so
+f 26212      /system/lib/libMtkOmxCore.so
+f 203456     /system/lib/libMtkOmxFlacDec.so
+f 50816      /system/lib/libMtkOmxG711Dec.so
+f 63260      /system/lib/libMtkOmxGsmDec.so
+f 116396     /system/lib/libMtkOmxMp3Dec.so
+f 63764      /system/lib/libMtkOmxRawDec.so
+f 182520     /system/lib/libMtkOmxVdecEx.so
+f 116824     /system/lib/libMtkOmxVenc.so
+f 132792     /system/lib/libMtkOmxVorbisEnc.so
+f 42552      /system/lib/libMtkVideoTranscoder.so
+f 149100     /system/lib/libNativeMisc.so
+f 26184      /system/lib/libOpenCLIcd.so
+f 17976      /system/lib/libOpenMAXAL.so
+f 17976      /system/lib/libOpenSLES.so
+f 23440      /system/lib/libPQDCjni.so
+f 18408      /system/lib/libPQjni.so
+f 264464     /system/lib/libRS.so
+f 235068     /system/lib/libRSCpuRef.so
+f 153136     /system/lib/libRSDriver.so
+f 464584     /system/lib/libRSDriver_mtk.so
+f 128560     /system/lib/libRScpp.so
+f 13820      /system/lib/libSonyIMX230PdafLibrary.so
+f 22148      /system/lib/libSwJpgCodec.so
+f 513792     /system/lib/liba3m.so
+f 100048     /system/lib/libaal.so
+f 288680     /system/lib/libacdk.so
+f 74976      /system/lib/libaed.so
+f 22012      /system/lib/libalsautils.so
+f 185972     /system/lib/libamr_wrap.so
+f 144716     /system/lib/libamrvt.so
+f 67180      /system/lib/libandroid.so
+f 949168     /system/lib/libandroid_runtime.so
+f 147444     /system/lib/libandroid_servers.so
+f 169604     /system/lib/libandroidfw.so
+f 3876672    /system/lib/libart-compiler.so
+f 129128     /system/lib/libart-disassembler.so
+f 5661196    /system/lib/libart.so
+f 13820      /system/lib/libatciserv_jni.so
+f 46648      /system/lib/libatvctrlservice.so
+f 30204      /system/lib/libaudio-resampler.so
+f 13820      /system/lib/libaudiocompensationfilter.so
+f 34408      /system/lib/libaudiocomponentengine.so
+f 38396      /system/lib/libaudiocustparam.so
+f 26224      /system/lib/libaudiodcrflt.so
+f 30636      /system/lib/libaudioeffect_jni.so
+f 353936     /system/lib/libaudioflinger.so
+f 13824      /system/lib/libaudiomtkdcremoval.so
+f 96100      /system/lib/libaudiopolicyenginedefault.so
+f 13880      /system/lib/libaudiopolicymanager.so
+f 218740     /system/lib/libaudiopolicymanagerdefault.so
+f 79528      /system/lib/libaudiopolicyservice.so
+f 149040     /system/lib/libaudioresampler.so
+f 5448       /system/lib/libaudiosetting.so
+f 22064      /system/lib/libaudiospdif.so
+f 30204      /system/lib/libaudioutils.so
+f 206452     /system/lib/libawb_wrap.so
+f 38448      /system/lib/libbacktrace.so
+f 38504      /system/lib/libbase.so
+f 366180     /system/lib/libbcc.so
+f 222820     /system/lib/libbcinfo.so
+f 67180      /system/lib/libbessound_hd_mtk.so
+f 181880     /system/lib/libbinder.so
+f 808444     /system/lib/libblas.so
+f 95844      /system/lib/libblisrc.so
+f 99916      /system/lib/libblisrc32.so
+f 26112      /system/lib/libbluetooth_hw_test.so
+f 102540     /system/lib/libbluetooth_jni.so
+f 26144      /system/lib/libbluetooth_mtk.so
+f 26352      /system/lib/libbluetooth_mtk_pure.so
+f 17920      /system/lib/libbluetooth_relayer.so
+f 17920      /system/lib/libbluetoothem_mtk.so
+f 13872      /system/lib/libbt-vendor.so
+f 50804      /system/lib/libbwc.so
+f 575088     /system/lib/libc++.so
+f 558232     /system/lib/libc.so
+f 79296      /system/lib/libc2kril.so
+f 26356      /system/lib/libc2kutils.so
+f 439992     /system/lib/libcam.camadapter.so
+f 362112     /system/lib/libcam.camnode.so
+f 235116     /system/lib/libcam.camshot.so
+f 190016     /system/lib/libcam.client.so
+f 71224      /system/lib/libcam.device1.so
+f 54840      /system/lib/libcam.device3.so
+f 54860      /system/lib/libcam.exif.so
+f 54852      /system/lib/libcam.exif.v3.so
+f 22072      /system/lib/libcam.hal3a.v3.dng.so
+f 779948     /system/lib/libcam.hal3a.v3.so
+f 218732     /system/lib/libcam.halsensor.so
+f 220148     /system/lib/libcam.iopipe.so
+f 78312      /system/lib/libcam.jni.lomohaljni.so
+f 83504      /system/lib/libcam.metadata.so
+f 255588     /system/lib/libcam.metadataprovider.so
+f 225468     /system/lib/libcam.paramsmgr.so
+f 58928      /system/lib/libcam.sdkclient.so
+f 22064      /system/lib/libcam.utils.cpuctrl.so
+f 30308      /system/lib/libcam.utils.sensorlistener.so
+f 42544      /system/lib/libcam.utils.so
+f 26160      /system/lib/libcam1_utils.so
+f 161380     /system/lib/libcam3_app.so
+f 194156     /system/lib/libcam3_hwnode.so
+f 136760     /system/lib/libcam3_hwpipeline.so
+f 144944     /system/lib/libcam3_pipeline.so
+f 144944     /system/lib/libcam3_utils.so
+f 17968      /system/lib/libcam_hwutils.so
+f 13820      /system/lib/libcam_mmp.so
+f 18032      /system/lib/libcam_platform.so
+f 124516     /system/lib/libcam_utils.so
+f 6698296    /system/lib/libcamalgo.so
+f 213444     /system/lib/libcamdrv.so
+f 181868     /system/lib/libcamera_client.so
+f 36448      /system/lib/libcamera_metadata.so
+f 9009804    /system/lib/libcameracustom.so
+f 603848     /system/lib/libcameraservice.so
+f 22032      /system/lib/libccci_util.so
+f 241704     /system/lib/libclcore.bc
+f 257264     /system/lib/libclcore_debug.bc
+f 242232     /system/lib/libclcore_neon.bc
+f 50788      /system/lib/libcommon_time_client.so
+f 34304      /system/lib/libcompiler_rt.so
+f 34436      /system/lib/libcomutils.so
+f 674056     /system/lib/libcrypto.so
+f 247496     /system/lib/libcurl.so
+f 13840      /system/lib/libcustom_jni.so
+f 70256      /system/lib/libcustom_nvram.so
+f 17916      /system/lib/libcustom_prop.so
+f 67296      /system/lib/libcutils.so
+f 42752      /system/lib/libcvsd_mtk.so
+f 26164      /system/lib/libdcfdecoderjni.so
+f 13820      /system/lib/libdefcontainer_jni.so
+f 13872      /system/lib/libdirect-coredump.so
+f 26108      /system/lib/libdiskconfig.so
+f 9492       /system/lib/libdl.so
+f 34452      /system/lib/libdngop.so
+f 415424     /system/lib/libdpframework.so
+f 104036     /system/lib/libdrmframework.so
+f 34640      /system/lib/libdrmframework_jni.so
+f 552976     /system/lib/libdrmmtkutil.so
+f 22136      /system/lib/libdrmmtkwhitelist.so
+f 22064      /system/lib/libeffects.so
+f 26356      /system/lib/libem_bt_jni.so
+f 17936      /system/lib/libem_gpio_jni.so
+f 26152      /system/lib/libem_lte_jni.so
+f 17916      /system/lib/libem_modem_jni.so
+f 17996      /system/lib/libem_sensor_jni.so
+f 13820      /system/lib/libem_support_jni.so
+f 17920      /system/lib/libem_usb_jni.so
+f 55344      /system/lib/libem_wifi_jni.so
+f 173564     /system/lib/libexif.so
+f 87340      /system/lib/libexpat.so
+f 40740      /system/lib/libext2_blkid.so
+f 17920      /system/lib/libext2_com_err.so
+f 31040      /system/lib/libext2_e2p.so
+f 22012      /system/lib/libext2_profile.so
+f 30252      /system/lib/libext2_quota.so
+f 22020      /system/lib/libext2_uuid.so
+f 174132     /system/lib/libext2fs.so
+f 79424      /system/lib/libext4_utils.so
+f 26108      /system/lib/libf2fs_sparseblock.so
+f 1088760    /system/lib/libfeatureio.so
+f 129000     /system/lib/libfeatureiodrv.so
+f 87808      /system/lib/libfgauge.so
+f 71248      /system/lib/libfile_op.so
+f 124472     /system/lib/libfilterfw.so
+f 17924      /system/lib/libfilterpack_imageproc.so
+f 13856      /system/lib/libfmcust.so
+f 46888      /system/lib/libfmrjni.so
+f 256096     /system/lib/libfs_mgr.so
+f 386608     /system/lib/libft2.so
+f 30132      /system/lib/libgabi++.so
+f 46768      /system/lib/libgas.so
+f 22064      /system/lib/libgatekeeper.so
+f 30280      /system/lib/libged.so
+f 30396      /system/lib/libgpu_aux.so
+f 22064      /system/lib/libgralloc_extra.so
+f 411428     /system/lib/libgui.so
+f 95880      /system/lib/libgui_ext.so
+f 235376     /system/lib/libh264enc_sa.ca7.so
+f 179988     /system/lib/libh264enc_sb.ca7.so
+f 13820      /system/lib/libhardware.so
+f 30244      /system/lib/libhardware_legacy.so
+f 427620     /system/lib/libharfbuzz_ng.so
+f 231776     /system/lib/libhevce_sb.ca7.android.so
+f 22056      /system/lib/libhidcommand_jni.so
+f 42564      /system/lib/libhwm.so
+f 510528     /system/lib/libhwui.so
+f 1501092    /system/lib/libicui18n.so
+f 1148492    /system/lib/libicuuc.so
+f 124784     /system/lib/libimageio.so
+f 358160     /system/lib/libimageio_plat_drv.so
+f 58980      /system/lib/libimg_utils.so
+f 95872      /system/lib/libimsma.so
+f 177848     /system/lib/libimsma_rtp.so
+f 26256      /system/lib/libimsma_socketwrapper.so
+f 124520     /system/lib/libinput.so
+f 271920     /system/lib/libinputflinger.so
+f 46648      /system/lib/libinputservice.so
+f 13820      /system/lib/libion.so
+f 17916      /system/lib/libion_mtk.so
+f 36416      /system/lib/libiprouteutil.so
+f 149172     /system/lib/libja3m.so
+f 215964     /system/lib/libjavacore.so
+f 98736      /system/lib/libjavacrypto.so
+f 51240      /system/lib/libjhead.so
+f 927252     /system/lib/libjni_latinime.so
+f 34504      /system/lib/libjni_lomoeffect.so
+f 18024      /system/lib/libjni_pacprocessor.so
+f 22500      /system/lib/libjni_pq.so
+f 13868      /system/lib/libjnigraphics.so
+f 222716     /system/lib/libjpeg.so
+f 17916      /system/lib/libjtranscode.so
+f 104120     /system/lib/libkeymaster1.so
+f 38448      /system/lib/libkeymaster_messages.so
+f 17916      /system/lib/libkeystore-engine.so
+f 50788      /system/lib/libkeystore_binder.so
+f 13900      /system/lib/liblic_divx.so
+f 13900      /system/lib/liblic_s263.so
+f 38500      /system/lib/liblicenseservice.so
+f 34412      /system/lib/liblog.so
+f 17916      /system/lib/liblogwrap.so
+f 132824     /system/lib/libm.so
+f 22012      /system/lib/libm4u.so
+f 104064     /system/lib/libmal.so
+f 153492     /system/lib/libmal_datamngr.so
+f 63060      /system/lib/libmal_epdga.so
+f 22092      /system/lib/libmal_imsmngr.so
+f 38556      /system/lib/libmal_mdmngr.so
+f 42772      /system/lib/libmal_nwmngr.so
+f 330060     /system/lib/libmal_rds.so
+f 92140      /system/lib/libmal_rilproxy.so
+f 106592     /system/lib/libmal_simmngr.so
+f 17916      /system/lib/libmatv_cust.so
+f 509576     /system/lib/libmdfx.so
+f 34436      /system/lib/libmdloggerrecycle.so
+f 30204      /system/lib/libmdnssd.so
+f 820860     /system/lib/libmedia.so
+f 295820     /system/lib/libmedia_jni.so
+f 26168      /system/lib/libmedialogservice.so
+f 50840      /system/lib/libmediandk.so
+f 738952     /system/lib/libmediaplayerservice.so
+f 18000      /system/lib/libmediatek_exceptionlog.so
+f 22116      /system/lib/libmediautils.so
+f 13908      /system/lib/libmemoryDumpEncoder.so
+f 34404      /system/lib/libmemorydumper.so
+f 13820      /system/lib/libmemtrack.so
+f 13908      /system/lib/libmhalImageCodec.so
+f 63076      /system/lib/libminikin.so
+f 610128     /system/lib/libminiui.so
+f 17996      /system/lib/libmmprofile.so
+f 18012      /system/lib/libmmprofile_jni.so
+f 149092     /system/lib/libmmsdkservice.feature.so
+f 124520     /system/lib/libmmsdkservice.so
+f 1979168    /system/lib/libmnl.so
+f 155404     /system/lib/libmp4enc_sa.ca7.so
+f 197464     /system/lib/libmp4enc_xa.ca7.so
+f 17916      /system/lib/libmrdump.so
+f 30308      /system/lib/libmsbc_mtk.so
+f 17996      /system/lib/libmtcloader.so
+f 22088      /system/lib/libmtk_drvb.so
+f 30308      /system/lib/libmtk_mmutils.so
+f 186076     /system/lib/libmtk_vt_service.so
+f 680564     /system/lib/libmtk_vt_swip.so
+f 30800      /system/lib/libmtk_vt_utils.so
+f 67264      /system/lib/libmtk_vt_wrapper.so
+f 42500      /system/lib/libmtkcamera_client.so
+f 239708     /system/lib/libmtkjpeg.so
+f 34408      /system/lib/libmtklimiter.so
+f 22144      /system/lib/libmtkplayer.so
+f 18024      /system/lib/libmtkshifter.so
+f 30320      /system/lib/libmtksqlite3_android.so
+f 13820      /system/lib/libmtksqlite3_custom.so
+f 91696      /system/lib/libmtp.so
+f 54952      /system/lib/libn3d3a.so
+f 17916      /system/lib/libnativebridge.so
+f 18056      /system/lib/libnativecheck-jni.so
+f 30208      /system/lib/libnativehelper.so
+f 38448      /system/lib/libnbaio.so
+f 17916      /system/lib/libnetd_client.so
+f 22016      /system/lib/libnetlink.so
+f 42500      /system/lib/libnetutils.so
+f 13820      /system/lib/libnfc_ndef.so
+f 77468      /system/lib/libnl.so
+f 71248      /system/lib/libnvram.so
+f 13820      /system/lib/libnvram_daemon_callback.so
+f 13904      /system/lib/libnvram_platform.so
+f 17996      /system/lib/libnvram_sec.so
+f 30392      /system/lib/libnvramagentclient.so
+f 235004     /system/lib/libopus.so
+f 4071672    /system/lib/libpac.so
+f 75276      /system/lib/libpcre.so
+f 4228596    /system/lib/libpdfium.so
+f 42948      /system/lib/libperfservice.so
+f 26160      /system/lib/libperfservicenative.so
+f 146140     /system/lib/libpixelflinger.so
+f 165372     /system/lib/libpng.so
+f 13824      /system/lib/libpower.so
+f 22116      /system/lib/libpowermanager.so
+f 71172      /system/lib/libpq_cust.so
+f 54856      /system/lib/libpq_prot.so
+f 63484      /system/lib/libpqservice.so
+f 13852      /system/lib/libprintspooler_jni.so
+f 17916      /system/lib/libprocessgroup.so
+f 99956      /system/lib/libprotobuf-cpp-lite.so
+f 50788      /system/lib/libradio.so
+f 13820      /system/lib/libradio_metadata.so
+f 58936      /system/lib/libradioservice.so
+f 38416      /system/lib/libreference-ril.so
+f 46648      /system/lib/libresourcemanagerservice.so
+f 72888      /system/lib/libril.so
+f 140448     /system/lib/librilmtk.so
+f 140448     /system/lib/librilmtkmd2.so
+f 17916      /system/lib/librilutils.so
+f 38472      /system/lib/librpc.so
+f 22016      /system/lib/librpcril.so
+f 48048      /system/lib/librs_jni.so
+f 120652     /system/lib/librtp_jni.so
+f 63124      /system/lib/libselinux.so
+f 75368      /system/lib/libsensorservice.so
+f 17968      /system/lib/libserviceutility.so
+f 51016      /system/lib/libshowlogo.so
+f 13820      /system/lib/libsigchain.so
+f 145024     /system/lib/libsink.so
+f 3999644    /system/lib/libskia.so
+f 22144      /system/lib/libsoftkeymaster.so
+f 87800      /system/lib/libsoftkeymasterdevice.so
+f 17916      /system/lib/libsonic.so
+f 346308     /system/lib/libsonivox.so
+f 38644      /system/lib/libsoundpool.so
+f 50788      /system/lib/libsoundtrigger.so
+f 58936      /system/lib/libsoundtriggerservice.so
+f 132744     /system/lib/libsource.so
+f 30304      /system/lib/libsparse.so
+f 456396     /system/lib/libspeech_enh_lib.so
+f 31648      /system/lib/libspeexresampler.so
+f 410720     /system/lib/libsqlite.so
+f 38396      /system/lib/libsqlite_jni.so
+f 181808     /system/lib/libssl.so
+f 2444456    /system/lib/libstagefright.so
+f 58928      /system/lib/libstagefright_amrnb_common.so
+f 30204      /system/lib/libstagefright_avc_common.so
+f 13820      /system/lib/libstagefright_enc_common.so
+f 116328     /system/lib/libstagefright_foundation.so
+f 17924      /system/lib/libstagefright_http_support.so
+f 161336     /system/lib/libstagefright_httplive.so
+f 206404     /system/lib/libstagefright_omx.so
+f 472892     /system/lib/libstagefright_soft_aacdec.so
+f 497208     /system/lib/libstagefright_soft_aacenc.so
+f 108152     /system/lib/libstagefright_soft_amrdec.so
+f 71224      /system/lib/libstagefright_soft_amrnbenc.so
+f 172060     /system/lib/libstagefright_soft_amrwbenc.so
+f 370232     /system/lib/libstagefright_soft_avcdec.so
+f 359332     /system/lib/libstagefright_soft_avcenc.so
+f 165440     /system/lib/libstagefright_soft_flacenc.so
+f 26168      /system/lib/libstagefright_soft_g711dec.so
+f 34516      /system/lib/libstagefright_soft_gsmdec.so
+f 485140     /system/lib/libstagefright_soft_hevcdec.so
+f 79416      /system/lib/libstagefright_soft_mp3dec.so
+f 112184     /system/lib/libstagefright_soft_mpeg2dec.so
+f 99896      /system/lib/libstagefright_soft_mpeg4dec.so
+f 132664     /system/lib/libstagefright_soft_mpeg4enc.so
+f 30264      /system/lib/libstagefright_soft_opusdec.so
+f 26168      /system/lib/libstagefright_soft_rawdec.so
+f 30264      /system/lib/libstagefright_soft_vorbisdec.so
+f 460420     /system/lib/libstagefright_soft_vpxdec.so
+f 685624     /system/lib/libstagefright_soft_vpxenc.so
+f 345820     /system/lib/libstagefright_wfd.so
+f 22012      /system/lib/libstagefright_yuv.so
+f 17968      /system/lib/libstagefrighthw.so
+f 21972      /system/lib/libstdc++.so
+f 247472     /system/lib/libsurfaceflinger.so
+f 13820      /system/lib/libsurfaceflinger_ddmconnection.so
+f 22044      /system/lib/libsuspend.so
+f 13820      /system/lib/libsync.so
+f 38448      /system/lib/libsysutils.so
+f 47164      /system/lib/libterservice.so
+f 129016     /system/lib/libtfa9890_interface.so
+f 26224      /system/lib/libtimestretch.so
+f 26324      /system/lib/libtinyalsa.so
+f 22172      /system/lib/libtinycompress.so
+f 42676      /system/lib/libtinyxml.so
+f 26360      /system/lib/libtouchfilter.so
+f 22232      /system/lib/libttscompat.so
+f 211868     /system/lib/libttspico.so
+f 59020      /system/lib/libudf.so
+f 91748      /system/lib/libui.so
+f 26160      /system/lib/libui_ext.so
+f 67116      /system/lib/libunwind.so
+f 22012      /system/lib/libusbhost.so
+f 99956      /system/lib/libutils.so
+f 778856     /system/lib/libvc1dec_sa.ca7.so
+f 35540      /system/lib/libvcodec_cap.so
+f 9408       /system/lib/libvcodec_oal.so
+f 63152      /system/lib/libvcodec_utility.so
+f 511112     /system/lib/libvcodecdrv.so
+f 104484     /system/lib/libviagpsrpc.so
+f 215712     /system/lib/libviatelecom-withuim-ril.so
+f 300824     /system/lib/libvie.so
+f 26476      /system/lib/libvie_jni.so
+f 716236     /system/lib/libvixl.so
+f 669908     /system/lib/libvoicerecognition.so
+f 34932      /system/lib/libvoicerecognition_jni.so
+f 117268     /system/lib/libvorbisidec.so
+f 333812     /system/lib/libvp8dec_sa.ca7.so
+f 261044     /system/lib/libvp8enc_sa.ca7.so
+f 314972     /system/lib/libvp9dec_sa.ca7.so
+f 22192      /system/lib/libvt_avsync.so
+f 14492      /system/lib/libvt_custom.so
+f 22196      /system/lib/libvt_socketbind.so
+f 490568     /system/lib/libvtmal.so
+f 68008      /system/lib/libwapi.so
+f 419448     /system/lib/libwebrtc_audio_preprocessing.so
+f 17916      /system/lib/libwebviewchromium_loader.so
+f 17924      /system/lib/libwebviewchromium_plat_support.so
+f 26236      /system/lib/libwfo_jni.so
+f 125256     /system/lib/libwifi-service.so
+f 26372      /system/lib/libwifitest.so
+f 177776     /system/lib/libwilhelm.so
+f 60408      /system/lib/libwizz_art.so
+f 22016      /system/lib/libwpa_client.so
+f 108128     /system/lib/libz.so
+f 553548     /system/lib/mtk-ril.so
+f 553548     /system/lib/mtk-rilmd2.so
+d          /system/lib/soundfx
+f 22044      /system/lib/soundfx/libaudiopreprocessing.so
+f 71792      /system/lib/soundfx/libbundlewrapper.so
+f 17944      /system/lib/soundfx/libdownmix.so
+f 13848      /system/lib/soundfx/libeffectproxy.so
+f 17944      /system/lib/soundfx/libldnhncr.so
+f 42520      /system/lib/soundfx/libreverbwrapper.so
+f 17944      /system/lib/soundfx/libvisualizer.so
+f 136776     /system/lib/volte_imsm.so
+d          /system/lost+found
+d          /system/media
+d          /system/media/audio
+d          /system/media/audio/alarms
+f 5894       /system/media/audio/alarms/Alarm_Beep_02.ogg
+f 21148      /system/media/audio/alarms/Alarm_Beep_03.ogg
+f 2916016    /system/media/audio/alarms/Alarm_Lights.ogg
+f 11156      /system/media/audio/alarms/Alarm_Rooster_02.ogg
+f 117229     /system/media/audio/alarms/Argon.ogg
+f 25001      /system/media/audio/alarms/Beeps.mp3
+f 29994      /system/media/audio/alarms/Classic.mp3
+f 147070     /system/media/audio/alarms/Helium.ogg
+f 13513      /system/media/audio/alarms/Instance.mp3
+f 48935      /system/media/audio/alarms/Light.mp3
+f 42497      /system/media/audio/alarms/Osmium.ogg
+f 27031      /system/media/audio/alarms/Oxygen.ogg
+f 112677     /system/media/audio/alarms/Platinum.ogg
+f 47792      /system/media/audio/alarms/Scandium.ogg
+f 7569917    /system/media/audio/alarms/humorous.mp3
+d          /system/media/audio/notifications
+f 88118      /system/media/audio/notifications/2_Step.mp3
+f 10418      /system/media/audio/notifications/Adara.ogg
+f 8932       /system/media/audio/notifications/Alya.ogg
+f 27877      /system/media/audio/notifications/Antimony.ogg
+f 7907       /system/media/audio/notifications/Arcturus.ogg
+f 15870      /system/media/audio/notifications/Argon.ogg
+f 82657      /system/media/audio/notifications/Around.mp3
+f 15724      /system/media/audio/notifications/Bellatrix.ogg
+f 19400      /system/media/audio/notifications/Beryllium.ogg
+f 19107      /system/media/audio/notifications/CaffeineSnake.ogg
+f 13131      /system/media/audio/notifications/Capella.ogg
+f 82366      /system/media/audio/notifications/Cobblestone.mp3
+f 18628      /system/media/audio/notifications/DearDeer.ogg
+f 32784      /system/media/audio/notifications/Dido.ogg
+f 16986      /system/media/audio/notifications/DontPanic.ogg
+f 11947      /system/media/audio/notifications/F1_MissedCall.ogg
+f 20985      /system/media/audio/notifications/F1_New_MMS.ogg
+f 11937      /system/media/audio/notifications/F1_New_SMS.ogg
+f 18693      /system/media/audio/notifications/Fluorine.ogg
+f 89529      /system/media/audio/notifications/Friday.mp3
+f 12233      /system/media/audio/notifications/Gallium.ogg
+f 71213      /system/media/audio/notifications/Heavy.mp3
+f 7451       /system/media/audio/notifications/Helium.ogg
+f 18449      /system/media/audio/notifications/Highwire.ogg
+f 13990      /system/media/audio/notifications/Hojus.ogg
+f 58262      /system/media/audio/notifications/Iridium.ogg
+f 11595      /system/media/audio/notifications/Krypton.ogg
+f 15614      /system/media/audio/notifications/KzurbSonar.ogg
+f 18141      /system/media/audio/notifications/Lalande.ogg
+f 17725      /system/media/audio/notifications/Mira.ogg
+f 20047      /system/media/audio/notifications/OnTheHunt.ogg
+f 14645      /system/media/audio/notifications/Palladium.ogg
+f 20533      /system/media/audio/notifications/Polaris.ogg
+f 23412      /system/media/audio/notifications/Pollux.ogg
+f 22346      /system/media/audio/notifications/Procyon.ogg
+f 22575      /system/media/audio/notifications/Proxima.ogg
+f 25372      /system/media/audio/notifications/Radon.ogg
+f 21192      /system/media/audio/notifications/Rubidium.ogg
+f 24301      /system/media/audio/notifications/Shaula.ogg
+f 9070       /system/media/audio/notifications/Spica.ogg
+f 39203      /system/media/audio/notifications/Strontium.ogg
+f 8486       /system/media/audio/notifications/Syrma.ogg
+f 10437      /system/media/audio/notifications/Talitha.ogg
+f 15870      /system/media/audio/notifications/Tejat.ogg
+f 18236      /system/media/audio/notifications/Thallium.ogg
+f 24045      /system/media/audio/notifications/Upsilon.ogg
+f 16488      /system/media/audio/notifications/Voila.ogg
+f 27861      /system/media/audio/notifications/Xenon.ogg
+f 12716      /system/media/audio/notifications/Zirconium.ogg
+f 7671       /system/media/audio/notifications/sms-received1.ogg
+f 43153      /system/media/audio/notifications/sms-received2.ogg
+f 78106      /system/media/audio/notifications/sms-received3.ogg
+f 8666       /system/media/audio/notifications/sms-received4.ogg
+f 14883      /system/media/audio/notifications/sms-received5.ogg
+f 10095      /system/media/audio/notifications/sms-received6.ogg
+d          /system/media/audio/ringtones
+f 120484     /system/media/audio/ringtones/Alarm.ogg
+f 21460      /system/media/audio/ringtones/Aquila.ogg
+f 89510      /system/media/audio/ringtones/ArgoNavis.ogg
+f 33694      /system/media/audio/ringtones/Ascending.ogg
+f 89691      /system/media/audio/ringtones/Atria.ogg
+f 36053      /system/media/audio/ringtones/Backroad.ogg
+f 21701      /system/media/audio/ringtones/Bark.ogg
+f 28430      /system/media/audio/ringtones/BeatPlucker.ogg
+f 74049      /system/media/audio/ringtones/Bell_Tower.ogg
+f 30759      /system/media/audio/ringtones/BentleyDubs.ogg
+f 46674      /system/media/audio/ringtones/Big_Easy.ogg
+f 41828      /system/media/audio/ringtones/BirdLoop.ogg
+f 56490      /system/media/audio/ringtones/Blues.ogg
+f 21007      /system/media/audio/ringtones/Boing.ogg
+f 39174      /system/media/audio/ringtones/Bollywood.ogg
+f 48966      /system/media/audio/ringtones/BussaMove.ogg
+f 37673      /system/media/audio/ringtones/Cairo.ogg
+f 38874      /system/media/audio/ringtones/Calypso_Steel.ogg
+f 30614      /system/media/audio/ringtones/CaribbeanIce.ogg
+f 15387      /system/media/audio/ringtones/Carina.ogg
+f 27647      /system/media/audio/ringtones/Centaurus.ogg
+f 39916      /system/media/audio/ringtones/Champagne_Edition.ogg
+f 37183      /system/media/audio/ringtones/Club_Cubano.ogg
+f 37950      /system/media/audio/ringtones/CrayonRock.ogg
+f 206810     /system/media/audio/ringtones/CrazyDream.ogg
+f 34507      /system/media/audio/ringtones/Crickets.ogg
+f 30921      /system/media/audio/ringtones/CurveBall.ogg
+f 29810      /system/media/audio/ringtones/Cygnus.ogg
+f 61434      /system/media/audio/ringtones/DancinFool.ogg
+f 51624      /system/media/audio/ringtones/Digital.ogg
+f 15481      /system/media/audio/ringtones/Ding.ogg
+f 50541      /system/media/audio/ringtones/DonMessWivIt.ogg
+f 27583      /system/media/audio/ringtones/Doorbell.ogg
+f 31785      /system/media/audio/ringtones/Draco.ogg
+f 175424     /system/media/audio/ringtones/DreamTheme.ogg
+f 50582      /system/media/audio/ringtones/Eastern_Sky.ogg
+f 61696      /system/media/audio/ringtones/Enter_the_Nexus.ogg
+f 31558      /system/media/audio/ringtones/EtherShake.ogg
+f 46423      /system/media/audio/ringtones/FriendlyGhost.ogg
+f 39740      /system/media/audio/ringtones/Funk_Yall.ogg
+f 49974      /system/media/audio/ringtones/GameOverGuitar.ogg
+f 38686      /system/media/audio/ringtones/Gimme_Mo_Town.ogg
+f 44379      /system/media/audio/ringtones/Girtab.ogg
+f 54918      /system/media/audio/ringtones/Glacial_Groove.ogg
+f 41098      /system/media/audio/ringtones/Growl.ogg
+f 68591      /system/media/audio/ringtones/HalfwayHome.ogg
+f 6065228    /system/media/audio/ringtones/Halo.flac
+f 22928      /system/media/audio/ringtones/Hydra.ogg
+f 15144      /system/media/audio/ringtones/InsertCoin.ogg
+f 164875     /system/media/audio/ringtones/Kuma.ogg
+f 38313      /system/media/audio/ringtones/LoopyLounge.ogg
+f 34629      /system/media/audio/ringtones/LoveFlute.ogg
+f 38056      /system/media/audio/ringtones/Machina.ogg
+f 28128      /system/media/audio/ringtones/MidEvilJaunt.ogg
+f 34864      /system/media/audio/ringtones/MildlyAlarming.ogg
+f 28442      /system/media/audio/ringtones/Motorcycle.ogg
+f 41357      /system/media/audio/ringtones/Nairobi.ogg
+f 44113      /system/media/audio/ringtones/Nassau.ogg
+f 15565      /system/media/audio/ringtones/NewPlayer.ogg
+f 32933      /system/media/audio/ringtones/No_Limits.ogg
+f 39018      /system/media/audio/ringtones/Noises2.ogg
+f 26654      /system/media/audio/ringtones/Noises3.ogg
+f 16484      /system/media/audio/ringtones/Old_Car_Horn.ogg
+f 56542      /system/media/audio/ringtones/Old_Phone.ogg
+f 32643      /system/media/audio/ringtones/OrganDub.ogg
+f 54423      /system/media/audio/ringtones/Orion.ogg
+f 39202      /system/media/audio/ringtones/Paradise_Island.ogg
+f 86696      /system/media/audio/ringtones/Pegasus.ogg
+f 37571      /system/media/audio/ringtones/Piano_Riff.ogg
+f 56620      /system/media/audio/ringtones/Playa.ogg
+f 16649      /system/media/audio/ringtones/Pyxis.ogg
+f 429307     /system/media/audio/ringtones/Rain_Fly.ogg
+f 178687     /system/media/audio/ringtones/Rasalas.ogg
+f 52541      /system/media/audio/ringtones/Revelation.ogg
+f 32100      /system/media/audio/ringtones/Rigel.ogg
+f 59029      /system/media/audio/ringtones/Ring_Classic_02.ogg
+f 21009      /system/media/audio/ringtones/Ring_Digital_02.ogg
+f 52806      /system/media/audio/ringtones/Ring_Synth_02.ogg
+f 43968      /system/media/audio/ringtones/Ring_Synth_04.ogg
+f 49111      /system/media/audio/ringtones/Road_Trip.ogg
+f 14876      /system/media/audio/ringtones/Robot.ogg
+f 31635      /system/media/audio/ringtones/RomancingTheTone.ogg
+f 42220      /system/media/audio/ringtones/Safari.ogg
+f 39145      /system/media/audio/ringtones/Savannah.ogg
+f 108944     /system/media/audio/ringtones/Scarabaeus.ogg
+f 316374     /system/media/audio/ringtones/Sceptrum.ogg
+f 44427      /system/media/audio/ringtones/Seville.ogg
+f 39417      /system/media/audio/ringtones/Shes_All_That.ogg
+f 44195      /system/media/audio/ringtones/SilkyWay.ogg
+f 28892      /system/media/audio/ringtones/SitarVsSitar.ogg
+f 89519      /system/media/audio/ringtones/Solarium.ogg
+f 739345     /system/media/audio/ringtones/Spring.ogg
+f 26148      /system/media/audio/ringtones/SpringyJalopy.ogg
+f 37850      /system/media/audio/ringtones/Steppin_Out.ogg
+f 68910      /system/media/audio/ringtones/Strum.ogg
+f 36622      /system/media/audio/ringtones/Terminated.ogg
+f 175484     /system/media/audio/ringtones/Themos.ogg
+f 36542      /system/media/audio/ringtones/Third_Eye.ogg
+f 46053      /system/media/audio/ringtones/Thunderfoot.ogg
+f 19873      /system/media/audio/ringtones/Time_Passing.ogg
+f 28244      /system/media/audio/ringtones/Trill.ogg
+f 26300      /system/media/audio/ringtones/TwirlAway.ogg
+f 28688      /system/media/audio/ringtones/VeryAlarmed.ogg
+f 31143      /system/media/audio/ringtones/World.ogg
+f 43533      /system/media/audio/ringtones/Xylophone.ogg
+f 77930      /system/media/audio/ringtones/Zeta.ogg
+f 1327677    /system/media/audio/ringtones/happy.ogg
+f 59044      /system/media/audio/ringtones/malimba.ogg
+f 175716     /system/media/audio/ringtones/opal.ogg
+f 381971     /system/media/audio/ringtones/thistle.mp3
+d          /system/media/audio/ui
+f 10478      /system/media/audio/ui/Charger_Connection.ogg
+f 6327       /system/media/audio/ui/Dock.ogg
+f 5511       /system/media/audio/ui/Effect_Tick.ogg
+f 11835      /system/media/audio/ui/KeypressDelete.ogg
+f 9847       /system/media/audio/ui/KeypressInvalid.ogg
+f 18915      /system/media/audio/ui/KeypressReturn.ogg
+f 16357      /system/media/audio/ui/KeypressSpacebar.ogg
+f 7575       /system/media/audio/ui/KeypressStandard.ogg
+f 12190      /system/media/audio/ui/Lock.ogg
+f 12401      /system/media/audio/ui/LowBattery.ogg
+f 10654      /system/media/audio/ui/TW_Battery_caution.ogg
+f 8240       /system/media/audio/ui/Undock.ogg
+f 7324       /system/media/audio/ui/Unlock.ogg
+f 5582       /system/media/audio/ui/VideoRecord.ogg
+f 12025      /system/media/audio/ui/WirelessChargingStarted.ogg
+f 7916       /system/media/audio/ui/camera_click.ogg
+f 4176       /system/media/audio/ui/camera_focus.ogg
+f 8937       /system/media/audio/ui/camera_shutter.ogg
+f 70911006   /system/media/bootanimation.zip
+f 49319      /system/media/bootaudio.mp3
+d          /system/media/images
+f 4690       /system/media/images/drm_disable_icon.png
+f 70911006   /system/media/shutanimation.zip
+f 49319      /system/media/shutaudio.mp3
+d          /system/media/video
+f 9968       /system/media/video/edge.png
+f 13543      /system/media/video/edge720p.png
+f 12774      /system/media/video/gen30.mp4
+f 15743461   /system/media/video/koobee.mp4
+d          /system/media/wallpaper
+f 0          /system/media/wallpaper/.flat
+f 88074      /system/media/wallpaper/wallpaper_000.jpg
+f 449230     /system/media/wallpaper/wallpaper_001.jpg
+f 626989     /system/media/wallpaper/wallpaper_002.jpg
+f 625921     /system/media/wallpaper/wallpaper_003.jpg
+f 613323     /system/media/wallpaper/wallpaper_004.jpg
+f 810463     /system/media/wallpaper/wallpaper_005.jpg
+f 649159     /system/media/wallpaper/wallpaper_006.jpg
+f 234199     /system/media/wallpaper/wallpaper_007.jpg
+d          /system/plugin
+d          /system/plugin/DataProtection
+f 176767     /system/plugin/DataProtection/DataProtection.apk
+f 154        /system/plugin/DataProtection/DataProtection.mpinfo
+d          /system/plugin/DataProtection/oat
+d          /system/plugin/DataProtection/oat/arm
+f 1233388    /system/plugin/DataProtection/oat/arm/DataProtection.odex
+d          /system/plugin/FwkPlugin
+f 2441       /system/plugin/FwkPlugin/FwkPlugin.apk
+f 3898       /system/plugin/FwkPlugin/FwkPlugin.mpinfo
+d          /system/plugin/FwkPlugin/oat
+d          /system/plugin/FwkPlugin/oat/arm
+f 201196     /system/plugin/FwkPlugin/oat/arm/FwkPlugin.odex
+d          /system/plugin/PrivacyProtectionLock
+f 50596      /system/plugin/PrivacyProtectionLock/PrivacyProtectionLock.apk
+f 140        /system/plugin/PrivacyProtectionLock/PrivacyProtectionLock.mpinfo
+d          /system/plugin/PrivacyProtectionLock/oat
+d          /system/plugin/PrivacyProtectionLock/oat/arm
+f 283116     /system/plugin/PrivacyProtectionLock/oat/arm/PrivacyProtectionLock.odex
+d          /system/plugin/Signatures
+f 10472      /system/plugin/Signatures/mplugin_guard.xml
+d          /system/priv-app
+d          /system/priv-app/BackupRestoreConfirmation
+f 12719      /system/priv-app/BackupRestoreConfirmation/BackupRestoreConfirmation.apk
+d          /system/priv-app/BackupRestoreConfirmation/oat
+d          /system/priv-app/BackupRestoreConfirmation/oat/arm
+f 29164      /system/priv-app/BackupRestoreConfirmation/oat/arm/BackupRestoreConfirmation.odex
+d          /system/priv-app/CalendarProvider
+f 22482      /system/priv-app/CalendarProvider/CalendarProvider.apk
+d          /system/priv-app/CalendarProvider/oat
+d          /system/priv-app/CalendarProvider/oat/arm
+f 1204716    /system/priv-app/CalendarProvider/oat/arm/CalendarProvider.odex
+d          /system/priv-app/CallLogBackup
+f 8433       /system/priv-app/CallLogBackup/CallLogBackup.apk
+d          /system/priv-app/CallLogBackup/oat
+d          /system/priv-app/CallLogBackup/oat/arm
+f 37356      /system/priv-app/CallLogBackup/oat/arm/CallLogBackup.odex
+d          /system/priv-app/CameraChildrenMode
+f 2250325    /system/priv-app/CameraChildrenMode/CameraChildrenMode.apk
+d          /system/priv-app/CameraChildrenMode/oat
+d          /system/priv-app/CameraChildrenMode/oat/arm
+f 86508      /system/priv-app/CameraChildrenMode/oat/arm/CameraChildrenMode.odex
+d          /system/priv-app/CameraLargeMode
+f 1400758    /system/priv-app/CameraLargeMode/CameraLargeMode.apk
+d          /system/priv-app/CameraLargeMode/oat
+d          /system/priv-app/CameraLargeMode/oat/arm
+f 4882924    /system/priv-app/CameraLargeMode/oat/arm/CameraLargeMode.odex
+d          /system/priv-app/CameraPoseMode
+f 973602     /system/priv-app/CameraPoseMode/CameraPoseMode.apk
+d          /system/priv-app/CameraPoseMode/oat
+d          /system/priv-app/CameraPoseMode/oat/arm
+f 131564     /system/priv-app/CameraPoseMode/oat/arm/CameraPoseMode.odex
+d          /system/priv-app/CameraWatermarkMode
+f 3373019    /system/priv-app/CameraWatermarkMode/CameraWatermarkMode.apk
+d          /system/priv-app/CameraWatermarkMode/oat
+d          /system/priv-app/CameraWatermarkMode/oat/arm
+f 242156     /system/priv-app/CameraWatermarkMode/oat/arm/CameraWatermarkMode.odex
+d          /system/priv-app/CarrierConfig
+f 80414      /system/priv-app/CarrierConfig/CarrierConfig.apk
+d          /system/priv-app/CarrierConfig/oat
+d          /system/priv-app/CarrierConfig/oat/arm
+f 16876      /system/priv-app/CarrierConfig/oat/arm/CarrierConfig.odex
+d          /system/priv-app/CleanTask
+f 10544      /system/priv-app/CleanTask/CleanTask.apk
+d          /system/priv-app/CleanTask/oat
+d          /system/priv-app/CleanTask/oat/arm
+f 61932      /system/priv-app/CleanTask/oat/arm/CleanTask.odex
+d          /system/priv-app/Contacts
+f 9797948    /system/priv-app/Contacts/Contacts.apk
+d          /system/priv-app/Contacts/oat
+d          /system/priv-app/Contacts/oat/arm
+f 6996460    /system/priv-app/Contacts/oat/arm/Contacts.odex
+d          /system/priv-app/ContactsProvider
+f 39530      /system/priv-app/ContactsProvider/ContactsProvider.apk
+d          /system/priv-app/ContactsProvider/oat
+d          /system/priv-app/ContactsProvider/oat/arm
+f 2605548    /system/priv-app/ContactsProvider/oat/arm/ContactsProvider.odex
+d          /system/priv-app/DefaultContainerService
+f 4156       /system/priv-app/DefaultContainerService/DefaultContainerService.apk
+d          /system/priv-app/DefaultContainerService/lib
+d          /system/priv-app/DefaultContainerService/lib/arm
+l          /system/priv-app/DefaultContainerService/lib/arm/libdefcontainer_jni.so
+d          /system/priv-app/DefaultContainerService/oat
+d          /system/priv-app/DefaultContainerService/oat/arm
+f 37356      /system/priv-app/DefaultContainerService/oat/arm/DefaultContainerService.odex
+d          /system/priv-app/Dialer
+f 7627193    /system/priv-app/Dialer/Dialer.apk
+d          /system/priv-app/Dialer/lib
+d          /system/priv-app/Dialer/lib/arm
+f 2396352    /system/priv-app/Dialer/lib/arm/libcc.so
+f 870644     /system/priv-app/Dialer/lib/arm/libsmartdialer_oem_module.so
+d          /system/priv-app/Dialer/oat
+d          /system/priv-app/Dialer/oat/arm
+f 14651884   /system/priv-app/Dialer/oat/arm/Dialer.odex
+d          /system/priv-app/DownloadProvider
+f 56390      /system/priv-app/DownloadProvider/DownloadProvider.apk
+d          /system/priv-app/DownloadProvider/oat
+d          /system/priv-app/DownloadProvider/oat/arm
+f 1057260    /system/priv-app/DownloadProvider/oat/arm/DownloadProvider.odex
+d          /system/priv-app/DroiAccount
+f 2334671    /system/priv-app/DroiAccount/DroiAccount.apk
+d          /system/priv-app/DroiAccount/oat
+d          /system/priv-app/DroiAccount/oat/arm
+f 9208300    /system/priv-app/DroiAccount/oat/arm/DroiAccount.odex
+d          /system/priv-app/DroiCloud
+f 3799499    /system/priv-app/DroiCloud/DroiCloud.apk
+d          /system/priv-app/DroiCloud/oat
+d          /system/priv-app/DroiCloud/oat/arm
+f 8552940    /system/priv-app/DroiCloud/oat/arm/DroiCloud.odex
+d          /system/priv-app/ExternalStorageProvider
+f 4533       /system/priv-app/ExternalStorageProvider/ExternalStorageProvider.apk
+d          /system/priv-app/ExternalStorageProvider/oat
+d          /system/priv-app/ExternalStorageProvider/oat/arm
+f 78316      /system/priv-app/ExternalStorageProvider/oat/arm/ExternalStorageProvider.odex
+d          /system/priv-app/FreemeCalculator
+f 746383     /system/priv-app/FreemeCalculator/FreemeCalculator.apk
+d          /system/priv-app/FreemeCalculator/oat
+d          /system/priv-app/FreemeCalculator/oat/arm
+f 3084780    /system/priv-app/FreemeCalculator/oat/arm/FreemeCalculator.odex
+d          /system/priv-app/FreemeCalendar
+f 3980553    /system/priv-app/FreemeCalendar/FreemeCalendar.apk
+d          /system/priv-app/FreemeCalendar/oat
+d          /system/priv-app/FreemeCalendar/oat/arm
+f 6390252    /system/priv-app/FreemeCalendar/oat/arm/FreemeCalendar.odex
+d          /system/priv-app/FreemeCamera
+f 92308327   /system/priv-app/FreemeCamera/FreemeCamera.apk
+d          /system/priv-app/FreemeCamera/oat
+d          /system/priv-app/FreemeCamera/oat/arm
+f 20148716   /system/priv-app/FreemeCamera/oat/arm/FreemeCamera.odex
+d          /system/priv-app/FreemeDeskClock
+f 4340865    /system/priv-app/FreemeDeskClock/FreemeDeskClock.apk
+d          /system/priv-app/FreemeDeskClock/oat
+d          /system/priv-app/FreemeDeskClock/oat/arm
+f 3879404    /system/priv-app/FreemeDeskClock/oat/arm/FreemeDeskClock.odex
+d          /system/priv-app/FreemeFileManager
+f 3956772    /system/priv-app/FreemeFileManager/FreemeFileManager.apk
+d          /system/priv-app/FreemeFmRadio
+f 532419     /system/priv-app/FreemeFmRadio/FreemeFmRadio.apk
+d          /system/priv-app/FreemeFmRadio/lib
+d          /system/priv-app/FreemeFmRadio/lib/arm
+l          /system/priv-app/FreemeFmRadio/lib/arm/libfmrjni.so
+d          /system/priv-app/FreemeFmRadio/oat
+d          /system/priv-app/FreemeFmRadio/oat/arm
+f 799212     /system/priv-app/FreemeFmRadio/oat/arm/FreemeFmRadio.odex
+d          /system/priv-app/FreemeGallery
+f 13433217   /system/priv-app/FreemeGallery/FreemeGallery.apk
+d          /system/priv-app/FreemeGallery/oat
+d          /system/priv-app/FreemeGallery/oat/arm
+f 15507948   /system/priv-app/FreemeGallery/oat/arm/FreemeGallery.odex
+d          /system/priv-app/FreemeHealthCenter
+f 2544731    /system/priv-app/FreemeHealthCenter/FreemeHealthCenter.apk
+d          /system/priv-app/FreemeHealthCenter/oat
+d          /system/priv-app/FreemeHealthCenter/oat/arm
+f 901612     /system/priv-app/FreemeHealthCenter/oat/arm/FreemeHealthCenter.odex
+d          /system/priv-app/FreemeHome
+f 29112407   /system/priv-app/FreemeHome/FreemeHome.apk
+d          /system/priv-app/FreemeHome/lib
+d          /system/priv-app/FreemeHome/lib/arm
+f 5276       /system/priv-app/FreemeHome/lib/arm/libgaussgraphic.so
+d          /system/priv-app/FreemeHome/oat
+d          /system/priv-app/FreemeHome/oat/arm
+f 9097708    /system/priv-app/FreemeHome/oat/arm/FreemeHome.odex
+d          /system/priv-app/FreemeMusic
+f 22730154   /system/priv-app/FreemeMusic/FreemeMusic.apk
+d          /system/priv-app/FreemeMusic/oat
+d          /system/priv-app/FreemeMusic/oat/arm
+f 16069100   /system/priv-app/FreemeMusic/oat/arm/FreemeMusic.odex
+d          /system/priv-app/FreemePrivateNewsPage
+f 5537811    /system/priv-app/FreemePrivateNewsPage/FreemePrivateNewsPage.apk
+d          /system/priv-app/FreemeSuperShot
+f 2069688    /system/priv-app/FreemeSuperShot/FreemeSuperShot.apk
+d          /system/priv-app/FreemeSuperShot/oat
+d          /system/priv-app/FreemeSuperShot/oat/arm
+f 5661164    /system/priv-app/FreemeSuperShot/oat/arm/FreemeSuperShot.odex
+d          /system/priv-app/FreemeThemeClub
+f 7409855    /system/priv-app/FreemeThemeClub/FreemeThemeClub.apk
+d          /system/priv-app/FreemeThemeClub/oat
+d          /system/priv-app/FreemeThemeClub/oat/arm
+f 22344172   /system/priv-app/FreemeThemeClub/oat/arm/FreemeThemeClub.odex
+d          /system/priv-app/FreemeVideo
+f 5412539    /system/priv-app/FreemeVideo/FreemeVideo.apk
+d          /system/priv-app/FreemeVideo/oat
+d          /system/priv-app/FreemeVideo/oat/arm
+f 9486828    /system/priv-app/FreemeVideo/oat/arm/FreemeVideo.odex
+d          /system/priv-app/FreemeVisitorMode
+f 801763     /system/priv-app/FreemeVisitorMode/FreemeVisitorMode.apk
+d          /system/priv-app/FreemeVisitorMode/oat
+d          /system/priv-app/FreemeVisitorMode/oat/arm
+f 229868     /system/priv-app/FreemeVisitorMode/oat/arm/FreemeVisitorMode.odex
+d          /system/priv-app/FreemeVoiceAssistant
+f 23884733   /system/priv-app/FreemeVoiceAssistant/FreemeVoiceAssistant.apk
+d          /system/priv-app/FreemeVoiceAssistant/lib
+d          /system/priv-app/FreemeVoiceAssistant/lib/arm
+f 348560     /system/priv-app/FreemeVoiceAssistant/lib/arm/libBDSpeechDecoder_V1.so
+f 183132     /system/priv-app/FreemeVoiceAssistant/lib/arm/libBDVoiceRecognitionClient_MFE_V1_s2.so
+f 112540     /system/priv-app/FreemeVoiceAssistant/lib/arm/libTydEngine_mbed_jni.so
+f 617912     /system/priv-app/FreemeVoiceAssistant/lib/arm/libbdEASRAndroid.v1.9.11.27000.so
+f 2287158    /system/priv-app/FreemeVoiceAssistant/lib/arm/libbd_easr_s1_merge_normal_20151216.dat.so
+f 1205820    /system/priv-app/FreemeVoiceAssistant/lib/arm/libbd_etts.so
+f 17644      /system/priv-app/FreemeVoiceAssistant/lib/arm/libbdtts.so
+f 689840     /system/priv-app/FreemeVoiceAssistant/lib/arm/libgnustl_shared.so
+f 42844      /system/priv-app/FreemeVoiceAssistant/lib/arm/liblocSDK6a.so
+d          /system/priv-app/FreemeVoiceAssistant/oat
+d          /system/priv-app/FreemeVoiceAssistant/oat/arm
+f 11379180   /system/priv-app/FreemeVoiceAssistant/oat/arm/FreemeVoiceAssistant.odex
+d          /system/priv-app/FreemeWeather
+f 9734726    /system/priv-app/FreemeWeather/FreemeWeather.apk
+d          /system/priv-app/FreemeWeather/oat
+d          /system/priv-app/FreemeWeather/oat/arm
+f 11100652   /system/priv-app/FreemeWeather/oat/arm/FreemeWeather.odex
+d          /system/priv-app/FreemeYellowPage
+f 15084863   /system/priv-app/FreemeYellowPage/FreemeYellowPage.apk
+d          /system/priv-app/FreemeYellowPage/oat
+d          /system/priv-app/FreemeYellowPage/oat/arm
+f 18121196   /system/priv-app/FreemeYellowPage/oat/arm/FreemeYellowPage.odex
+d          /system/priv-app/FusedLocation
+f 4239       /system/priv-app/FusedLocation/FusedLocation.apk
+d          /system/priv-app/FusedLocation/oat
+d          /system/priv-app/FusedLocation/oat/arm
+f 33260      /system/priv-app/FusedLocation/oat/arm/FusedLocation.odex
+d          /system/priv-app/ImsService
+f 1761019    /system/priv-app/ImsService/ImsService.apk
+d          /system/priv-app/ImsService/oat
+d          /system/priv-app/ImsService/oat/arm
+f 1995244    /system/priv-app/ImsService/oat/arm/ImsService.odex
+d          /system/priv-app/InputDevices
+f 68307      /system/priv-app/InputDevices/InputDevices.apk
+d          /system/priv-app/InputDevices/oat
+d          /system/priv-app/InputDevices/oat/arm
+f 12780      /system/priv-app/InputDevices/oat/arm/InputDevices.odex
+d          /system/priv-app/ManagedProvisioning
+f 75258      /system/priv-app/ManagedProvisioning/ManagedProvisioning.apk
+d          /system/priv-app/ManagedProvisioning/oat
+d          /system/priv-app/ManagedProvisioning/oat/arm
+f 496108     /system/priv-app/ManagedProvisioning/oat/arm/ManagedProvisioning.odex
+d          /system/priv-app/Market
+f 16498357   /system/priv-app/Market/Market.apk
+d          /system/priv-app/Market/oat
+d          /system/priv-app/Market/oat/arm
+f 18170348   /system/priv-app/Market/oat/arm/Market.odex
+d          /system/priv-app/MediaProvider
+f 57510      /system/priv-app/MediaProvider/MediaProvider.apk
+d          /system/priv-app/MediaProvider/oat
+d          /system/priv-app/MediaProvider/oat/arm
+f 831980     /system/priv-app/MediaProvider/oat/arm/MediaProvider.odex
+d          /system/priv-app/MmsService
+f 4272       /system/priv-app/MmsService/MmsService.apk
+d          /system/priv-app/MmsService/oat
+d          /system/priv-app/MmsService/oat/arm
+f 180716     /system/priv-app/MmsService/oat/arm/MmsService.odex
+d          /system/priv-app/MtkMms
+f 18364170   /system/priv-app/MtkMms/MtkMms.apk
+d          /system/priv-app/MtkMms/lib
+d          /system/priv-app/MtkMms/lib/arm
+f 42844      /system/priv-app/MtkMms/lib/arm/liblocSDK6a.so
+d          /system/priv-app/MtkMms/oat
+d          /system/priv-app/MtkMms/oat/arm
+f 23077356   /system/priv-app/MtkMms/oat/arm/MtkMms.odex
+d          /system/priv-app/OneTimeInitializer
+f 2720       /system/priv-app/OneTimeInitializer/OneTimeInitializer.apk
+d          /system/priv-app/OneTimeInitializer/oat
+d          /system/priv-app/OneTimeInitializer/oat/arm
+f 86508      /system/priv-app/OneTimeInitializer/oat/arm/OneTimeInitializer.odex
+d          /system/priv-app/PackageInstaller
+f 453969     /system/priv-app/PackageInstaller/PackageInstaller.apk
+d          /system/priv-app/PackageInstaller/oat
+d          /system/priv-app/PackageInstaller/oat/arm
+f 2990572    /system/priv-app/PackageInstaller/oat/arm/PackageInstaller.odex
+d          /system/priv-app/ProxyHandler
+f 3617       /system/priv-app/ProxyHandler/ProxyHandler.apk
+d          /system/priv-app/ProxyHandler/oat
+d          /system/priv-app/ProxyHandler/oat/arm
+f 29164      /system/priv-app/ProxyHandler/oat/arm/ProxyHandler.odex
+d          /system/priv-app/Security
+f 5412742    /system/priv-app/Security/Security.apk
+d          /system/priv-app/Security/oat
+d          /system/priv-app/Security/oat/arm
+f 12374508   /system/priv-app/Security/oat/arm/Security.odex
+d          /system/priv-app/SecurityService
+f 3051568    /system/priv-app/SecurityService/SecurityService.apk
+d          /system/priv-app/SecurityService/oat
+d          /system/priv-app/SecurityService/oat/arm
+f 9675244    /system/priv-app/SecurityService/oat/arm/SecurityService.odex
+d          /system/priv-app/Settings
+f 5420117    /system/priv-app/Settings/Settings.apk
+d          /system/priv-app/Settings/oat
+d          /system/priv-app/Settings/oat/arm
+f 7586284    /system/priv-app/Settings/oat/arm/Settings.odex
+d          /system/priv-app/SettingsProvider
+f 90362      /system/priv-app/SettingsProvider/SettingsProvider.apk
+d          /system/priv-app/SettingsProvider/oat
+d          /system/priv-app/SettingsProvider/oat/arm
+f 332268     /system/priv-app/SettingsProvider/oat/arm/SettingsProvider.odex
+d          /system/priv-app/Shell
+f 9428       /system/priv-app/Shell/Shell.apk
+d          /system/priv-app/Shell/oat
+d          /system/priv-app/Shell/oat/arm
+f 172524     /system/priv-app/Shell/oat/arm/Shell.odex
+d          /system/priv-app/StatementService
+f 4046       /system/priv-app/StatementService/StatementService.apk
+d          /system/priv-app/StatementService/oat
+d          /system/priv-app/StatementService/oat/arm
+f 147948     /system/priv-app/StatementService/oat/arm/StatementService.odex
+d          /system/priv-app/StatisticalData
+f 87939      /system/priv-app/StatisticalData/StatisticalData.apk
+d          /system/priv-app/StatisticalData/oat
+d          /system/priv-app/StatisticalData/oat/arm
+f 291308     /system/priv-app/StatisticalData/oat/arm/StatisticalData.odex
+d          /system/priv-app/Stk1
+f 53567      /system/priv-app/Stk1/Stk1.apk
+d          /system/priv-app/Stk1/oat
+d          /system/priv-app/Stk1/oat/arm
+f 639468     /system/priv-app/Stk1/oat/arm/Stk1.odex
+d          /system/priv-app/SystemTest
+f 3346       /system/priv-app/SystemTest/SystemTest.apk
+d          /system/priv-app/SystemTest/oat
+d          /system/priv-app/SystemTest/oat/arm
+f 16876      /system/priv-app/SystemTest/oat/arm/SystemTest.odex
+d          /system/priv-app/SystemUI
+f 1492766    /system/priv-app/SystemUI/SystemUI.apk
+d          /system/priv-app/SystemUI/oat
+d          /system/priv-app/SystemUI/oat/arm
+f 7344620    /system/priv-app/SystemUI/oat/arm/SystemUI.odex
+d          /system/priv-app/TeleService
+f 424758     /system/priv-app/TeleService/TeleService.apk
+d          /system/priv-app/TeleService/oat
+d          /system/priv-app/TeleService/oat/arm
+f 3887596    /system/priv-app/TeleService/oat/arm/TeleService.odex
+d          /system/priv-app/Telecom
+f 179165     /system/priv-app/Telecom/Telecom.apk
+d          /system/priv-app/Telecom/oat
+d          /system/priv-app/Telecom/oat/arm
+f 1692140    /system/priv-app/Telecom/oat/arm/Telecom.odex
+d          /system/priv-app/TelephonyProvider
+f 116518     /system/priv-app/TelephonyProvider/TelephonyProvider.apk
+d          /system/priv-app/TelephonyProvider/oat
+d          /system/priv-app/TelephonyProvider/oat/arm
+f 1098220    /system/priv-app/TelephonyProvider/oat/arm/TelephonyProvider.odex
+d          /system/priv-app/VBrowser
+f 12569063   /system/priv-app/VBrowser/VBrowser.apk
+d          /system/priv-app/VBrowser/oat
+d          /system/priv-app/VBrowser/oat/arm
+f 23536108   /system/priv-app/VBrowser/oat/arm/VBrowser.odex
+d          /system/priv-app/VpnDialogs
+f 9813       /system/priv-app/VpnDialogs/VpnDialogs.apk
+d          /system/priv-app/VpnDialogs/oat
+d          /system/priv-app/VpnDialogs/oat/arm
+f 25068      /system/priv-app/VpnDialogs/oat/arm/VpnDialogs.odex
+d          /system/priv-app/WallpaperCropper
+f 8055       /system/priv-app/WallpaperCropper/WallpaperCropper.apk
+d          /system/priv-app/WallpaperCropper/oat
+d          /system/priv-app/WallpaperCropper/oat/arm
+f 389612     /system/priv-app/WallpaperCropper/oat/arm/WallpaperCropper.odex
+d          /system/priv-app/WfoService
+f 5283       /system/priv-app/WfoService/WfoService.apk
+d          /system/priv-app/WfoService/oat
+d          /system/priv-app/WfoService/oat/arm
+f 143852     /system/priv-app/WfoService/oat/arm/WfoService.odex
+f 143616     /system/recovery-from-boot.p
+d          /system/res
+d          /system/res/images
+f 2781       /system/res/images/lcd_test_00.png
+f 2782       /system/res/images/lcd_test_01.png
+f 2783       /system/res/images/lcd_test_02.png
+d          /system/res/sound
+f 1920044    /system/res/sound/ringtone.wav
+f 532526     /system/res/sound/ringtone300HZ.wav
+f 162770     /system/res/sound/testpattern1.wav
+d          /system/tts
+d          /system/tts/lang_pico
+f 777396     /system/tts/lang_pico/en-US_lh0_sg.bin
+f 650668     /system/tts/lang_pico/en-US_ta.bin
+d          /system/usr
+d          /system/usr/hyphen-data
+f 78         /system/usr/hyphen-data/hyph-en-us.chr.txt
+f 169        /system/usr/hyphen-data/hyph-en-us.hyp.txt
+f 1772       /system/usr/hyphen-data/hyph-en-us.lic.txt
+f 31489      /system/usr/hyphen-data/hyph-en-us.pat.txt
+f 80         /system/usr/hyphen-data/hyph-eu.chr.txt
+f 0          /system/usr/hyphen-data/hyph-eu.hyp.txt
+f 1809       /system/usr/hyphen-data/hyph-eu.lic.txt
+f 949        /system/usr/hyphen-data/hyph-eu.pat.txt
+f 128        /system/usr/hyphen-data/hyph-hu.chr.txt
+f 0          /system/usr/hyphen-data/hyph-hu.hyp.txt
+f 2022       /system/usr/hyphen-data/hyph-hu.lic.txt
+f 528090     /system/usr/hyphen-data/hyph-hu.pat.txt
+f 187        /system/usr/hyphen-data/hyph-hy.chr.txt
+f 0          /system/usr/hyphen-data/hyph-hy.hyp.txt
+f 754        /system/usr/hyphen-data/hyph-hy.lic.txt
+f 11410      /system/usr/hyphen-data/hyph-hy.pat.txt
+f 123        /system/usr/hyphen-data/hyph-nb.chr.txt
+f 17         /system/usr/hyphen-data/hyph-nb.hyp.txt
+f 1114       /system/usr/hyphen-data/hyph-nb.lic.txt
+f 192730     /system/usr/hyphen-data/hyph-nb.pat.txt
+f 123        /system/usr/hyphen-data/hyph-nn.chr.txt
+f 17         /system/usr/hyphen-data/hyph-nn.hyp.txt
+f 1117       /system/usr/hyphen-data/hyph-nn.lic.txt
+f 192730     /system/usr/hyphen-data/hyph-nn.pat.txt
+f 3241       /system/usr/hyphen-data/hyph-sa.chr.txt
+f 0          /system/usr/hyphen-data/hyph-sa.hyp.txt
+f 704        /system/usr/hyphen-data/hyph-sa.lic.txt
+f 5377       /system/usr/hyphen-data/hyph-sa.pat.txt
+f 2961       /system/usr/hyphen-data/hyph-und-ethi.chr.txt
+f 0          /system/usr/hyphen-data/hyph-und-ethi.hyp.txt
+f 1082       /system/usr/hyphen-data/hyph-und-ethi.lic.txt
+f 2538       /system/usr/hyphen-data/hyph-und-ethi.pat.txt
+d          /system/usr/icu
+f 23067664   /system/usr/icu/icudt55l.dat
+d          /system/usr/idc
+f 634        /system/usr/idc/AVRCP.idc
+f 869        /system/usr/idc/qwerty.idc
+f 870        /system/usr/idc/qwerty2.idc
+d          /system/usr/keychars
+f 14689      /system/usr/keychars/Generic.kcm
+f 14464      /system/usr/keychars/Virtual.kcm
+f 15840      /system/usr/keychars/qwerty.kcm
+f 15710      /system/usr/keychars/qwerty2.kcm
+d          /system/usr/keylayout
+f 163        /system/usr/keylayout/ACCDET.kl
+f 811        /system/usr/keylayout/AVRCP.kl
+f 9185       /system/usr/keylayout/Generic.kl
+f 737        /system/usr/keylayout/Vendor_0079_Product_0011.kl
+f 1277       /system/usr/keylayout/Vendor_045e_Product_028e.kl
+f 1416       /system/usr/keylayout/Vendor_046d_Product_b501.kl
+f 1027       /system/usr/keylayout/Vendor_046d_Product_c216.kl
+f 943        /system/usr/keylayout/Vendor_046d_Product_c219.kl
+f 925        /system/usr/keylayout/Vendor_046d_Product_c21d.kl
+f 950        /system/usr/keylayout/Vendor_046d_Product_c21f.kl
+f 1325       /system/usr/keylayout/Vendor_046d_Product_c294.kl
+f 1392       /system/usr/keylayout/Vendor_046d_Product_c299.kl
+f 2793       /system/usr/keylayout/Vendor_046d_Product_c532.kl
+f 1454       /system/usr/keylayout/Vendor_054c_Product_0268.kl
+f 788        /system/usr/keylayout/Vendor_0583_Product_2060.kl
+f 2399       /system/usr/keylayout/Vendor_05ac_Product_0239.kl
+f 1021       /system/usr/keylayout/Vendor_0b05_Product_4500.kl
+f 850        /system/usr/keylayout/Vendor_1038_Product_1412.kl
+f 805        /system/usr/keylayout/Vendor_12bd_Product_d015.kl
+f 1021       /system/usr/keylayout/Vendor_1532_Product_0900.kl
+f 988        /system/usr/keylayout/Vendor_1689_Product_fd00.kl
+f 942        /system/usr/keylayout/Vendor_1689_Product_fd01.kl
+f 942        /system/usr/keylayout/Vendor_1689_Product_fe00.kl
+f 1013       /system/usr/keylayout/Vendor_18d1_Product_2c40.kl
+f 831        /system/usr/keylayout/Vendor_1949_Product_0401.kl
+f 935        /system/usr/keylayout/Vendor_1bad_Product_f016.kl
+f 940        /system/usr/keylayout/Vendor_1bad_Product_f023.kl
+f 935        /system/usr/keylayout/Vendor_1bad_Product_f027.kl
+f 951        /system/usr/keylayout/Vendor_1bad_Product_f036.kl
+f 1017       /system/usr/keylayout/Vendor_1d79_Product_0009.kl
+f 1994       /system/usr/keylayout/Vendor_22b8_Product_093d.kl
+f 968        /system/usr/keylayout/Vendor_2378_Product_1008.kl
+f 955        /system/usr/keylayout/Vendor_2378_Product_100a.kl
+f 1449       /system/usr/keylayout/mtk-kpd.kl
+f 2114       /system/usr/keylayout/qwerty.kl
+d          /system/usr/share
+d          /system/usr/share/bmd
+f 12862      /system/usr/share/bmd/RFFspeed_501.bmd
+f 19586      /system/usr/share/bmd/RFFstd_501.bmd
+d          /system/usr/share/zoneinfo
+f 491816     /system/usr/share/zoneinfo/tzdata
+d          /system/vendor
+d          /system/vendor/NewsPage
+d          /system/vendor/NewsPage/default
+d          /system/vendor/NewsPage/default/logos
+f 3534       /system/vendor/NewsPage/default/logos/deafault_site_logo_1.png
+f 1898       /system/vendor/NewsPage/default/logos/deafault_site_logo_10.png
+f 3695       /system/vendor/NewsPage/default/logos/deafault_site_logo_11.png
+f 2998       /system/vendor/NewsPage/default/logos/deafault_site_logo_12.png
+f 3351       /system/vendor/NewsPage/default/logos/deafault_site_logo_13.png
+f 2526       /system/vendor/NewsPage/default/logos/deafault_site_logo_14.png
+f 2545       /system/vendor/NewsPage/default/logos/deafault_site_logo_15.png
+f 2789       /system/vendor/NewsPage/default/logos/deafault_site_logo_2.png
+f 2679       /system/vendor/NewsPage/default/logos/deafault_site_logo_3.png
+f 2219       /system/vendor/NewsPage/default/logos/deafault_site_logo_4.png
+f 6152       /system/vendor/NewsPage/default/logos/deafault_site_logo_5.png
+f 6091       /system/vendor/NewsPage/default/logos/deafault_site_logo_6.png
+f 3231       /system/vendor/NewsPage/default/logos/deafault_site_logo_7.png
+f 1660       /system/vendor/NewsPage/default/logos/deafault_site_logo_8.png
+f 1893       /system/vendor/NewsPage/default/logos/deafault_site_logo_9.png
+f 3175       /system/vendor/NewsPage/default/website_logo_config.xml
+d          /system/vendor/lib
+d          /system/vendor/lib/drm
+f 59008      /system/vendor/lib/drm/libdrmwvmplugin.so
+f 2467280    /system/vendor/lib/libWVStreamControlAPI_L3.so
+f 87524      /system/vendor/lib/libwvdrm_L3.so
+f 54904      /system/vendor/lib/libwvm.so
+d          /system/vendor/lib/mediadrm
+f 38500      /system/vendor/lib/mediadrm/libdrmclearkeyplugin.so
+f 38448      /system/vendor/lib/mediadrm/libmockdrmcryptoplugin.so
+f 1464276    /system/vendor/lib/mediadrm/libwvdrmengine.so
+d          /system/vendor/operator
+d          /system/vendor/operator/app
+d          /system/vendor/operator/app/Baidu_Location
+f 361317     /system/vendor/operator/app/Baidu_Location/Baidu_Location.apk
+d          /system/vendor/operator/app/Baidu_Location/oat
+d          /system/vendor/operator/app/Baidu_Location/oat/arm
+f 557548     /system/vendor/operator/app/Baidu_Location/oat/arm/Baidu_Location.odex
+d          /system/vendor/operator/app/BaoFengVideo
+f 14562175   /system/vendor/operator/app/BaoFengVideo/BaoFengVideo.apk
+d          /system/vendor/operator/app/BaoFengVideo/oat
+d          /system/vendor/operator/app/BaoFengVideo/oat/arm
+f 24445420   /system/vendor/operator/app/BaoFengVideo/oat/arm/BaoFengVideo.odex
+d          /system/vendor/operator/app/DaZhdianping
+f 23256462   /system/vendor/operator/app/DaZhdianping/DaZhdianping.apk
+d          /system/vendor/operator/app/DaZhdianping/oat
+d          /system/vendor/operator/app/DaZhdianping/oat/arm
+f 64258540   /system/vendor/operator/app/DaZhdianping/oat/arm/DaZhdianping.odex
+d          /system/vendor/operator/app/KuWoPlayer
+f 21155420   /system/vendor/operator/app/KuWoPlayer/KuWoPlayer.apk
+d          /system/vendor/operator/app/KuWoPlayer/oat
+d          /system/vendor/operator/app/KuWoPlayer/oat/arm
+f 18174444   /system/vendor/operator/app/KuWoPlayer/oat/arm/KuWoPlayer.odex
+d          /system/vendor/operator/app/MiguReading
+f 13898004   /system/vendor/operator/app/MiguReading/MiguReading.apk
+d          /system/vendor/operator/app/MiguReading/oat
+d          /system/vendor/operator/app/MiguReading/oat/arm
+f 28738028   /system/vendor/operator/app/MiguReading/oat/arm/MiguReading.odex
+d          /system/vendor/operator/app/NewsArticle
+f 18418741   /system/vendor/operator/app/NewsArticle/NewsArticle.apk
+d          /system/vendor/operator/app/NewsArticle/oat
+d          /system/vendor/operator/app/NewsArticle/oat/arm
+f 23949804   /system/vendor/operator/app/NewsArticle/oat/arm/NewsArticle.odex
+d          /system/vendor/operator/app/ReadingJoy
+f 12391830   /system/vendor/operator/app/ReadingJoy/ReadingJoy.apk
+d          /system/vendor/operator/app/ReadingJoy/oat
+d          /system/vendor/operator/app/ReadingJoy/oat/arm
+f 21438956   /system/vendor/operator/app/ReadingJoy/oat/arm/ReadingJoy.odex
+d          /system/vendor/operator/app/SMARTPTT
+f 16958734   /system/vendor/operator/app/SMARTPTT/SMARTPTT.apk
+d          /system/vendor/operator/app/SMARTPTT/oat
+d          /system/vendor/operator/app/SMARTPTT/oat/arm
+f 20541932   /system/vendor/operator/app/SMARTPTT/oat/arm/SMARTPTT.odex
+d          /system/vendor/operator/app/TencentReading
+f 24646353   /system/vendor/operator/app/TencentReading/TencentReading.apk
+d          /system/vendor/operator/app/TencentReading/oat
+d          /system/vendor/operator/app/TencentReading/oat/arm
+f 50295276   /system/vendor/operator/app/TencentReading/oat/arm/TencentReading.odex
+d          /system/vendor/operator/app/aimeituan
+f 27709737   /system/vendor/operator/app/aimeituan/aimeituan.apk
+d          /system/vendor/operator/app/aimeituan/oat
+d          /system/vendor/operator/app/aimeituan/oat/arm
+f 30081516   /system/vendor/operator/app/aimeituan/oat/arm/aimeituan.odex
+d          /system/vendor/operator/app/aiqiyiVideo
+f 22373785   /system/vendor/operator/app/aiqiyiVideo/aiqiyiVideo.apk
+d          /system/vendor/operator/app/aiqiyiVideo/oat
+d          /system/vendor/operator/app/aiqiyiVideo/oat/arm
+f 45412844   /system/vendor/operator/app/aiqiyiVideo/oat/arm/aiqiyiVideo.odex
+d          /system/vendor/operator/app/qq
+d          /system/vendor/operator/app/qq/oat
+d          /system/vendor/operator/app/qq/oat/arm
+f 54321644   /system/vendor/operator/app/qq/oat/arm/qq.odex
+f 45453949   /system/vendor/operator/app/qq/qq.apk
+d          /system/vendor/operator/app/qqlive
+f 49257647   /system/vendor/operator/app/qqlive/qqlive.apk
+d          /system/vendor/operator/app/tencentmobilemanager
+d          /system/vendor/operator/app/tencentmobilemanager/oat
+d          /system/vendor/operator/app/tencentmobilemanager/oat/arm
+f 24035820   /system/vendor/operator/app/tencentmobilemanager/oat/arm/tencentmobilemanager.odex
+f 19426078   /system/vendor/operator/app/tencentmobilemanager/tencentmobilemanager.apk
+d          /system/vendor/operator/app/tencentnews
+d          /system/vendor/operator/app/tencentnews/oat
+d          /system/vendor/operator/app/tencentnews/oat/arm
+f 32621036   /system/vendor/operator/app/tencentnews/oat/arm/tencentnews.odex
+f 25677057   /system/vendor/operator/app/tencentnews/tencentnews.apk
+d          /system/vendor/operator/app/weixin
+d          /system/vendor/operator/app/weixin/oat
+d          /system/vendor/operator/app/weixin/oat/arm
+f 152072684  /system/vendor/operator/app/weixin/oat/arm/weixin.odex
+f 55710116   /system/vendor/operator/app/weixin/weixin.apk
+d          /system/vendor/operator/app/zycp
+d          /system/vendor/operator/app/zycp/oat
+d          /system/vendor/operator/app/zycp/oat/arm
+f 24023532   /system/vendor/operator/app/zycp/oat/arm/zycp.odex
+f 12961751   /system/vendor/operator/app/zycp/zycp.apk
+d          /system/xbin
+f 26164      /system/xbin/BGW
+f 68172      /system/xbin/dexdump
+f 92904      /system/xbin/mnld
+f 17920      /system/xbin/showmap
+f 834064     /system/xbin/tcpdump
+# files: 1905 lines: 2609 (ext4 只读遍历, 不含挂载)
