@@ -101,6 +101,8 @@ mka recoveryimage -j$(nproc)
 | `clang.real: error while loading shared libraries: libtinfo.so.5` | Android 9 预编译 clang 需要旧 ncurses：`sudo apt-get install -y libtinfo5 libncurses5`（工作流已内置） |
 | OrangeFox sync 报 `repo: command not found` | 需要先装 repo 工具（工作流已内置；本地见第二章依赖部分） |
 | 警告 `Node.js 20 is deprecated`（actions/checkout） | 无害提示；工作流已升级 checkout@v5 |
+| `fb2png.c:... error: comparison of integers of different signs` | TWRP 9.0 老 bug（启用 `TW_INCLUDE_FB2PNG` 触发）；工作流含自动补丁 `(ssize_t)fb->size` |
+| `add_lunch_combo is obsolete` 且退出码 1（OrangeFox） | A12 的 add_lunch_combo 返回错误；vendorsetup.sh 已用 `\|\| true` 防护，目标由 COMMON_LUNCH_CHOICES 注册 |
 
 ## 四、产物校验（编完必做）
 
