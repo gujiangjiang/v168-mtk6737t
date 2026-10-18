@@ -56,18 +56,31 @@ TW_SCREEN_BLANK_ON_BOOT := true
 TW_USE_MODEL_HARDWARE_ID_FOR_DEVICE_ID := true
 TW_NO_CPU_TEMP := true
 
-# ---- 体积控制 (recovery 分区仅 16777216 字节; twrp-9.0 默认集合实测超限 ~5MB) ----
-# 以下为已启用的裁剪项; 确认镜像余量充足后可按需逐个改回
+# ---- 体积控制 (recovery 分区仅 16777216 字节; twrp-9.0/fox 默认集合超限) ----
+# 通用裁剪项 (两个平台源码语义一致, 已逐一核对)
 TW_EXCLUDE_PYTHON := true          # twrp-9.0 默认捆绑 python3_twrp
 TW_EXCLUDE_TWRPAPP := true
 TW_EXCLUDE_BASH := true
 TW_EXCLUDE_NANO := true
 TW_EXCLUDE_TZDATA := true
 TW_EXCLUDE_MTP := true             # 需要电脑直传文件时改为 false
-TW_EXCLUDE_ENCRYPTED_BACKUPS := true
-TW_USE_TOOLBOX := false            # 用 busybox (比 toybox+zip+unzip 小, 与可用 donor 同款)
 TW_NO_EXFAT := true                # 仅去掉 exFAT, vfat 卡不受影响
 TW_INCLUDE_FB2PNG := false         # 截图功能
+
+# 平台差异项 (两个分支源码语义不同, 已实测核对, 勿轻易合并):
+ifeq ($(shell test $(PLATFORM_SDK_VERSION) -gt 30 2>/dev/null && echo modern),modern)
+# fox_12.1 (A12 OrangeFox):
+#   - TW_EXCLUDE_ENCRYPTED_BACKUPS 只要"非空"就强制链接 libopenaes(上游语义 bug),
+#     而其模块又只在"值不等于 true"时安装 → 设为 true 必然链接失败, 必须留空;
+#     留空时该功能本身仍被 -DTW_EXCLUDE_ENCRYPTED_BACKUPS 关闭(且模块会被构建, 无害)。
+#   - toolbox 由源码内部强制启用; 该树没有 busybox 模块, 不要设置 TW_USE_TOOLBOX。
+else
+# twrp-9.0 (A9):
+#   - true 语义正常, 可安全排除 openaes
+#   - 必须显式用 toolbox 模式: minimal manifest 无 external/busybox 仓库
+TW_EXCLUDE_ENCRYPTED_BACKUPS := true
+TW_USE_TOOLBOX := true
+endif
 
 # 背光 / 亮度 (MT65xx 标准路径)
 TW_BRIGHTNESS_PATH := /sys/class/leds/lcd-backlight/brightness
