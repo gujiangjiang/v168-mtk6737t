@@ -48,8 +48,13 @@ RECOVERY_GRAPHICS_USE_LINELENGTH := true
 # 屏幕 720x1280 (若颜色通道异常, 在 BGRA_8888 / RGBA_8888 之间切换)
 TARGET_RECOVERY_PIXEL_FORMAT := "BGRA_8888"
 TW_THEME := portrait_hdpi
-TW_DEFAULT_LANGUAGE := zh_CN
-TW_EXTRA_LANGUAGES := true
+# ---- 语言/字体的体积权衡 (16MB 分区关键项) ----
+# TW_EXTRA_LANGUAGES=true 会让 gui/Android.mk 额外拷贝 extra-languages/fonts:
+#   DroidSansFallback.ttf 3.6MB + NotoSansCJKjp 0.7MB (+ ~1MB 语言包),
+#   实测占 ramdisk 约 2.5MB(压缩后), 是 twrp-9.0 超限的主因。
+# 需要中文界面/字体时再改回 true, 并接受镜像增大(需同步裁剪其它内容)。
+TW_DEFAULT_LANGUAGE := en
+TW_EXTRA_LANGUAGES := false
 
 # 通用功能
 TW_EXCLUDE_SUPERSU := true
