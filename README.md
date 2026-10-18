@@ -1,138 +1,99 @@
-# q5c62q_njx (MT6737T / V168) Recovery 源码移植工程
+# v168_recovery — MT6737T (V168 / q5c62q_njx) 完整移植资源库
 
-本目录是一套**可直接编译 TWRP 与 OrangeFox** 的设备树工程，核心策略：
+一部杂牌 MTK 手机（FreemeOS 6.0 / Android 6.0）的**完整复刻与移植资源库**：
+固件解包产物、分析工具、设备树、预编译 Recovery、云端编译流水线全部在此。
 
-> **保留原机 3.18.19 内核（预编译），只编译 recovery 用户态。**
-> 这是 LCD 面板 / 触摸屏 / 传感器兼容性的唯一可靠保证——
-> 本机为杂牌机（droi/FreemeOS 定制），没有公开的 kernel 源码，
-> 面板驱动（LCM）是闭源集成在内核里的，换任何第三方内核都可能黑屏。
+目标：后续做任何移植（TWRP / OrangeFox / 高版本 Android / Debian / GSI 等）
+**无需再重新解包、反编译官方固件**，直接用本库素材开工。
 
-- SoC: MT6737T（4x Cortex-A53，Mali-T720，本机用户态 32 位）
-- 内核: Linux 3.18.19（ARM32 zImage，原机 boot/recovery 同一内核）
-- recovery 分区: 16MB（0x1000000），boot/recovery 加载地址 0x40008000 / 0x44000000
-- 屏幕: 720x1280，触摸 i2c 0x5d，背光 `/sys/class/leds/lcd-backlight/brightness`
+---
+
+## 设备速览
+
+| 项目 | 参数 |
+|---|---|
+| 机型 / 项目 | V168，项目代号 `q5c62q_njx`（droi 定制 FreemeOS 6.2） |
+| SoC | **MT6737T**，4× Cortex-A53（ARMv8-A，**64 位核心**），Mali-T720 MP2 |
+| 存储 | 16GB eMMC，system ~3GB / cache 400MB / userdata ~12GB / 无 vendor 分区 |
+| 内核 | **Linux 3.18.19（ARM32）**，GCC 4.8，2017-09 编译，`alps-mp-m0.mp1-droi6737t` BSP |
+| 系统 | Android 6.0（SDK 23），**纯 32 位用户态**（无 lib64） |
+| 屏幕 | 720×1280，触摸 i2c 0x5d，背光 `/sys/class/leds/lcd-backlight/brightness` |
+| 引导链 | preloader → LK（**含 K64 跳转代码 + fastboot + oem unlock**）→ kernel |
+| boot.img | 标准 Android v0 头，page 2048，kernel@0x40008000，ramdisk@0x44000000，cmdline `bootopt=64S3,32N2,32N2`，无 AVB |
+| 外设 | 摄像头 0x10/0x3c、指纹 gf518m、sensors（mc3410/stk3x1x/akm09911/itg1010）、NFC、hall |
+| 调制解调器 | modem_1_lwg/ltg_n（4G 双卡）+ modem_3_3g_n（C2K），WMT/CONSYS WiFi |
+
+> 详细分析报告见 [docs/hardware-analysis.md](docs/hardware-analysis.md)
 
 ## 目录结构
 
 ```
-源码移植/
-├── device/q5c62q_njx/          # 设备树（TWRP 和 OrangeFox 通用）
-│   ├── BoardConfig.mk          # 内核/分区/屏幕/功能开关
-│   ├── omni_q5c62q_njx.mk      # 产品定义 (TWRP minimal manifest, omni 系)
-│   ├── twrp_q5c62q_njx.mk      # 产品定义 (OrangeFox fox_12.1, twrp 系)
-│   ├── AndroidProducts.mk
-│   ├── Android.mk
-│   ├── recovery.fstab          # 已适配本机分区（无 frp，含 nvram/nvdata/protect）
-│   ├── vendorsetup.sh          # lunch 目标 + FOX_ 变量
-│   └── kernel                  # 原机内核（预编译，勿替换）
-└── .github/workflows/
-    ├── build_twrp.yml          # 云端编译 TWRP（twrp-9.0 minimal manifest）
-    └── build_orangefox.yml     # 云端编译 OrangeFox（fox_12.1）
+.
+├── device/q5c62q_njx/          # ★ TWRP / OrangeFox 通用设备树（含原机内核）
+├── prebuilt/                   # ★ 可直接刷写的产物
+│   ├── TWRP-3.6.1_q5c62q_njx_*.img    # 移植完成的 TWRP（内核替换法）
+│   ├── twrp_ramdisk.gz                # 该 TWRP 使用的 ramdisk
+│   ├── twrp_ramdisk_root/             # ramdisk 解包工作目录（可再修改）
+│   └── donor/                         # CUBOT 原版 TWRP（donor 存档）
+├── analysis/                   # ★ 官方固件解包产物（免重复解包）
+│   ├── boot/                   # 原机 boot.img 内核/ramdisk/设备树
+│   │   ├── kernel.zImage / kernel_vmlinux / ramdisk.gz
+│   │   ├── ramdisk_root/       # ramdisk 解包根目录（init.rc/fstab 等）
+│   │   └── device.dtb          # 从内核尾部提取的设备树（含全部外设节点）
+│   ├── recovery/               # 原机 recovery.img 解包产物
+│   ├── system/                 # system.img 只读遍历清单（1905 个文件）
+│   └── logs/                   # 头部解析 / DTB 节点 / system 结构 分析日志
+├── tools/                      # ★ 分析/打包工具（纯 python3，跨平台）
+│   ├── unpack_bootimg.py       # MTK boot/recovery 解包
+│   ├── repack_ramdisk.py       # 目录 → cpio(.gz) 重打包（可复现）
+│   ├── mkbootimg_mtk.py        # 打包本机参数 boot/recovery.img
+│   └── ext4walk.py             # 免挂载读取 ext4（system.img 用）
+├── firmware/stock/             # 原厂小镜像存档（boot/recovery/lk/preloader/tee/logo 等）
+├── docs/                       # 文档（见下方索引）
+├── .github/workflows/          # GitHub Actions：云端编译 TWRP / OrangeFox
+└── SHA256SUMS                  # 全部镜像/内核/设备树校验值
 ```
 
-## 方式一：GitHub Actions 云端编译（无需本地 Linux，推荐）
+## 快速开始
 
-1. 在本目录初始化 git 仓库并推送到 GitHub（公开/私有均可）：
-
-   ```sh
-   cd 源码移植
-   git init && git add -A && git commit -m "q5c62q_njx recovery tree"
-   git remote add origin git@github.com:<你的用户名>/<仓库名>.git
-   git push -u origin main
-   ```
-
-2. 打开仓库 **Actions** 页面，选择：
-   - `Build TWRP (q5c62q_njx / MT6737T)` → Run workflow
-   - `Build OrangeFox (q5c62q_njx / MT6737T)` → Run workflow
-
-3. 完成后在对应 run 的 **Artifacts** 里下载：
-   - TWRP：`TWRP-recovery-q5c62q_njx`（recovery.img）
-   - OrangeFox：`OrangeFox-recovery-q5c62q_njx`（OrangeFox-unofficial-q5c62q_njx.img）
-
-> 注意：免费 runner 磁盘 ~70GB。工作流已内置清盘步骤；
-> 若 fox_12.1 同步仍空间不足，可改用付费大号 runner 或方式二。
-
-## 方式二：本地 Linux 编译（Ubuntu 20.04/22.04，推荐 8GB+ RAM、100GB 磁盘）
-
-### 依赖（两种编译通用）
+**① 直接刷现成 TWRP**（见 [docs/recovery-guide.md](docs/recovery-guide.md)）
 
 ```sh
-sudo apt-get update
-sudo apt-get install -y git-core gnupg flex bison gperf build-essential zip curl \
-    zlib1g-dev gcc-multilib g++-multilib libc6-dev-i386 lib32ncurses5-dev \
-    x11proto-core-dev libx11-dev lib32z1-dev libgl1-mesa-dev libxml2-utils \
-    xsltproc unzip ccache python2 python-is-python2
+fastboot oem unlock
+fastboot flash recovery prebuilt/TWRP-3.6.1_q5c62q_njx_20261018.img
+# 刷完立即进 recovery，不要在第一次先启动系统
 ```
 
-### TWRP
+**② 云端编译 TWRP / OrangeFox**（见 [docs/build-guide.md](docs/build-guide.md)）
+把本仓库推到 GitHub → Actions → 选择对应 workflow → Run workflow → 下载 Artifacts。
 
-```sh
-mkdir -p ~/twrp && cd ~/twrp
-repo init --depth=1 -u https://github.com/minimal-manifest-twrp/platform_manifest_twrp_omni.git -b twrp-9.0
-repo sync -j8 --force-sync --no-clone-bundle --no-tags
+**③ 后续移植（Debian / 新 Android 等）**
+直接使用本库素材：设备树 `analysis/boot/device.dtb`、解包后的内核/ramdisk、
+外设清单（[docs/hardware-analysis.md](docs/hardware-analysis.md)）、
+打包/解包工具 `tools/`。64 位与 Treble 路线见分析文档末章。
 
-mkdir -p device/mediatek
-cp -r /path/to/源码移植/device/q5c62q_njx device/mediatek/q5c62q_njx
+## 文档索引
 
-source build/envsetup.sh
-export ALLOW_MISSING_DEPENDENCIES=true
-export LC_ALL=C
-lunch omni_q5c62q_njx-eng
-mka recoveryimage -j$(nproc)
-
-# 产物: out/target/product/q5c62q_njx/recovery.img
-```
-
-### OrangeFox（fox_12.1，官方标准流程）
-
-```sh
-mkdir -p ~/OrangeFox_sync && cd ~/OrangeFox_sync
-git clone https://gitlab.com/OrangeFox/sync.git
-cd sync
-./orangefox_sync.sh --branch 12.1 --path ~/fox_12.1
-
-mkdir -p ~/fox_12.1/device/mediatek
-cp -r /path/to/源码移植/device/q5c62q_njx ~/fox_12.1/device/mediatek/q5c62q_njx
-
-cd ~/fox_12.1
-export FOX_BUILD_DEVICE=q5c62q_njx
-export FOX_VANILLA_BUILD=1
-export OF_FORCE_PREBUILT_KERNEL=1
-export ALLOW_MISSING_DEPENDENCIES=true
-export LC_ALL=C
-source build/envsetup.sh
-lunch twrp_q5c62q_njx-eng
-mka recoveryimage -j$(nproc)
-
-# 产物: out/target/product/q5c62q_njx/OrangeFox-unofficial-q5c62q_njx.img
-```
-
-## 已知可调参数（首次实机测试后按需修改）
-
-| 现象 | 修改 |
+| 文档 | 内容 |
 |---|---|
-| 屏幕颜色红蓝颠倒 | `BoardConfig.mk` 中 `TARGET_RECOVERY_PIXEL_FORMAT` 在 `BGRA_8888` / `RGBA_8888` 之间切换 |
-| 触摸无反应 | 检查 `TW_INPUT_BLACKLIST`；确认内核触摸驱动已内置（原机可用则会自动工作） |
-| 亮度异常 | 调整 `TW_BRIGHTNESS_PATH` / `TW_MAX_BRIGHTNESS` / `TW_DEFAULT_BRIGHTNESS` |
-| U 屏 UI 过小/过大 | `TW_THEME` 用 `portrait_hdpi`；或设 `TW_STATUS_ICONS_ALIGN` / `TW_CUSTOM_BATTERY_POS` |
-| 镜像超出 16MB 分区 | 关闭 `TW_EXTRA_LANGUAGES`，或参考 OrangeFox wiki 开启体积裁剪 |
+| [docs/hardware-analysis.md](docs/hardware-analysis.md) | 固件完整分析报告（引导链/分区表/DTB 外设/32位确认/K64/Treble 路线） |
+| [docs/device-tree.md](docs/device-tree.md) | 设备树逐项说明与调参指南 |
+| [docs/build-guide.md](docs/build-guide.md) | TWRP/OrangeFox 云端与本地编译指南 |
+| [docs/recovery-guide.md](docs/recovery-guide.md) | recovery 移植原理、工具用法、刷机与调试 |
+| [AGENTS.md](AGENTS.md) | 自动化代理协作规则（环境/提交/目录/禁止事项） |
 
-## 已交付的现成镜像（内核替换法，无需编译）
+## 移植关键结论（TL;DR）
 
-`编译产物/recovery/TWRP-3.6.1_q5c62q_njx_*.img` —— 由 CUBOT Note Plus (MT6737T, 720x1280,
-TWRP 3.6.1, 内核 3.18.35) 的 recovery ramdisk + **本机原内核**重组而成，已适配本机分区表。
+1. **内核必须用原机的**：面板（LCM）驱动闭源编译在 3.18.19 内核里，换第三方内核 = 黑屏/触摸失效。
+   这也是本库采用"内核替换法"和"源码编译也预置原机内核"的原因。
+2. 引导链已具备 64 位能力：LK 内含 `[LK]jump to K64` 代码，cmdline 已带 `64S3` 段描述。
+3. 无 AVB / vbmeta 校验，刷 recovery 无需签名；LK fastboot 支持 `oem unlock`。
+4. 本机是纯 32 位用户态；64 位 / Treble 属于深水区，路线见分析文档。
+5. **不刷机时也要先备份 nvram/nvdata**（IMEI / WiFi MAC / 射频校准）。
 
-刷机与测试方法见项目根目录对话说明；核心步骤：
+## 来源与授权
 
-```sh
-adb reboot bootloader          # 或关机后按 音量下(或音量上)+电源 进入 fastboot
-fastboot oem unlock            # 仅解锁状态需要, 会清除数据
-fastboot flash recovery TWRP-3.6.1_q5c62q_njx_*.img
-# 刷完直接进 recovery(音量上+电源), 不要在进 recovery 前先启动系统
-```
-
-## 注意事项
-
-- 严禁替换 `device/q5c62q_njx/kernel`（用了别的内核 = 黑屏/触摸失效风险）。
-- 本机无 AVB/vbmeta 校验，刷 recovery 不需要额外签名。
-- 编译产物仅供个人设备使用；源码按 GPL 发布时请一并公开本设备树。
+- 设备树、工具脚本：本库原创，MIT（保留署名）。
+- TWRP / OrangeFox 为 GPLv3 项目；`prebuilt/donor/` 内 CUBOT TWRP 来自
+  [seluce/android_twrp_device](https://github.com/seluce/android_twrp_device)（GPLv3）。
+- `firmware/stock/` 与 `analysis/` 内的原机固件产物版权归原厂，仅作个人设备恢复/移植用途，请勿商用。
