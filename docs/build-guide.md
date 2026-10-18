@@ -116,7 +116,7 @@ mka recoveryimage -j$(nproc)
 | `check_radio_versions.py ... SyntaxError: Missing parentheses in call to 'print'` | python2 脚本被 python3 执行；工作流已在最高优先级 `~/bin/python` 建 python2 软链（runner 的 /usr/local/bin/python 是 python3，会抢先生效） |
 | OrangeFox `source build/envsetup.sh` 后无声退出（exit 1） | `bash -e` 与 A12 envsetup 尾部（addcompletions 加载补全脚本）偶发冲突；工作流构建步骤已 `set +e` 并输出 `>>> xxx rc=` 标记便于定位 |
 | `Incorrect TARGET_ARCH_VARIANT, armv7-a-neon. Use armv8-a instead.`（OrangeFox） | A12 对 cortex-a53 强制 armv8-a；BoardConfig 已按 `PLATFORM_SDK_VERSION` 自动切换（SDK>30 用 armv8-a，A9 仍用 armv7-a-neon） |
-| `recovery.img too large (NNN > 16777216)`（TWRP） | 实测 twrp-9.0 分支即使全量裁剪后 ramdisk 仍 ~12.5MB（镜像 18.7MB），超出 16MB 分区预算（ramdisk 上限 10.49MB）→ TWRP 工作流默认已换 `twrp-8.1`；如坚持 9.0，工作流会**自动瘦身**（strip 全部 ELF + 宿主工具重打包为 `recovery-salvage.img`，成功则 Summary 显示 ✅ 并上传）；若仍超限，看 Summary 的 ⚠️ 分支 + "recovery root 体积明细" 继续定裁剪方向 |
+| `recovery.img too large (NNN > 16777216)`（TWRP） | 实测根因：`TW_EXTRA_LANGUAGES := true` 引入的 **4.3MB CJK 字体**（twres/extra-languages/fonts）+ ~1MB 语言包（压缩后约 2.5MB）。BoardConfig 已默认关闭（`TW_EXTRA_LANGUAGES := false`），需要中文界面时改回并接受增大。工作流仍内置自动瘦身（strip + 重打包 + 去掉 charger）兜底；默认分支 `twrp-8.1`，坚持 `twrp-9.0` 请查看 Summary 的体积明细 |
 | `Could not find ui.xml for TW_THEME: not set`（OrangeFox soong） | 通常是 lunch/dumpvars 先失败（如 arch variant 报错）的连锁反应；修好前置错误即消失 |
 | ninja: `...libopenaes.so.toc ... missing and no known rule`（OrangeFox） | fox_12.1 上游语义 bug：`TW_EXCLUDE_ENCRYPTED_BACKUPS` 非空即链接 libopenaes，但模块只在值≠true 时安装；BoardConfig 已平台条件化（该树留空=正常排除，A9 用 true） |
 | ninja: `...busybox... missing and no known rule`（TWRP，假设未来出现） | twrp-9.0 minimal manifest 无 external/busybox；`TW_USE_TOOLBOX` 必须保持 `true`（BoardConfig 已按平台固定） |
