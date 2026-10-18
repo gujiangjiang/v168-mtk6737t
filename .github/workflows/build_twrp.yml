@@ -135,10 +135,16 @@ jobs:
               grep -n -B2 -A25 "FAILED\|ninja: build stopped\|error:" twrp/build.log 2>/dev/null | tail -80 || echo "(未捕获到 build.log)"
               echo '```'
               echo
-              echo "### recovery root 体积 TOP25（定位体积超限的大头）"
+              echo "### recovery root 体积明细（定位超限大头）"
               echo
               echo '```'
-              du -a twrp/out/target/product/q5c62q_njx/recovery/root 2>/dev/null | sort -rn | head -25 || true
+              ROOT=twrp/out/target/product/q5c62q_njx/recovery/root
+              echo "解压总体积: $(du -sh $ROOT 2>/dev/null | cut -f1), 文件数: $(find $ROOT -type f 2>/dev/null | wc -l)"
+              ls -l twrp/out/target/product/q5c62q_njx/ramdisk-recovery.img 2>/dev/null || true
+              echo "-- 目录 TOP15 --"
+              du -sk $ROOT/* 2>/dev/null | sort -rn | head -15
+              echo "-- 单文件 TOP40 (>200KB) --"
+              find $ROOT -type f -size +200k -exec du -k {} + 2>/dev/null | sort -rn | head -40
               echo '```'
               echo
               for f in twrp/out/target/product/q5c62q_njx/*.img; do

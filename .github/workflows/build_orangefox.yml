@@ -132,11 +132,17 @@ jobs:
               grep -n -B2 -A30 "FAILED\|ninja: build stopped\|error:" "$LOG" 2>/dev/null | tail -80 || echo "(未捕获到 build.log)"
               echo '```'
               echo
-              echo "### 体积 TOP25（recovery root 与 system，定位体积超限的大头）"
+              echo "### 体积明细（定位超限大头）"
               echo
               echo '```'
-              du -a $OUT/recovery/root 2>/dev/null | sort -rn | head -25 || true
-              du -a $OUT/system 2>/dev/null | sort -rn | head -15 || true
+              echo "== recovery/root =="
+              echo "解压总体积: $(du -sh $OUT/recovery/root 2>/dev/null | cut -f1), 文件数: $(find $OUT/recovery/root -type f 2>/dev/null | wc -l)"
+              echo "-- 单文件 TOP40 (>200KB) --"
+              find $OUT/recovery/root -type f -size +200k -exec du -k {} + 2>/dev/null | sort -rn | head -40
+              echo "== system =="
+              echo "解压总体积: $(du -sh $OUT/system 2>/dev/null | cut -f1)"
+              echo "-- 单文件 TOP20 (>500KB) --"
+              find $OUT/system -type f -size +500k -exec du -k {} + 2>/dev/null | sort -rn | head -20
               echo '```'
               echo
               for f in $OUT/*.img; do
