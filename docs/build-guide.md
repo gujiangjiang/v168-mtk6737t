@@ -102,7 +102,9 @@ mka recoveryimage -j$(nproc)
 | OrangeFox sync 报 `repo: command not found` | 需要先装 repo 工具（工作流已内置；本地见第二章依赖部分） |
 | 警告 `Node.js 20 is deprecated`（actions/checkout） | 无害提示；工作流已升级 checkout@v5 |
 | `fb2png.c:... error: comparison of integers of different signs` | TWRP 9.0 老 bug（启用 `TW_INCLUDE_FB2PNG` 触发）；工作流含自动补丁 `(ssize_t)fb->size` |
-| `add_lunch_combo is obsolete` 且退出码 1（OrangeFox） | A12 的 add_lunch_combo 返回错误；vendorsetup.sh 已用 `\|\| true` 防护，目标由 COMMON_LUNCH_CHOICES 注册 |
+| `add_lunch_combo is obsolete`（OrangeFox） | A12 中该函数是废弃 stub；vendorsetup.sh 已自动检测并跳过调用（A9/TWRP 不受影响），lunch 目标由 COMMON_LUNCH_CHOICES 注册 |
+| `check_radio_versions.py ... SyntaxError: Missing parentheses in call to 'print'` | python2 脚本被 python3 执行；工作流已在最高优先级 `~/bin/python` 建 python2 软链（runner 的 /usr/local/bin/python 是 python3，会抢先生效） |
+| OrangeFox `source build/envsetup.sh` 后无声退出（exit 1） | `bash -e` 与 A12 envsetup 尾部（addcompletions 加载补全脚本）偶发冲突；工作流构建步骤已 `set +e` 并输出 `>>> xxx rc=` 标记便于定位 |
 
 ## 四、产物校验（编完必做）
 
