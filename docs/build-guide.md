@@ -16,18 +16,19 @@
    - `Build OrangeFox (q5c62q_njx / MT6737T)`
 3. 右侧 **Run workflow** → 选 main 分支 → 运行。
    - TWRP 工作流会询问 **`twrp_branch`**（编译分支）：
-     - `twrp-8.1`（**默认推荐**）：TWRP 3.2.3 时代，体积天然小，同类 MT6737 机型 16MB 分区已验证可容纳；
-     - `twrp-9.0`：现代分支（TWRP 3.6.x）。实测超限元凶是 `TW_EXTRA_LANGUAGES` 引入的 4.3MB CJK 字体，关闭后预计可放进 16MB；
+     - `twrp-9.0`（**默认推荐**）：现代分支（TWRP 3.7 系），已实测在保留充电动画、关闭额外字体时可放进 16MB；
+     - `twrp-8.1`：TWRP 3.2.3 时代，体积裕量更大——**需要中文界面（keep_fonts=true）时推荐用该分支**；
      - `twrp-7.1`：最小体积备选。
    - 还会询问两个功能/体积开关：
-     - **`keep_fonts`（默认 false）**：额外字体/语言包。打开后引入 4.3MB CJK 字体（压缩后约 2.5MB），中文界面必需，但 16MB 分区下大概率超限；
+     - **`keep_fonts`（默认 false）**：额外字体/语言包。打开后引入 4.3MB CJK 字体（压缩后约 2.5MB），中文界面必需；twrp-9.0 下会超限，建议搭配 twrp-8.1；
      - **`keep_charger`（默认 true）**：关机充电动画二进制（约 1MB）。关闭可省体积，但黑屏充电无动画提示。
 4. 完成后进入该次 run，底部 **Artifacts** 下载：
    - `TWRP-recovery-q5c62q_njx` → `recovery.img`
    - `OrangeFox-recovery-q5c62q_njx` → `OrangeFox-unofficial-q5c62q_njx.img`
 
 > **运行页 Summary（推荐先看）**：工作流每次运行结束（无论成功/失败）都会在运行页面自动生成
-> 汇总报告——成功时显示镜像大小、分区余量、SHA256、bootimg 头部校验与下载位置；
+> 汇总报告——成功时显示 **TWRP 版本、编译分支、额外字体/充电动画的实际状态**、
+> 镜像大小、分区余量、SHA256、bootimg 头部校验与下载位置；
 > 失败时显示错误摘要和 recovery root 体积明细（目录 TOP15 + 单文件 TOP40），无需翻日志即可定位问题。
 
 ### 工作流内部做了什么
