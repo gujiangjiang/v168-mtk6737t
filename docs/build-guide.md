@@ -98,6 +98,9 @@ mka recoveryimage -j$(nproc)
 | 磁盘不足（fox_12.1） | 换大 runner / 本地机；或清 ccache |
 | 镜像超过 16777216 字节 | 见 device-tree.md「镜像超 16MB」一行 |
 | `lunch: unknown combo` | 确认 `device/mediatek/q5c62q_njx` 路径正确、vendorsetup.sh 存在 |
+| `clang.real: error while loading shared libraries: libtinfo.so.5` | Android 9 预编译 clang 需要旧 ncurses：`sudo apt-get install -y libtinfo5 libncurses5`（工作流已内置） |
+| OrangeFox sync 报 `repo: command not found` | 需要先装 repo 工具（工作流已内置；本地见第二章依赖部分） |
+| 警告 `Node.js 20 is deprecated`（actions/checkout） | 无害提示；工作流已升级 checkout@v5 |
 
 ## 四、产物校验（编完必做）
 
