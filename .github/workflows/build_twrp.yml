@@ -95,10 +95,20 @@ jobs:
           # twrp-9.0 分支为 omni 命名; 若 manifest 变更为 twrp 命名则自动回退
           lunch omni_q5c62q_njx-eng || lunch twrp_q5c62q_njx-eng
           echo ">>> lunch rc=$?"
-          mka recoveryimage -j$(nproc --all)
-          rc=$?
+          mka recoveryimage -j$(nproc --all) 2>&1 | tee build.log
+          rc=${PIPESTATUS[0]}
           echo ">>> mka rc=$rc"
           exit $rc
+
+      - name: Diagnose (if failed)
+        if: failure()
+        run: |
+          echo "===== 错误上下文 ====="
+          grep -n -B2 -A25 "FAILED\|ninja: build stopped\|error:" twrp/build.log 2>/dev/null | tail -150 || true
+          echo "===== recovery root 体积 TOP40 ====="
+          du -a twrp/out/target/product/q5c62q_njx/recovery/root 2>/dev/null | sort -rn | head -40 || true
+          echo "===== 镜像文件 ====="
+          ls -l twrp/out/target/product/q5c62q_njx/ramdisk-recovery.img twrp/out/target/product/q5c62q_njx/recovery.img 2>/dev/null || true
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
