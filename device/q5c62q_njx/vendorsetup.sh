@@ -1,11 +1,12 @@
 # TWRP / OrangeFox lunch 目标
-# 注意: Android 12+ (OrangeFox fox_12.1) 中 add_lunch_combo 已废弃且会返回错误码,
-#       在 `bash -e` 下会导致 envsetup.sh 中断, 故统一加 `|| true`;
-#       新平台的 lunch 目标由 AndroidProducts.mk 的 COMMON_LUNCH_CHOICES 提供。
-add_lunch_combo omni_q5c62q_njx-eng || true
-add_lunch_combo omni_q5c62q_njx-userdebug || true
-add_lunch_combo twrp_q5c62q_njx-eng || true
-add_lunch_combo twrp_q5c62q_njx-userdebug || true
+# Android 12+ (OrangeFox fox_12.1) 的 add_lunch_combo 已是废弃 stub(只打印提示);
+# 检测到废弃实现则跳过调用, lunch 目标由 AndroidProducts.mk 的 COMMON_LUNCH_CHOICES 提供。
+if ! declare -f add_lunch_combo | grep -q "obsolete"; then
+    add_lunch_combo omni_q5c62q_njx-eng 2>/dev/null || true
+    add_lunch_combo omni_q5c62q_njx-userdebug 2>/dev/null || true
+    add_lunch_combo twrp_q5c62q_njx-eng 2>/dev/null || true
+    add_lunch_combo twrp_q5c62q_njx-userdebug 2>/dev/null || true
+fi
 
 export ALLOW_MISSING_DEPENDENCIES=true
 export LC_ALL=C

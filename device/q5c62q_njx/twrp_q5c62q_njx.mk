@@ -16,10 +16,8 @@ PRODUCT_MANUFACTURER := freeme
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     persist.sys.usb.config=mtp
 
-# 原机指纹 (供部分刷机脚本校验)
-PRODUCT_BUILD_PROP_OVERRIDES += \
-    BUILD_FINGERPRINT="alps/full_q5c62q_njx/q5c62q_njx:6.0/MRA58K/1505127327:user/dev-keys" \
-    PRIVATE_BUILD_DESC="full_q5c62q_njx-user 6.0 MRA58K 1505127327 dev-keys"
+# 注: 指纹覆盖(PRODUCT_BUILD_PROP_OVERRIDES)只在 TWRP 9.0 产品(omni_*)中保留,
+#     A12(fox_12.1) 上该语法存在兼容风险, OrangeFox 构建不需要它, 故此处不设。
 
 # OrangeFox 设备级配置(可选, 文件不存在则自动跳过)
 $(call inherit-product-if-exists, $(DEVICE_PATH)/fox_q5c62q_njx.mk)
