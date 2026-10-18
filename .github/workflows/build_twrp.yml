@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       twrp_branch:
-        description: "TWRP minimal manifest 分支: twrp-8.1=体积友好(推荐默认) / twrp-9.0=现代分支(裁剪后仍 ~18.7MB, 需进一步瘦身) / twrp-7.1=最小"
+        description: "TWRP minimal manifest 分支: twrp-8.1=体积友好(推荐默认) / twrp-9.0=现代分支(裁剪后仍偏大, 视选项而定)"
         required: true
         default: "twrp-8.1"
         type: choice
@@ -12,6 +12,22 @@ on:
           - twrp-8.1
           - twrp-9.0
           - twrp-7.1
+      keep_fonts:
+        description: "额外字体/语言包(中文界面需要; 约 +2.5MB, 16MB 分区下可能超限)"
+        required: true
+        default: "false"
+        type: choice
+        options:
+          - "false"
+          - "true"
+      keep_charger:
+        description: "关机充电动画(charger 二进制, 约 1MB; 关闭后黑屏充电无动画提示)"
+        required: true
+        default: "true"
+        type: choice
+        options:
+          - "true"
+          - "false"
 
 jobs:
   build:
@@ -90,6 +106,13 @@ jobs:
         run: |
           mkdir -p twrp/device/mediatek
           cp -r device/q5c62q_njx twrp/device/mediatek/q5c62q_njx
+          # 输入选项: 额外字体/语言包 (默认关闭; 打开会引入 ~2.5MB CJK 字体)
+          if [ "${{ inputs.keep_fonts }}" = "true" ]; then
+            sed -i 's/^TW_EXTRA_LANGUAGES := false/TW_EXTRA_LANGUAGES := true/; s/^TW_DEFAULT_LANGUAGE := en/TW_DEFAULT_LANGUAGE := zh_CN/' twrp/device/mediatek/q5c62q_njx/BoardConfig.mk
+            echo ">>> keep_fonts=true: 已启用额外字体/语言包 (TW_EXTRA_LANGUAGES := true)"
+          else
+            echo ">>> keep_fonts=false: 保持默认(无额外字体/语言包)"
+          fi
 
       - name: Patch known build issues
         run: |
@@ -144,9 +167,12 @@ jobs:
             fi
           done
           echo ">>> 已 strip $N 个 ELF 文件"
-          # 附加裁剪: 离线充电动画二进制(约1MB, TWRP 正常使用不需要; 充电由硬件/内核完成)
-          if [ -f "$ROOT/sbin/charger" ]; then
-            rm -f "$ROOT/sbin/charger" && echo ">>> 已移除 sbin/charger (~1MB)"
+          # 附加裁剪: 关机充电动画二进制(~1MB), 仅在 keep_charger=false 时移除;
+          # 默认保留(黑屏充电需要动画提示)
+          if [ "${{ inputs.keep_charger }}" != "true" ] && [ -f "$ROOT/sbin/charger" ]; then
+            rm -f "$ROOT/sbin/charger" && echo ">>> keep_charger=false: 已移除 sbin/charger (~1MB)"
+          else
+            echo ">>> 保留 sbin/charger (keep_charger=${{ inputs.keep_charger }})"
           fi
           "$HOST/mkbootfs" -d "$OUT/system" "$ROOT" | "$HOST/minigzip" > /tmp/ramdisk-salvage.gz || exit 0
           python3 tools/mkbootimg_mtk.py \
@@ -241,7 +267,7 @@ jobs:
               echo
               volume_breakdown
               echo
-              echo "> 处理: 在 BoardConfig.mk 增加裁剪开关, 或换用体积更小的分支（本工作流输入 \`twrp_branch\`，如默认的 twrp-8.1）"
+              echo "> 处理: 检查 keep_fonts/keep_charger 输入选项, 或换用体积更小的分支（本工作流输入 \`twrp_branch\`，如默认的 twrp-8.1）"
             else
               echo "## ❌ 编译失败"
               echo
