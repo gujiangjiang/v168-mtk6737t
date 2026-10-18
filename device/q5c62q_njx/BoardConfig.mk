@@ -53,27 +53,32 @@ TW_EXTRA_LANGUAGES := true
 TW_EXCLUDE_SUPERSU := true
 TW_NO_SCREEN_TIMEOUT := true
 TW_SCREEN_BLANK_ON_BOOT := true
-TW_INCLUDE_FB2PNG := true
-TW_USE_TOOLBOX := true
-TW_HAS_MTP := true
 TW_USE_MODEL_HARDWARE_ID_FOR_DEVICE_ID := true
 TW_NO_CPU_TEMP := true
 
-# ---- 体积控制 (recovery 分区仅 16777216 字节) ----
-# twrp-9.0 默认捆绑 python3_twrp(约 7MB), 必须排除才能压进 16MB;
-# 若仍超限, 依次考虑: TW_EXTRA_LANGUAGES=false / TW_INCLUDE_CRYPTO=false / TW_NO_EXFAT=true
-TW_EXCLUDE_PYTHON := true
+# ---- 体积控制 (recovery 分区仅 16777216 字节; twrp-9.0 默认集合实测超限 ~5MB) ----
+# 以下为已启用的裁剪项; 确认镜像余量充足后可按需逐个改回
+TW_EXCLUDE_PYTHON := true          # twrp-9.0 默认捆绑 python3_twrp
+TW_EXCLUDE_TWRPAPP := true
+TW_EXCLUDE_BASH := true
+TW_EXCLUDE_NANO := true
+TW_EXCLUDE_TZDATA := true
+TW_EXCLUDE_MTP := true             # 需要电脑直传文件时改为 false
+TW_EXCLUDE_ENCRYPTED_BACKUPS := true
+TW_USE_TOOLBOX := false            # 用 busybox (比 toybox+zip+unzip 小, 与可用 donor 同款)
+TW_NO_EXFAT := true                # 仅去掉 exFAT, vfat 卡不受影响
+TW_INCLUDE_FB2PNG := false         # 截图功能
 
 # 背光 / 亮度 (MT65xx 标准路径)
 TW_BRIGHTNESS_PATH := /sys/class/leds/lcd-backlight/brightness
 TW_MAX_BRIGHTNESS := 255
 TW_DEFAULT_BRIGHTNESS := 120
 
-# MTK 硬件级 FDE (metadata 分区), 如不需要解密可整段删除
-TW_INCLUDE_CRYPTO := true
-TW_CRYPTO_FS_TYPE := "ext4"
-TW_CRYPTO_MNT_POINT := "/data"
-TW_CRYPTO_FS_OPTIONS := "nosuid,nodev,noatime,discard,noauto_da_alloc,data=ordered"
+# 数据解密 (MTK 硬件级 FDE; 默认关闭压体积, 需要时整段打开)
+TW_INCLUDE_CRYPTO := false
+# TW_CRYPTO_FS_TYPE := "ext4"
+# TW_CRYPTO_MNT_POINT := "/data"
+# TW_CRYPTO_FS_OPTIONS := "nosuid,nodev,noatime,discard,noauto_da_alloc,data=ordered"
 
 # 内部存储位于 userdata (/data/media)
 RECOVERY_SDCARD_ON_DATA := true
