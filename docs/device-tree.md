@@ -69,7 +69,7 @@ export OF_FORCE_PREBUILT_KERNEL=1   # 预编译内核无 .config，防 "NO KERNE
 | 颜色红蓝颠倒 | `TARGET_RECOVERY_PIXEL_FORMAT` 在 `BGRA_8888` ↔ `RGBA_8888` 切换 |
 | 亮度不可调 | 尝试 `TW_MAX_BRIGHTNESS := 255` / `TW_DEFAULT_BRIGHTNESS`，或换 `/sys/devices/platform/leds-mt65xx/...` 路径 |
 | 中文界面 | 已设 `TW_DEFAULT_LANGUAGE := zh_CN` + `TW_EXTRA_LANGUAGES := true` |
-| 镜像超 16MB | 已默认 `TW_EXCLUDE_PYTHON := true`（twrp-9.0 的 python3_twrp 约 7MB）；仍超时依次关 `TW_EXTRA_LANGUAGES`、`TW_INCLUDE_CRYPTO`、设 `TW_NO_EXFAT := true`；OFox 可 `export FOX_DRASTIC_SIZE_REDUCTION=1` |
+| 镜像超 16MB | BoardConfig 已默认启用整组裁剪（`TW_EXCLUDE_PYTHON/TWRPAPP/BASH/NANO/TZDATA/MTP/ENCRYPTED_BACKUPS`、`TW_USE_TOOLBOX := false`（busybox）、`TW_NO_EXFAT`、`TW_INCLUDE_CRYPTO := false`、`TW_INCLUDE_FB2PNG := false`）。需要某功能时逐个打开并重编；仍超限时看失败运行中 "recovery root 体积 TOP40" 诊断输出定位大头；OFox 还可 `export FOX_DRASTIC_SIZE_REDUCTION=1` |
 | 触摸方向错误 | 内核触控驱动决定，一般无需处理；软件侧可 `TW_INPUT_BLACKLIST` 排除虚拟鼠标设备 |
 
 ## 给非 recovery 移植的建议

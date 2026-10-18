@@ -106,7 +106,7 @@ mka recoveryimage -j$(nproc)
 | `check_radio_versions.py ... SyntaxError: Missing parentheses in call to 'print'` | python2 脚本被 python3 执行；工作流已在最高优先级 `~/bin/python` 建 python2 软链（runner 的 /usr/local/bin/python 是 python3，会抢先生效） |
 | OrangeFox `source build/envsetup.sh` 后无声退出（exit 1） | `bash -e` 与 A12 envsetup 尾部（addcompletions 加载补全脚本）偶发冲突；工作流构建步骤已 `set +e` 并输出 `>>> xxx rc=` 标记便于定位 |
 | `Incorrect TARGET_ARCH_VARIANT, armv7-a-neon. Use armv8-a instead.`（OrangeFox） | A12 对 cortex-a53 强制 armv8-a；BoardConfig 已按 `PLATFORM_SDK_VERSION` 自动切换（SDK>30 用 armv8-a，A9 仍用 armv7-a-neon） |
-| `recovery.img too large (NNN > 16777216)`（TWRP） | twrp-9.0 默认捆绑 python3_twrp（约 7MB）；BoardConfig 已加 `TW_EXCLUDE_PYTHON := true`。仍超限时依次关闭 `TW_EXTRA_LANGUAGES` / `TW_INCLUDE_CRYPTO` / 设 `TW_NO_EXFAT := true` |
+| `recovery.img too large (NNN > 16777216)`（TWRP） | twrp-9.0 默认集合超出 16MB 分区；BoardConfig 已默认启用整组裁剪（见 device-tree.md「镜像超 16MB」）。仍超限时查看失败运行自动打印的 "recovery root 体积 TOP40" 再定裁剪方向（该诊断步骤已内置在工作流中） |
 | `Could not find ui.xml for TW_THEME: not set`（OrangeFox soong） | 通常是 lunch/dumpvars 先失败（如 arch variant 报错）的连锁反应；修好前置错误即消失 |
 
 ## 四、产物校验（编完必做）
