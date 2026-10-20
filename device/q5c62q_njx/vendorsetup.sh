@@ -19,5 +19,16 @@ export FOX_BUILD_DEVICE=q5c62q_njx
 export FOX_VANILLA_BUILD=1
 # 使用无 .config 的预编译内核时, 避免 "NO KERNEL CONFIG" 报错
 export OF_FORCE_PREBUILT_KERNEL=1
-# 镜像过大时可启用 (本机 16MB recovery 分区, 一般不需要)
+
+# ---- 体积选项 (recovery 分区仅 16MB; OFox R11.3 默认集合约 21.9MB) ----
+# LZMA 压缩 recovery ramdisk: 已实测本机 3.18 内核的 initramfs 解压器
+# 含 gzip/bzip2/lzma 方法表 (CONFIG_RD_LZMA=y), 压缩率显著优于 gzip,
+# 是把镜像压进 16MB 的关键手段 (需构建机有 lzma, 工作流已装 xz-utils)
+export OF_USE_LZMA_COMPRESSION=1
+export FOX_USE_LZMA_COMPRESSION=1
+# 移除 bash(约 1MB) / nano 编辑器 / aapt(若存在约 1.7MB); recovery 不需要
+export FOX_REMOVE_BASH=1
+export FOX_EXCLUDE_NANO_EDITOR=1
+export FOX_REMOVE_AAPT=1
+# 镜像过大时可启用 (experimental; 会移除几乎全部 OrangeFox 附加二进制)
 # export FOX_DRASTIC_SIZE_REDUCTION=1
