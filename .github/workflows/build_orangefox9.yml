@@ -106,10 +106,10 @@ jobs:
           git -c url.https://gitlab.com/OrangeFox/misc/theme.git.insteadOf=git@gitlab.com:OrangeFox/misc/theme.git \
               submodule update --init --depth=1 || true
           if [ ! -f gui/theme/portrait_hdpi/ui.xml ]; then
-            echo ">>> submodule 失败, 兜底克隆主题 (固定 fox_9.0 对应提交)"
+            echo ">>> submodule 失败, 兜底按 SHA 拉取主题 (fox_9.0 对应提交)"
             rm -rf gui/theme
             git clone https://gitlab.com/OrangeFox/misc/theme.git gui/theme
-            git -C gui/theme checkout 51b06e501e32fa69df28a507b0a64382be6d2db4
+            (cd gui/theme && git fetch --depth=1 origin 51b06e501e32fa69df28a507b0a64382be6d2db4 && git checkout FETCH_HEAD)
           fi
           test -f gui/theme/portrait_hdpi/ui.xml && echo ">>> 主题就绪"
           cd "$GITHUB_WORKSPACE"
