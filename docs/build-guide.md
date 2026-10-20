@@ -79,28 +79,39 @@ mka recoveryimage -j$(nproc)
 # 产物: out/target/product/q5c62q_njx/recovery.img
 ```
 
-### OrangeFox（官方标准流程）
+### OrangeFox（fox_9.0，与 TWRP 9.0 同底座；CI 见 build_orangefox9.yml）
+> ⚠️ 本机 3.18 内核 **只支持 gzip initramfs**：`lib/decompress.c` 的 compressed_formats
+> 表中 gzip 解压函数指针有效（0xc0c3384c），lzma/xz/bzip2/lzo/lz4 全为 NULL。
+> 任何 LZMA ramdisk 选项（`OF_USE_LZMA_COMPRESSION` / `FOX_USE_LZMA_COMPRESSION`）
+> 都会打出内核无法解压、无法启动的镜像。fox_12.1 的 A12 核心大 ~14MB，无法进 16MB。
+
 ```sh
-mkdir -p ~/OrangeFox_sync && cd ~/OrangeFox_sync
-git clone https://gitlab.com/OrangeFox/sync.git && cd sync
-./orangefox_sync.sh --branch 12.1 --path ~/fox_12.1
+# 1) 同步 twrp-9.0 minimal manifest（与 TWRP 9.0 工作流同源）
+repo init --depth=1 -u https://github.com/minimal-manifest-twrp/platform_manifest_twrp_omni.git -b twrp-9.0
+repo sync -j$(nproc) --force-sync --no-clone-bundle --no-tags
 
-mkdir -p ~/fox_12.1/device/mediatek
-cp -r <本仓库>/device/q5c62q_njx ~/fox_12.1/device/mediatek/q5c62q_njx
+# 2) 官方 manifest 补丁（把 vendor/recovery/OrangeFox.sh 挂进 build/core）
+git clone --depth=1 https://gitlab.com/OrangeFox/sync.git
+(cd build && patch -p1 < ../sync/legacy/patches/patch-manifest-fox_9.0.diff)   # sync 目录按实际路径
 
-cd ~/fox_12.1
-# 应用已知源码补丁(AID_MEDIA_RW / libbinder map / rsync --force, 与 CI 一致)
-sh <本仓库路径>/tools/ofox_ci_patch.sh
-# 注: 设备树 vendorsetup.sh 已自带 LZMA ramdisk 压缩与体积裁剪
-#     (OF_USE_LZMA_COMPRESSION / FOX_REMOVE_BASH 等, 内核已验证支持), 无需额外配置
-export FOX_BUILD_DEVICE=q5c62q_njx
-export FOX_VANILLA_BUILD=1
-export OF_FORCE_PREBUILT_KERNEL=1
-export ALLOW_MISSING_DEPENDENCIES=true
+# 3) 换装 OrangeFox 源码
+rm -rf bootable/recovery
+git clone --depth=1 -b fox_9.0 https://gitlab.com/OrangeFox/bootable/Recovery.git bootable/recovery
+(cd bootable/recovery && git -c url.https://gitlab.com/OrangeFox/misc/theme.git.insteadOf=git@gitlab.com:OrangeFox/misc/theme.git \
+    submodule update --init --depth=1)   # CI 无 SSH key 必须用 insteadOf
+git clone --depth=1 -b legacy https://gitlab.com/OrangeFox/vendor/recovery.git vendor/recovery
+git clone --depth=1 -b android-9.0 https://gitlab.com/OrangeFox/external/busybox.git external/busybox
+
+# 4) 设备树 + 构建
+mkdir -p device/mediatek
+cp -r <本仓库>/device/q5c62q_njx device/mediatek/q5c62q_njx
+export FOX_VANILLA_BUILD=1 OF_VANILLA_BUILD=1
+export ALLOW_MISSING_DEPENDENCIES=true LC_ALL=C
 source build/envsetup.sh
-lunch twrp_q5c62q_njx-eng
+lunch omni_q5c62q_njx-eng
 mka recoveryimage -j$(nproc)
-# 产物: out/target/product/q5c62q_njx/OrangeFox-unofficial-q5c62q_njx.img
+# 产物: out/target/product/q5c62q_njx/recovery.img + OrangeFox-*.img
+# 超限时: export FOX_EXTREME_SIZE_REDUCTION=1 后重跑（官方裁剪, 删非默认字体/附加工具）
 ```
 
 ## 三、常见错误速查

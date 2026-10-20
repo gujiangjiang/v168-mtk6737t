@@ -1,4 +1,9 @@
-name: Build OrangeFox (q5c62q_njx / MT6737T)
+name: Build OrangeFox fox_12.1 (q5c62q_njx / MT6737T) [实验: 预计超限, 正式用 fox_9.0 工作流]
+
+# 结论: 本机内核仅支持 gzip initramfs (lib/decompress.c 表中 lzma/xz 解压器指针为 NULL),
+#   fox_12.1 的 A12 核心体积比 A9 (TWRP 9.0) 大 10MB+, 裁剪后仍无法进 16MB 分区。
+#   可用的 OrangeFox 请使用 build_orangefox9.yml (fox_9.0, 与 TWRP 9.0 同底座)。
+#   本工作流保留用于验证/研究。
 
 on:
   workflow_dispatch:
@@ -170,7 +175,9 @@ jobs:
               echo
               volume_breakdown
               echo
-              echo "> 处理: 增加裁剪开关（FOX_DRASTIC_SIZE_REDUCTION 等, 见 build-guide）"
+              echo "> 结论: fox_12.1 的 A12 核心无法压入 16MB (内核仅支持 gzip initramfs,"
+              echo ">   A12 比 A9/TWRP9 底座大 ~14MB)。可用的 OrangeFox 请跑 \`Build OrangeFox fox_9.0\` 工作流。"
+              echo ">   本页体积明细仅作分析参考。"
             else
               echo "## ❌ 编译失败"
               echo

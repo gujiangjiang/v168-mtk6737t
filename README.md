@@ -92,6 +92,11 @@ fastboot flash recovery prebuilt/TWRP-3.6.1_q5c62q_njx_20261018.img
 3. 无 AVB / vbmeta 校验，刷 recovery 无需签名；LK fastboot 支持 `oem unlock`。
 4. 本机是纯 32 位用户态；64 位 / Treble 属于深水区，路线见分析文档。
 5. **不刷机时也要先备份 nvram/nvdata**（IMEI / WiFi MAC / 射频校准）。
+6. **recovery ramdisk 必须 gzip**：3.18.19 内核的 initramfs 解压器只编译了 gzip
+   （`lib/decompress.c` 方法表中 lzma/xz/bzip2/lzo/lz4 解压函数指针全为 NULL），
+   任何 LZMA ramdisk 都会让内核无法解压 initramfs 而无法启动。
+   体积预算：16MB 分区 − 6.29MB 内核 ≈ **ramdisk.gz ≤ 10.4MB**；
+   这也是 OrangeFox 选 fox_9.0（TWRP 9.0 底座）而非 fox_12.1 的根本原因。
 
 ## 来源与授权
 
