@@ -24,8 +24,8 @@ export OF_FORCE_PREBUILT_KERNEL=1
 # LZMA 压缩 recovery ramdisk: 已实测本机 3.18 内核的 initramfs 解压器
 # 含 gzip/bzip2/lzma 方法表 (CONFIG_RD_LZMA=y), 压缩率显著优于 gzip,
 # 是把镜像压进 16MB 的关键手段 (需构建机有 lzma, 工作流已装 xz-utils)
+# 注意: 旧名 FOX_USE_LZMA_COMPRESSION 会被 orangefox.mk 主动报错拒绝, 勿设!
 export OF_USE_LZMA_COMPRESSION=1
-export FOX_USE_LZMA_COMPRESSION=1
 # 移除 bash(约 1MB) / nano 编辑器 / aapt(若存在约 1.7MB); recovery 不需要
 export FOX_REMOVE_BASH=1
 export FOX_EXCLUDE_NANO_EDITOR=1
