@@ -70,7 +70,7 @@ export OF_FORCE_PREBUILT_KERNEL=1   # 预编译内核无 .config，防 "NO KERNE
 | 亮度不可调 | 尝试 `TW_MAX_BRIGHTNESS := 255` / `TW_DEFAULT_BRIGHTNESS`，或换 `/sys/devices/platform/leds-mt65xx/...` 路径 |
 | 中文界面 | 默认**关闭**：`TW_EXTRA_LANGUAGES := true` 会附带 4.3MB CJK 字体（DroidSansFallback 3.6MB + NotoSansCJK 0.7MB）与 ~1MB 语言包，压缩后约 2.5MB，是 twrp-9.0 16MB 超限的主因。云端编译时可用工作流输入 **`keep_fonts=true`** 一键启用（本地则改回 `TW_DEFAULT_LANGUAGE := zh_CN` + `TW_EXTRA_LANGUAGES := true`），16MB 分区下需接受镜像增大 |
 | 字体/语言瘦身 | 见上；TWRP 界面字体（Roboto 等）在 theme/common/fonts 中始终保留，不受影响 |
-| 镜像超 16MB | 实测 twrp-9.0 即使全量裁剪后 ramdisk 仍 ~12.5MB（超预算 ~2MB）→ TWRP 工作流默认切 `twrp-8.1`（见 build-guide 分支说明）。BoardConfig 中的裁剪开关仍全部生效（对 8.1 为安全子集）；坚持 9.0 时看 Summary ⚠️ 超限分支的体积明细继续裁剪；OFox 可 `export FOX_DRASTIC_SIZE_REDUCTION=1` |
+| 镜像超 16MB | **TWRP**：默认 `twrp-9.0` + 关闭额外字体即可进 16MB（已实测，充电动画可保留）；中文界面需搭配 `twrp-8.1`（体积裕量大）。**OrangeFox**：`vendorsetup.sh` 已默认启用 **LZMA ramdisk 压缩**（本机 3.18 内核已验证含 gzip/bzip2/lzma 解压器，压缩率显著优于 gzip）并移除 bash/nano/aapt；仍超限时开 `export FOX_DRASTIC_SIZE_REDUCTION=1`（experimental）。各次运行体积明细见 Summary ⚠️ 分支 |
 | 触摸方向错误 | 内核触控驱动决定，一般无需处理；软件侧可 `TW_INPUT_BLACKLIST` 排除虚拟鼠标设备 |
 
 ## 给非 recovery 移植的建议

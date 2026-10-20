@@ -89,8 +89,10 @@ mkdir -p ~/fox_12.1/device/mediatek
 cp -r <本仓库>/device/q5c62q_njx ~/fox_12.1/device/mediatek/q5c62q_njx
 
 cd ~/fox_12.1
-# 应用已知源码补丁(AID_MEDIA_RW 等, 与 CI 一致)
+# 应用已知源码补丁(AID_MEDIA_RW / libbinder map / rsync --force, 与 CI 一致)
 sh <本仓库路径>/tools/ofox_ci_patch.sh
+# 注: 设备树 vendorsetup.sh 已自带 LZMA ramdisk 压缩与体积裁剪
+#     (OF_USE_LZMA_COMPRESSION / FOX_REMOVE_BASH 等, 内核已验证支持), 无需额外配置
 export FOX_BUILD_DEVICE=q5c62q_njx
 export FOX_VANILLA_BUILD=1
 export OF_FORCE_PREBUILT_KERNEL=1
