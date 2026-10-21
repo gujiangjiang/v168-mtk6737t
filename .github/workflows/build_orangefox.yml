@@ -86,6 +86,8 @@ jobs:
           echo "$HOME/bin" >> $GITHUB_PATH
           git config --global user.name "github-actions"
           git config --global user.email "ci@localhost"
+          # 注意: $GITHUB_PATH 只对后续步骤生效, 当前步骤需手动 export 才能调用 repo
+          export PATH="$HOME/bin:$PATH"
           repo --version
 
       - name: Sync sources (fox_9.0 官方 legacy 流程)
@@ -361,6 +363,10 @@ jobs:
             else
               echo "## ❌ 编译失败"
               echo
+              if [ ! -f fox/build.log ] && [ ! -d fox/out ]; then
+                echo "> 构建步骤未执行 (上游步骤失败被跳过)。请在本页 Job 步骤列表中查看红色 ✗ 步骤的日志。"
+                echo
+              fi
               echo "错误摘要（完整日志见上方 Build recovery 步骤）："
               echo
               echo '```'
@@ -392,6 +398,8 @@ jobs:
             cp -f "$f" "$OUT/$new" 2>/dev/null && echo ">>> $n -> $new"
           done
           ls -la $OUT/*.img 2>/dev/null
+          echo ">>> 本步骤仅做重命名, 不影响构建结论"
+          exit 0
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
