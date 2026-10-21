@@ -112,6 +112,8 @@ lunch omni_q5c62q_njx-eng
 mka recoveryimage -j$(nproc)
 # 产物: out/target/product/q5c62q_njx/recovery.img + OrangeFox-*.img
 # 超限时: export FOX_EXTREME_SIZE_REDUCTION=1 后重跑（官方裁剪, 删非默认字体/附加工具）
+# CI 另有超限自动优化: 移除无引用库 + pngquant 主题 PNG 量化 + zopfli 重压缩
+#   (构建自带 minigzip 是 gzip -6; zopfli 再省 4~7%), 产出 recovery-salvage.img
 ```
 
 ## 三、常见错误速查

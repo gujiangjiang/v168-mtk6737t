@@ -4,7 +4,9 @@ name: Build OrangeFox (q5c62q_njx / MT6737T)
 #   fox_9.0  (默认, 可用): TWRP 9.0 同底座 + 橙狐 R10 界面/工具
 #      -> twrp-9.0 minimal omni manifest + patch-manifest-fox_9.0.diff
 #         + OrangeFox bootable/Recovery(fox_9.0) + vendor/recovery(legacy) + external/busybox
-#      -> 预计镜像 ~15MB, 可进 16MB 分区
+#      -> 实测: fox_extreme=true 时 17.53MB (差 0.72MB);
+#         超限时自动优化: 移除无引用库 + twres PNG 量化 + zopfli 重压缩,
+#         预计 ~16.2-16.5MB, 可进 16MB 分区
 #   fox_12.1 (实验, 预计超限): A12 核心比 A9 大 ~14MB, 仅保留作分析
 #      -> 官方 orangefox_sync.sh --branch 12.1
 #
@@ -24,13 +26,21 @@ on:
           - "9.0"
           - "12.1"
       fox_extreme:
-        description: "极限瘦身 FOX_EXTREME_SIZE_REDUCTION=1 (删非默认字体/附加工具, 超限时开启)"
+        description: "极限瘦身 FOX_EXTREME_SIZE_REDUCTION=1 (删非默认字体/附加工具; 推荐 true, 否则 16MB 必超)"
         required: true
-        default: "false"
+        default: "true"
         type: choice
         options:
-          - "false"
           - "true"
+          - "false"
+      keep_charger:
+        description: "关机充电动画 charger 二进制 (约 1MB; 超限时可关, 关闭后黑屏充电无动画)"
+        required: true
+        default: "true"
+        type: choice
+        options:
+          - "true"
+          - "false"
 
 jobs:
   build:
@@ -71,6 +81,8 @@ jobs:
               lib32ncurses5-dev x11proto-core-dev libx11-dev lib32z1-dev \
               libgl1-mesa-dev libxml2-utils xsltproc unzip ccache rsync xz-utils \
               libtinfo5 libncurses5 schedtool
+          # 镜像超限时的自动优化工具: pngquant(主题 PNG 量化) + zopfli(ramdisk 重压缩)
+          sudo apt-get install -y pngquant zopfli || true
           # fox_9.0 (A9) 构建脚本需要 python2; fox_12.1 不需要
           if [ "${{ inputs.fox_branch }}" = "9.0" ]; then
             for p in python2 python2.7 python-is-python2; do
@@ -201,7 +213,7 @@ jobs:
           ls -la out/target/product/q5c62q_njx/*.img 2>/dev/null
           exit $rc
 
-      - name: Salvage oversize image (strip + repack)
+      - name: Optimize oversize image (prune + pngquant + zopfli repack)
         if: always()
         run: |
           set +e
@@ -211,13 +223,44 @@ jobs:
           LIMIT=16777216
           SIZE=$(stat -c %s "$IMG" 2>/dev/null || echo 0)
           if [ "$SIZE" -le "$LIMIT" ] || [ "$SIZE" -eq 0 ]; then
-            echo ">>> 无需瘦身 (size=$SIZE)"
+            echo ">>> 无需优化 (size=$SIZE <= limit=$LIMIT)"
             exit 0
           fi
-          HOST=fox/out/host/linux-x86/bin
+          echo ">>> 原镜像 $SIZE 字节, 需削减 $((SIZE - LIMIT)) 字节"
+
+          # 0) charger (用户可选; 约 1MB)
+          if [ "${{ inputs.keep_charger }}" != "true" ] && [ -f "$ROOT/sbin/charger" ]; then
+            rm -f "$ROOT/sbin/charger" && echo ">>> keep_charger=false: 已移除 sbin/charger"
+          fi
+
+          # 1) 移除确认"无任何 ELF 引用"的库 (readelf NEEDED 扫描结果; 同时配置已关闭对应功能:
+          #    TW_INCLUDE_CRYPTO=false / TW_EXCLUDE_MTP=true, ubsan 仅被 TWRP 预置清单无条件拷贝)
+          for dead in \
+              sbin/libclang_rt.ubsan_standalone-arm-android.so \
+              sbin/libtwrpmtp-ffs.so \
+              sbin/android.hardware.keymaster@3.0.so \
+              sbin/android.hidl.token@1.0.so ; do
+            if [ -e "$ROOT/$dead" ]; then
+              echo ">>> 移除无引用库 $dead ($(stat -c %s "$ROOT/$dead") 字节)"
+              rm -f "$ROOT/$dead"
+            fi
+          done
+
+          # 2) twres 主题 PNG 量化 (palette; 结果更大时 pngquant 自动跳过)
+          if command -v pngquant >/dev/null 2>&1 && [ -d "$ROOT/twres" ]; then
+            before=$(du -sk "$ROOT/twres" 2>/dev/null | cut -f1)
+            find "$ROOT/twres" -name '*.png' -print0 2>/dev/null | \
+              xargs -0 -r -n32 -P"$(nproc --all)" \
+                pngquant --force --skip-if-larger --ext .png --quality=60-95 --speed 3 || true
+            after=$(du -sk "$ROOT/twres" 2>/dev/null | cut -f1)
+            echo ">>> pngquant: twres ${before}K -> ${after}K"
+          else
+            echo ">>> 跳过 PNG 优化 (pngquant 缺失或 twres 不存在)"
+          fi
+
+          # 3) strip 未剥离的 ELF
           CSTRIP=fox/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9/bin/arm-linux-androideabi-strip
           [ -x "$CSTRIP" ] || CSTRIP=strip
-          echo ">>> 原镜像 $SIZE 字节, 开始 strip 瘦身 ($CSTRIP)"
           N=0
           for f in $(find "$ROOT" -type f); do
             if file -b "$f" 2>/dev/null | grep -q "ELF"; then
@@ -225,19 +268,38 @@ jobs:
             fi
           done
           echo ">>> 已 strip $N 个 ELF 文件"
-          "$HOST/mkbootfs" -d "$OUT/system" "$ROOT" | "$HOST/minigzip" > /tmp/ramdisk-salvage.gz || exit 0
+
+          # 4) 重打包: mkbootfs -> zopfli (构建自带的 minigzip 是 gzip -6; zopfli 再省 4~7%)
+          HOST=fox/out/host/linux-x86/bin
+          if [ ! -x "$HOST/mkbootfs" ]; then
+            echo ">>> ❌ 找不到 $HOST/mkbootfs, 无法重打包"
+            exit 0
+          fi
+          "$HOST/mkbootfs" -d "$OUT/system" "$ROOT" > /tmp/ramdisk-opt.cpio || { echo ">>> ❌ mkbootfs 失败"; exit 0; }
+          rm -f /tmp/ramdisk-opt.cpio.gz
+          if command -v zopfli >/dev/null 2>&1; then
+            # zopfli 迭代参数新老版本写法不同, 两种都试; 失败则下面回退 gzip -9
+            ( cd /tmp && { zopfli --i15 ramdisk-opt.cpio || zopfli ramdisk-opt.cpio; } >/dev/null 2>&1 )
+          fi
+          if [ ! -s /tmp/ramdisk-opt.cpio.gz ]; then
+            echo ">>> zopfli 不可用/失败, 退回 gzip -9 -n"
+            gzip -9 -n < /tmp/ramdisk-opt.cpio > /tmp/ramdisk-opt.cpio.gz
+          fi
+          echo ">>> 新 ramdisk.gz: $(stat -c %s /tmp/ramdisk-opt.cpio.gz) 字节 (构建原版: $(stat -c %s $OUT/ramdisk-recovery.img 2>/dev/null || echo '?') 字节)"
+
           python3 tools/mkbootimg_mtk.py \
             --kernel "$OUT/kernel" \
-            --ramdisk /tmp/ramdisk-salvage.gz \
+            --ramdisk /tmp/ramdisk-opt.cpio.gz \
             --out "$OUT/recovery-salvage.img" \
             --cmdline "bootopt=64S3,32N2,32N2 androidboot.selinux=permissive buildvariant=eng" \
             --name 1505127327
           S2=$(stat -c %s "$OUT/recovery-salvage.img" 2>/dev/null || echo 0)
-          echo ">>> 瘦身后: $S2 字节 (原 $SIZE, 上限 $LIMIT)"
+          echo ">>> 优化后: $S2 字节 (原 $SIZE, 上限 $LIMIT)"
           if [ "$S2" -gt 0 ] && [ "$S2" -le "$LIMIT" ]; then
-            echo ">>> ✅ 瘦身成功"
+            echo ">>> ✅ 优化成功, 余量 $((LIMIT - S2)) 字节; 请刷 recovery-salvage.img"
+            python3 tools/unpack_bootimg.py --info "$OUT/recovery-salvage.img" 2>/dev/null | head -12 || true
           else
-            echo ">>> ❌ 瘦身后仍超限"
+            echo ">>> ❌ 优化后仍超限"
           fi
 
       - name: Summary (always)
@@ -330,15 +392,16 @@ jobs:
               python3 tools/unpack_bootimg.py --info "$IMG" 2>/dev/null || echo "(解析失败)"
               echo '```'
             elif [ "$SSIZE" -gt 0 ] && [ "$SSIZE" -le "$LIMIT" ]; then
-              echo "## ✅ 编译成功（经自动瘦身）"
+              echo "## ✅ 编译成功（经自动优化）"
               echo
               echo "| 项目 | 值 |"
               echo "|---|---|"
               echo "| 分支 | \`$LABEL\` |"
               echo "| 原镜像 | ${SIZE} 字节 (超出 $((SIZE - LIMIT))) |"
-              echo "| 瘦身后 | ${SSIZE} 字节 (约 $((SSIZE/1048576)) MB), 余量 $((LIMIT - SSIZE)) |"
+              echo "| 优化项 | 无引用库移除 + 主题 PNG 量化 + zopfli 重压缩 |"
+              echo "| 优化后 | ${SSIZE} 字节 (约 $((SSIZE/1048576)) MB), 余量 $((LIMIT - SSIZE)) |"
               echo "| SHA256 | \`$(sha256sum "$SAL" | cut -d' ' -f1)\` |"
-              echo "| 下载 | Artifacts → \`OrangeFox-recovery-q5c62q_njx\`（recovery-salvage.img） |"
+              echo "| 下载 | Artifacts → \`OrangeFox-recovery-q5c62q_njx\`（**刷 recovery-salvage.img**, 原版仅参考） |"
               echo
               echo "### 瘦身后镜像头部校验"
               echo
@@ -351,11 +414,14 @@ jobs:
               echo "| 镜像 | 大小 | 超出 |"
               echo "|---|---|---|"
               echo "| \`recovery.img\` | ${SIZE} 字节 | $((SIZE - LIMIT)) 字节 |"
+              if [ "$SSIZE" -gt 0 ]; then
+                echo "| \`recovery-salvage.img\` (已自动优化) | ${SSIZE} 字节 | $((SSIZE - LIMIT)) 字节 |"
+              fi
               echo
               volume_breakdown
               echo
               if [ "$LABEL" = "fox_9.0" ]; then
-                echo "> 处理: 重跑并勾选 \`fox_extreme=true\` (FOX_EXTREME_SIZE_REDUCTION)"
+                echo "> 处理: 确认 \`fox_extreme=true\`; 仍不够时下次运行勾 \`keep_charger=false\` (再省 ~1MB)"
               else
                 echo "> 结论: fox_12.1 的 A12 核心无法压入 16MB (内核仅支持 gzip, A12 比 A9 底座大 ~14MB)。"
                 echo ">   可用的 OrangeFox 请改用 \`fox_branch=9.0\`。本页明细仅作分析参考。"

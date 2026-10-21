@@ -71,7 +71,7 @@ export OF_FORCE_PREBUILT_KERNEL=1   # 预编译内核无 .config，防 "NO KERNE
 | 亮度不可调 | 尝试 `TW_MAX_BRIGHTNESS := 255` / `TW_DEFAULT_BRIGHTNESS`，或换 `/sys/devices/platform/leds-mt65xx/...` 路径 |
 | 中文界面 | 默认**关闭**：`TW_EXTRA_LANGUAGES := true` 会附带 4.3MB CJK 字体（DroidSansFallback 3.6MB + NotoSansCJK 0.7MB）与 ~1MB 语言包，压缩后约 2.5MB，是 twrp-9.0 16MB 超限的主因。云端编译时可用工作流输入 **`keep_fonts=true`** 一键启用（本地则改回 `TW_DEFAULT_LANGUAGE := zh_CN` + `TW_EXTRA_LANGUAGES := true`），16MB 分区下需接受镜像增大 |
 | 字体/语言瘦身 | 见上；TWRP 界面字体（Roboto 等）在 theme/common/fonts 中始终保留，不受影响 |
-| 镜像超 16MB | **TWRP**：默认 `twrp-9.0` + 关闭额外字体即可进 16MB（已实测，充电动画可保留）；中文界面需搭配 `twrp-8.1`（体积裕量大）。**OrangeFox**：工作流 `build_orangefox.yml` 选 `fox_branch=9.0`（与 TWRP 9.0 同底座，预计 ~15MB）；`fox_branch=12.1` 因 A12 核心大 ~14MB 且内核仅支持 gzip ramdisk，无法压入 16MB，仅作分析。超限时勾选 `fox_extreme=true`（FOX_EXTREME_SIZE_REDUCTION，官方裁剪：删非默认字体/附加工具）。⚠️ **本机 3.18 内核只支持 gzip initramfs**（`lib/decompress.c` 方法表中 lzma/xz/bzip2/lzo/lz4 解压器指针全为 NULL），不可开 `OF_USE_LZMA_COMPRESSION`/`FOX_USE_LZMA_COMPRESSION`，否则镜像无法启动 |
+| 镜像超 16MB | **TWRP**：默认 `twrp-9.0` + 关闭额外字体即可进 16MB（已实测，充电动画可保留）；中文界面需搭配 `twrp-8.1`（体积裕量大）。**OrangeFox**：工作流 `build_orangefox.yml` 选 `fox_branch=9.0`（与 TWRP 9.0 同底座）。实测 `fox_extreme=true`（官方裁剪：删非默认字体/附加工具）后 17.53MB，仍差 0.72MB；工作流内置超限自动优化（移除无引用库 + twres PNG 量化 + zopfli 替换 minigzip(gzip-6) 重压缩，预计 ~16.2-16.5MB）并产出 `recovery-salvage.img`（刷这个）。仍不够时用 `keep_charger=false`（再省 ~1MB）。`fox_branch=12.1` 因 A12 核心大 ~14MB 且内核仅支持 gzip ramdisk，无法压入 16MB，仅作分析。⚠️ **本机 3.18 内核只支持 gzip initramfs**（`lib/decompress.c` 方法表中 lzma/xz/bzip2/lzo/lz4 解压器指针全为 NULL），不可开 `OF_USE_LZMA_COMPRESSION`/`FOX_USE_LZMA_COMPRESSION`，否则镜像无法启动 |
 | 触摸方向错误 | 内核触控驱动决定，一般无需处理；软件侧可 `TW_INPUT_BLACKLIST` 排除虚拟鼠标设备 |
 
 ## 给非 recovery 移植的建议
