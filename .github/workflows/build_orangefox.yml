@@ -1,12 +1,36 @@
-name: Build OrangeFox fox_12.1 (q5c62q_njx / MT6737T) [实验: 预计超限, 正式用 fox_9.0 工作流]
+name: Build OrangeFox (q5c62q_njx / MT6737T)
 
-# 结论: 本机内核仅支持 gzip initramfs (lib/decompress.c 表中 lzma/xz 解压器指针为 NULL),
-#   fox_12.1 的 A12 核心体积比 A9 (TWRP 9.0) 大 10MB+, 裁剪后仍无法进 16MB 分区。
-#   可用的 OrangeFox 请使用 build_orangefox9.yml (fox_9.0, 与 TWRP 9.0 同底座)。
-#   本工作流保留用于验证/研究。
+# 单一工作流, 通过 fox_branch 选项切换两套官方构建路径:
+#   fox_9.0  (默认, 可用): TWRP 9.0 同底座 + 橙狐 R10 界面/工具
+#      -> twrp-9.0 minimal omni manifest + patch-manifest-fox_9.0.diff
+#         + OrangeFox bootable/Recovery(fox_9.0) + vendor/recovery(legacy) + external/busybox
+#      -> 预计镜像 ~15MB, 可进 16MB 分区
+#   fox_12.1 (实验, 预计超限): A12 核心比 A9 大 ~14MB, 仅保留作分析
+#      -> 官方 orangefox_sync.sh --branch 12.1
+#
+# 内核结论: 本机 3.18.19 内核只编译了 gzip initramfs 解压器
+#   (lib/decompress.c 方法表中 lzma/xz/bzip2/lzo/lz4 指针全为 NULL),
+#   严禁 OF_USE_LZMA_COMPRESSION / FOX_USE_LZMA_COMPRESSION (镜像无法启动)。
 
 on:
   workflow_dispatch:
+    inputs:
+      fox_branch:
+        description: "OrangeFox 分支: 9.0=可用(TWRP9 底座, 推荐) / 12.1=实验(A12 核心预计超 16MB)"
+        required: true
+        default: "9.0"
+        type: choice
+        options:
+          - "9.0"
+          - "12.1"
+      fox_extreme:
+        description: "极限瘦身 FOX_EXTREME_SIZE_REDUCTION=1 (删非默认字体/附加工具, 超限时开启)"
+        required: true
+        default: "false"
+        type: choice
+        options:
+          - "false"
+          - "true"
 
 jobs:
   build:
@@ -15,6 +39,14 @@ jobs:
     steps:
       - name: Checkout device tree
         uses: actions/checkout@v5
+
+      - name: Set up JDK 8
+        # Android 9 构建系统要求 JDK 8 (fox_9.0); fox_12.1 需要 runner 默认 JDK 11, 不能装 JDK 8
+        if: inputs.fox_branch == '9.0'
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '8'
 
       - name: Free disk space
         run: |
@@ -37,8 +69,14 @@ jobs:
           sudo apt-get install -y git-core gnupg flex bison gperf build-essential \
               zip curl zlib1g-dev gcc-multilib g++-multilib libc6-dev-i386 \
               lib32ncurses5-dev x11proto-core-dev libx11-dev lib32z1-dev \
-              libgl1-mesa-dev libxml2-utils xsltproc unzip ccache rsync \
-              libtinfo5 libncurses5 xz-utils
+              libgl1-mesa-dev libxml2-utils xsltproc unzip ccache rsync xz-utils \
+              libtinfo5 libncurses5 schedtool
+          # fox_9.0 (A9) 构建脚本需要 python2; fox_12.1 不需要
+          if [ "${{ inputs.fox_branch }}" = "9.0" ]; then
+            for p in python2 python2.7 python-is-python2; do
+              sudo apt-get install -y $p || true
+            done
+          fi
 
       - name: Install repo tool
         run: |
@@ -46,145 +84,287 @@ jobs:
           curl -s https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
           chmod a+x ~/bin/repo
           echo "$HOME/bin" >> $GITHUB_PATH
-          export PATH="$HOME/bin:$PATH"
-          repo --version
           git config --global user.name "github-actions"
           git config --global user.email "ci@localhost"
+          repo --version
 
-      - name: Sync OrangeFox sources (fox_12.1)
+      - name: Sync sources (fox_9.0 官方 legacy 流程)
+        if: inputs.fox_branch == '9.0'
+        run: |
+          set -e
+          # runner 的 /usr/local/bin/python 是 python3; A9 构建需 python2,
+          # 在 ~/bin (最高优先级, 见上一步 GITHUB_PATH) 放 python2 软链
+          py2=/usr/bin/python2.7
+          [ -x "$py2" ] || py2=/usr/bin/python2
+          if [ -x "$py2" ]; then
+            ln -sf "$py2" "$HOME/bin/python"
+            "$HOME/bin/python" --version
+          else
+            echo "警告: 未找到 python2, 构建可能失败"
+          fi
+
+          # 1) 同步 twrp-9.0 minimal omni manifest (与 TWRP 9.0 工作流同源)
+          mkdir -p fox
+          cd fox
+          ~/bin/repo init --depth=1 -u https://github.com/minimal-manifest-twrp/platform_manifest_twrp_omni.git -b twrp-9.0
+          ~/bin/repo sync -j$(nproc --all) --force-sync --no-clone-bundle --no-tags
+          cd "$GITHUB_WORKSPACE"
+
+          # 2) 官方 manifest 补丁 (builder 钩子: vendor/recovery/OrangeFox.sh 挂进 build/core)
+          mkdir -p ~/ofox_sync
+          git clone --depth=1 https://gitlab.com/OrangeFox/sync.git ~/ofox_sync/sync
+          cd fox/build
+          patch -p1 < ~/ofox_sync/sync/legacy/patches/patch-manifest-fox_9.0.diff
+          grep -n "Fox_Before_Recovery_Image" core/Makefile >/dev/null && echo ">>> manifest 补丁已生效"
+          cd "$GITHUB_WORKSPACE"
+
+          # 3) bootable/recovery 换为 OrangeFox fox_9.0 (含主题 submodule)
+          rm -rf fox/bootable/recovery
+          git clone --depth=1 -b fox_9.0 https://gitlab.com/OrangeFox/bootable/Recovery.git fox/bootable/recovery
+          cd fox/bootable/recovery
+          # submodule 写的是 git@gitlab.com (CI 无 SSH key), 用 insteadOf 强制走 https
+          git -c url.https://gitlab.com/OrangeFox/misc/theme.git.insteadOf=git@gitlab.com:OrangeFox/misc/theme.git \
+              submodule update --init --depth=1 || true
+          if [ ! -f gui/theme/portrait_hdpi/ui.xml ]; then
+            echo ">>> submodule 失败, 兜底按 SHA 拉取主题 (fox_9.0 对应提交)"
+            rm -rf gui/theme
+            git clone https://gitlab.com/OrangeFox/misc/theme.git gui/theme
+            (cd gui/theme && git fetch --depth=1 origin 51b06e501e32fa69df28a507b0a64382be6d2db4 && git checkout FETCH_HEAD)
+          fi
+          test -f gui/theme/portrait_hdpi/ui.xml && echo ">>> 主题就绪"
+          cd "$GITHUB_WORKSPACE"
+
+          # 4) vendor/recovery legacy 分支 (fox_9.0 使用 old master=legacy)
+          rm -rf fox/vendor/recovery
+          git clone --depth=1 -b legacy https://gitlab.com/OrangeFox/vendor/recovery.git fox/vendor/recovery
+          test -f fox/vendor/recovery/OrangeFox.sh && echo ">>> vendor/recovery(legacy) 就绪"
+
+          # 5) external/busybox (OrangeFox 版, android-9.0)
+          rm -rf fox/external/busybox
+          git clone --depth=1 -b android-9.0 https://gitlab.com/OrangeFox/external/busybox.git fox/external/busybox
+          test -d fox/external/busybox && echo ">>> external/busybox 就绪"
+
+          # 6) qcom common (manifest 缺省时补齐, 不影响 mediatek 设备)
+          [ -d fox/device/qcom/common ] || \
+            git clone --depth=1 -b android-9.0 https://github.com/TeamWin/android_device_qcom_common fox/device/qcom/common
+          [ -d fox/device/qcom/twrp-common ] || \
+            git clone --depth=1 -b android-9.0 https://github.com/TeamWin/android_device_qcom_twrp-common fox/device/qcom/twrp-common
+
+          echo "FOX_LUNCH=omni_q5c62q_njx-eng" >> $GITHUB_ENV
+          echo "FOX_LABEL=fox_9.0" >> $GITHUB_ENV
+
+      - name: Sync sources (fox_12.1 官方 orangefox_sync.sh)
+        if: inputs.fox_branch == '12.1'
         run: |
           mkdir -p ~/OrangeFox_sync && cd ~/OrangeFox_sync
           git clone --depth=1 https://gitlab.com/OrangeFox/sync.git
           cd sync
-          ./orangefox_sync.sh --branch 12.1 --path ~/fox_12.1
+          ./orangefox_sync.sh --branch 12.1 --path "$GITHUB_WORKSPACE/fox"
+          echo "FOX_LUNCH=twrp_q5c62q_njx-eng" >> $GITHUB_ENV
+          echo "FOX_LABEL=fox_12.1" >> $GITHUB_ENV
 
       - name: Copy device tree
         run: |
-          mkdir -p ~/fox_12.1/device/mediatek
-          cp -r device/q5c62q_njx ~/fox_12.1/device/mediatek/q5c62q_njx
+          mkdir -p fox/device/mediatek
+          cp -r device/q5c62q_njx fox/device/mediatek/q5c62q_njx
+          echo ">>> device tree 已就位 ($FOX_LABEL; BoardConfig 按 PLATFORM_SDK_VERSION 自动走对应分支)"
 
-      - name: Patch known build issues
+      - name: Patch known build issues (fox_12.1)
+        if: inputs.fox_branch == '12.1'
         run: |
-          # A12 bionic/libcutils 移除了 AID_MEDIA_RW 宏(历史值 1023),
-          # 而 partitionmanager.cpp 仍引用 -> 用可复用脚本统一补丁
-          cd ~/fox_12.1
+          # AID_MEDIA_RW / libbinder map / rsync --force (fox_12.1 专用, 见 tools/ofox_ci_patch.sh)
+          cd fox
           sh "$GITHUB_WORKSPACE/tools/ofox_ci_patch.sh"
 
       - name: Build recovery
         run: |
           set +e
-          cd ~/fox_12.1
-          export FOX_BUILD_DEVICE=q5c62q_njx
-          export FOX_VANILLA_BUILD=1
-          export OF_FORCE_PREBUILT_KERNEL=1
+          cd fox
+          export FOX_BUILD_TYPE=Unofficial
           export ALLOW_MISSING_DEPENDENCIES=true
           export LC_ALL=C
+          if [ "${{ inputs.fox_extreme }}" = "true" ]; then
+            export FOX_EXTREME_SIZE_REDUCTION=1
+            echo ">>> fox_extreme=true: 已启用 FOX_EXTREME_SIZE_REDUCTION"
+          fi
           echo ">>> source build/envsetup.sh"
           source build/envsetup.sh
           echo ">>> envsetup rc=$?"
-          echo ">>> lunch"
-          # fox_12.1 树没有 vendor/omni, 只能使用 twrp_ 命名目标
-          lunch twrp_q5c62q_njx-eng
+          echo ">>> lunch $FOX_LUNCH"
+          lunch "$FOX_LUNCH"
           echo ">>> lunch rc=$?"
           mka recoveryimage -j$(nproc --all) 2>&1 | tee build.log
           rc=${PIPESTATUS[0]}
           echo ">>> mka rc=$rc"
-          ls -la out/target/product/q5c62q_njx/ 2>/dev/null
-          for f in out/target/product/q5c62q_njx/*.img; do
-            [ -f "$f" ] || continue
-            s=$(stat -c %s "$f")
-            echo "IMAGE $f = $s bytes"
-            [ "$s" -gt 16777216 ] && echo "警告: $f 超过 16MB recovery 分区, 刷入前必须裁剪!"
-          done
+          ls -la out/target/product/q5c62q_njx/*.img 2>/dev/null
           exit $rc
+
+      - name: Salvage oversize image (strip + repack)
+        if: always()
+        run: |
+          set +e
+          OUT=fox/out/target/product/q5c62q_njx
+          ROOT=$OUT/recovery/root
+          IMG=$OUT/recovery.img
+          LIMIT=16777216
+          SIZE=$(stat -c %s "$IMG" 2>/dev/null || echo 0)
+          if [ "$SIZE" -le "$LIMIT" ] || [ "$SIZE" -eq 0 ]; then
+            echo ">>> 无需瘦身 (size=$SIZE)"
+            exit 0
+          fi
+          HOST=fox/out/host/linux-x86/bin
+          CSTRIP=fox/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9/bin/arm-linux-androideabi-strip
+          [ -x "$CSTRIP" ] || CSTRIP=strip
+          echo ">>> 原镜像 $SIZE 字节, 开始 strip 瘦身 ($CSTRIP)"
+          N=0
+          for f in $(find "$ROOT" -type f); do
+            if file -b "$f" 2>/dev/null | grep -q "ELF"; then
+              if "$CSTRIP" "$f" 2>/dev/null; then N=$((N+1)); fi
+            fi
+          done
+          echo ">>> 已 strip $N 个 ELF 文件"
+          "$HOST/mkbootfs" -d "$OUT/system" "$ROOT" | "$HOST/minigzip" > /tmp/ramdisk-salvage.gz || exit 0
+          python3 tools/mkbootimg_mtk.py \
+            --kernel "$OUT/kernel" \
+            --ramdisk /tmp/ramdisk-salvage.gz \
+            --out "$OUT/recovery-salvage.img" \
+            --cmdline "bootopt=64S3,32N2,32N2 androidboot.selinux=permissive buildvariant=eng" \
+            --name 1505127327
+          S2=$(stat -c %s "$OUT/recovery-salvage.img" 2>/dev/null || echo 0)
+          echo ">>> 瘦身后: $S2 字节 (原 $SIZE, 上限 $LIMIT)"
+          if [ "$S2" -gt 0 ] && [ "$S2" -le "$LIMIT" ]; then
+            echo ">>> ✅ 瘦身成功"
+          else
+            echo ">>> ❌ 瘦身后仍超限"
+          fi
 
       - name: Summary (always)
         if: always()
         run: |
           set +e
-          OUT=$HOME/fox_12.1/out/target/product/q5c62q_njx
-          LOG=$HOME/fox_12.1/build.log
+          OUT=fox/out/target/product/q5c62q_njx
+          ROOT=$OUT/recovery/root
+          IMG=$OUT/recovery.img
+          SAL=$OUT/recovery-salvage.img
           LIMIT=16777216
-          IMGS=""
-          for f in $OUT/OrangeFox-*.img $OUT/recovery.img; do
-            [ -f "$f" ] && IMGS="$IMGS $f"
-          done
-          HAS=0
-          OVER=0
-          OVER_LIST=""
-          for f in $IMGS; do
-            HAS=1
-            S=$(stat -c %s "$f")
-            if [ "$S" -gt "$LIMIT" ]; then
-              OVER=1
-              OVER_LIST="$OVER_LIST $f(${S}B)"
-            fi
-          done
+          LABEL="$FOX_LABEL"
+          [ -n "$LABEL" ] || LABEL="fox_${{ inputs.fox_branch }}"
+          SIZE=0
+          [ -f "$IMG" ] && SIZE=$(stat -c %s "$IMG")
+          SSIZE=0
+          [ -f "$SAL" ] && SSIZE=$(stat -c %s "$SAL")
+
+          # ---- 构建详情检测 ----
+          FOX_VER=$(strings -a "$ROOT/sbin/recovery" 2>/dev/null | grep -m1 -iE "OrangeFox" || true)
+          [ -n "$FOX_VER" ] || FOX_VER="(未识别)"
+          if [ -e "$ROOT/twres/fonts/Chococooky.ttf" ]; then FONTS_STATE="完整字体集"; else FONTS_STATE="已裁剪(无 Chococooky)"; fi
+          if [ -e "$ROOT/sbin/zip" ]; then ZIP_STATE="包含"; else ZIP_STATE="未包含"; fi
 
           volume_breakdown() {
-            echo "### 体积明细"
+            echo "### recovery root 体积明细"
             echo
             echo '```'
-            echo "== recovery/root =="
-            echo "解压总体积: $(du -sh $OUT/recovery/root 2>/dev/null | cut -f1), 文件数: $(find $OUT/recovery/root -type f 2>/dev/null | wc -l)"
-            echo "-- 单文件 TOP40 (>200KB) --"
-            find $OUT/recovery/root -type f -size +200k -exec du -k {} + 2>/dev/null | sort -rn | head -40
-            echo "== system =="
-            echo "解压总体积: $(du -sh $OUT/system 2>/dev/null | cut -f1)"
-            echo "-- 单文件 TOP20 (>500KB) --"
-            find $OUT/system -type f -size +500k -exec du -k {} + 2>/dev/null | sort -rn | head -20
+            echo "du 总体积: $(du -sh $ROOT 2>/dev/null | cut -f1), 文件数: $(find $ROOT -type f 2>/dev/null | wc -l)"
+            python3 -c "import os,sys;r=sys.argv[1];t=sum(os.path.getsize(os.path.join(dp,f)) for dp,_,fs in os.walk(r) for f in fs if not os.path.islink(os.path.join(dp,f)));print('实际字节:',t,f'({t/1048576:.2f}MB)')" "$ROOT" 2>/dev/null
+            ls -l $OUT/ramdisk-recovery.img 2>/dev/null && file $OUT/ramdisk-recovery.img 2>/dev/null
+            echo "-- 目录 TOP15 --"
+            du -sk $ROOT/* 2>/dev/null | sort -rn | head -15
+            echo "-- 单文件 TOP40 (>100KB) --"
+            find $ROOT -type f -size +100k -exec du -k {} + 2>/dev/null | sort -rn | head -40
+            echo "-- ELF 依赖分析 (关键库引用者) --"
+            : > /tmp/fox_deps.txt
+            for d in "$ROOT/sbin" "$ROOT/system/bin" "$ROOT/system/lib"; do
+              [ -d "$d" ] || continue
+              for f in "$d"/*; do
+                [ -f "$f" ] || continue
+                [ -L "$f" ] && continue
+                deps=$(readelf -d "$f" 2>/dev/null | sed -n 's/.*(NEEDED).*\[\(.*\)\].*/\1/p')
+                [ -n "$deps" ] || continue
+                for dep in $deps; do echo "$dep <- $(basename "$f")"; done
+              done
+            done > /tmp/fox_deps.txt
+            grep -E "^(libchrome|libandroidicu|libicu|libclang_rt|libunwindstack|libevent\.so|libpcre)" /tmp/fox_deps.txt || echo "  (无额外重库)"
+            echo "-- 未被引用的 .so 候选 (非全量可信, >50KB) --"
+            awk '{print $1}' /tmp/fox_deps.txt | sort -u > /tmp/fox_ref.txt
+            for d in "$ROOT/sbin" "$ROOT/system/lib"; do
+              [ -d "$d" ] || continue
+              for f in "$d"/*.so; do
+                [ -f "$f" ] || continue
+                b=$(basename "$f")
+                grep -qx "$b" /tmp/fox_ref.txt && continue
+                case "$b" in libc.so|libdl.so|libm.so) continue;; esac
+                sz=$(stat -c %s "$f")
+                [ "$sz" -gt 51200 ] && echo "$((sz/1024))K  $b"
+              done
+            done | sort -rn | head -20
             echo '```'
           }
 
           {
-            echo "# OrangeFox (fox_12.1) 编译结果 (q5c62q_njx / MT6737T)"
+            echo "# OrangeFox 编译结果 ($LABEL / q5c62q_njx / MT6737T)"
             echo
-            if [ "$HAS" -eq 1 ] && [ "$OVER" -eq 0 ]; then
+            if [ "$SIZE" -gt 0 ] && [ "$SIZE" -le "$LIMIT" ]; then
+              HASH=$(sha256sum "$IMG" | cut -d' ' -f1)
               echo "## ✅ 编译成功"
-              echo
-              echo "| 镜像 | 大小 | SHA256 |"
-              echo "|---|---|---|"
-              for f in $IMGS; do
-                S=$(stat -c %s "$f")
-                echo "| \`$(basename "$f")\` | ${S} 字节 (约 $((S/1048576)) MB) | \`$(sha256sum "$f" | cut -d' ' -f1)\` |"
-              done
               echo
               echo "| 项目 | 值 |"
               echo "|---|---|"
-              echo "| 下载 | Artifacts → \`OrangeFox-recovery-q5c62q_njx\` |"
-              for f in $OUT/recovery.img; do
-                [ -f "$f" ] || continue
-                echo
-                echo "### recovery.img 头部校验"
-                echo
-                echo '```'
-                python3 tools/unpack_bootimg.py --info "$f" 2>/dev/null || echo "(解析失败)"
-                echo '```'
-              done
-            elif [ "$OVER" -eq 1 ]; then
-              echo "## ⚠️ 构建完成, 但存在超过 16MB 分区的镜像"
+              echo "| 分支 | \`$LABEL\` |"
+              echo "| 版本标识 | ${FOX_VER} |"
+              echo "| 额外裁剪 | fox_extreme=\`${{ inputs.fox_extreme }}\` |"
+              echo "| 字体 | ${FONTS_STATE} |"
+              echo "| zip | ${ZIP_STATE} |"
+              echo "| 镜像 | \`recovery.img\` |"
+              echo "| 大小 | ${SIZE} 字节 (约 $((SIZE/1048576)) MB) |"
+              echo "| 分区余量 | $((LIMIT - SIZE)) 字节 (上限 ${LIMIT}) |"
+              echo "| SHA256 | \`${HASH}\` |"
+              echo "| 下载 | 本页底部 Artifacts → \`OrangeFox-recovery-q5c62q_njx\` |"
               echo
-              echo "超限: \`$OVER_LIST\` （上限 ${LIMIT} 字节）"
+              echo "> ramdisk 为 gzip (本机内核仅支持 gzip initramfs, 不可用 lzma)"
               echo
-              echo "| 镜像 | 大小 |"
+              echo "### 镜像头部校验"
+              echo
+              echo '```'
+              python3 tools/unpack_bootimg.py --info "$IMG" 2>/dev/null || echo "(解析失败)"
+              echo '```'
+            elif [ "$SSIZE" -gt 0 ] && [ "$SSIZE" -le "$LIMIT" ]; then
+              echo "## ✅ 编译成功（经自动瘦身）"
+              echo
+              echo "| 项目 | 值 |"
               echo "|---|---|"
-              for f in $IMGS; do
-                S=$(stat -c %s "$f")
-                echo "| \`$(basename "$f")\` | ${S} 字节 (约 $((S/1048576)) MB) |"
-              done
+              echo "| 分支 | \`$LABEL\` |"
+              echo "| 原镜像 | ${SIZE} 字节 (超出 $((SIZE - LIMIT))) |"
+              echo "| 瘦身后 | ${SSIZE} 字节 (约 $((SSIZE/1048576)) MB), 余量 $((LIMIT - SSIZE)) |"
+              echo "| SHA256 | \`$(sha256sum "$SAL" | cut -d' ' -f1)\` |"
+              echo "| 下载 | Artifacts → \`OrangeFox-recovery-q5c62q_njx\`（recovery-salvage.img） |"
+              echo
+              echo "### 瘦身后镜像头部校验"
+              echo
+              echo '```'
+              python3 tools/unpack_bootimg.py --info "$SAL" 2>/dev/null || echo "(解析失败)"
+              echo '```'
+            elif [ "$SIZE" -gt "$LIMIT" ]; then
+              echo "## ⚠️ 构建完成, 但镜像超过 16MB 分区"
+              echo
+              echo "| 镜像 | 大小 | 超出 |"
+              echo "|---|---|---|"
+              echo "| \`recovery.img\` | ${SIZE} 字节 | $((SIZE - LIMIT)) 字节 |"
               echo
               volume_breakdown
               echo
-              echo "> 结论: fox_12.1 的 A12 核心无法压入 16MB (内核仅支持 gzip initramfs,"
-              echo ">   A12 比 A9/TWRP9 底座大 ~14MB)。可用的 OrangeFox 请跑 \`Build OrangeFox fox_9.0\` 工作流。"
-              echo ">   本页体积明细仅作分析参考。"
+              if [ "$LABEL" = "fox_9.0" ]; then
+                echo "> 处理: 重跑并勾选 \`fox_extreme=true\` (FOX_EXTREME_SIZE_REDUCTION)"
+              else
+                echo "> 结论: fox_12.1 的 A12 核心无法压入 16MB (内核仅支持 gzip, A12 比 A9 底座大 ~14MB)。"
+                echo ">   可用的 OrangeFox 请改用 \`fox_branch=9.0\`。本页明细仅作分析参考。"
+              fi
             else
               echo "## ❌ 编译失败"
               echo
               echo "错误摘要（完整日志见上方 Build recovery 步骤）："
               echo
               echo '```'
-              grep -n -B2 -A30 "FAILED\|ninja: build stopped\|error:" "$LOG" 2>/dev/null | tail -80 || echo "(未捕获到 build.log)"
+              grep -n -B2 -A30 "FAILED\|ninja: build stopped\|error:\|Error " fox/build.log 2>/dev/null | tail -80 || echo "(未捕获到 build.log)"
               echo '```'
               echo
               volume_breakdown
@@ -197,11 +377,28 @@ jobs:
             echo "> 完整日志见本页 Job 的 Build recovery 步骤；产物在 Artifacts 区域。"
           } 2>&1 | tee -a "$GITHUB_STEP_SUMMARY"
 
+      - name: Rename output
+        if: always()
+        run: |
+          set +e
+          OUT=fox/out/target/product/q5c62q_njx
+          for f in $OUT/OrangeFox-*.img; do
+            [ -f "$f" ] || continue
+            n=$(basename "$f")
+            case "$n" in
+              *q5c62q*) new="${n/q5c62q/q5c62q_njx}" ;;
+              *) new="${n%.img}-q5c62q_njx.img" ;;
+            esac
+            cp -f "$f" "$OUT/$new" 2>/dev/null && echo ">>> $n -> $new"
+          done
+          ls -la $OUT/*.img 2>/dev/null
+
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: OrangeFox-recovery-q5c62q_njx
           path: |
-            ~/fox_12.1/out/target/product/q5c62q_njx/OrangeFox-*.img
-            ~/fox_12.1/out/target/product/q5c62q_njx/recovery.img
+            fox/out/target/product/q5c62q_njx/OrangeFox-*.img
+            fox/out/target/product/q5c62q_njx/recovery.img
+            fox/out/target/product/q5c62q_njx/recovery-salvage.img
           if-no-files-found: warn

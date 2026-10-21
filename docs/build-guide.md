@@ -79,7 +79,7 @@ mka recoveryimage -j$(nproc)
 # 产物: out/target/product/q5c62q_njx/recovery.img
 ```
 
-### OrangeFox（fox_9.0，与 TWRP 9.0 同底座；CI 见 build_orangefox9.yml）
+### OrangeFox（单工作流 build_orangefox.yml，`fox_branch` 选项切换 9.0 / 12.1）
 > ⚠️ 本机 3.18 内核 **只支持 gzip initramfs**：`lib/decompress.c` 的 compressed_formats
 > 表中 gzip 解压函数指针有效（0xc0c3384c），lzma/xz/bzip2/lzo/lz4 全为 NULL。
 > 任何 LZMA ramdisk 选项（`OF_USE_LZMA_COMPRESSION` / `FOX_USE_LZMA_COMPRESSION`）
