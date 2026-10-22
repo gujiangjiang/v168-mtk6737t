@@ -225,6 +225,17 @@ jobs:
           rc=${PIPESTATUS[0]}
           echo ">>> mka rc=$rc"
           ls -la out/target/product/q5c62q_njx/*.img 2>/dev/null
+          if [ "$rc" != "0" ]; then
+            # 构建系统自带"镜像超过分区大小"校验(build/make: build-recoveryimage-target),
+            # 超限时 mka 会 rc!=0, 但 recovery.img 已完整产出。
+            # 这属于预期情况(交给后续 Optimize 步骤优化重打包), 不能算构建失败。
+            IMG=out/target/product/q5c62q_njx/recovery.img
+            if [ -s "$IMG" ] && grep -q "too large" build.log; then
+              echo ">>> mka 因 'image too large' 体积校验报错, 但 recovery.img 已产出 ($(stat -c %s "$IMG") 字节)"
+              echo ">>> 按'超限产物'处理 (exit 0), 由 Optimize oversize image 步骤接手"
+              exit 0
+            fi
+          fi
           exit $rc
 
       - name: Optimize oversize image (prune + pngquant + zopfli repack)
@@ -482,6 +493,8 @@ jobs:
           exit 0
 
       - name: Upload artifact
+        # always: 即便上游有非体积类报错, 也把已产出的镜像/优化产物传上来便于分析
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: OrangeFox-recovery-q5c62q_njx

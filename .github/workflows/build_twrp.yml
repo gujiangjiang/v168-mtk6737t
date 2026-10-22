@@ -155,6 +155,15 @@ jobs:
           mka recoveryimage -j$(nproc --all) 2>&1 | tee build.log
           rc=${PIPESTATUS[0]}
           echo ">>> mka rc=$rc"
+          if [ "$rc" != "0" ]; then
+            # 构建系统自带"镜像超过分区大小"校验: 超限时 mka rc!=0 但 recovery.img 已产出,
+            # 交给 Salvage 步骤处理, 不算构建失败
+            IMG=out/target/product/q5c62q_njx/recovery.img
+            if [ -s "$IMG" ] && grep -q "too large" build.log; then
+              echo ">>> mka 因 'image too large' 校验报错, 但 recovery.img 已产出 ($(stat -c %s "$IMG") 字节); 交由 Salvage 处理"
+              exit 0
+            fi
+          fi
           exit $rc
 
       - name: Salvage oversize image (strip + repack)
@@ -327,7 +336,8 @@ jobs:
           if-no-files-found: error
 
       - name: Upload salvage artifact (if any)
-        if: failure()
+        # 超限时构建步骤按"超限产物"exit 0, job 不再变红, 因此用 always 保证瘦身产物仍会上传
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: TWRP-recovery-salvage-q5c62q_njx
