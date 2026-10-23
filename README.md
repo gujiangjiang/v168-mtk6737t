@@ -55,11 +55,15 @@
 │   ├── recovery/               # 原机 recovery.img 解包产物
 │   ├── system/                 # system.img 只读遍历清单（1905 个文件）
 │   └── logs/                   # 头部解析 / DTB 节点 / system 结构 分析日志
-├── tools/                      # ★ 分析/打包工具（纯 python3，跨平台）
+├── tools/                      # ★ 分析/打包/开发工具
 │   ├── unpack_bootimg.py       # MTK boot/recovery 解包
 │   ├── repack_ramdisk.py       # 目录 → cpio(.gz) 重打包（可复现）
 │   ├── mkbootimg_mtk.py        # 打包本机参数 boot/recovery.img
-│   └── ext4walk.py             # 免挂载读取 ext4（system.img 用）
+│   ├── ext4walk.py             # 免挂载读取 ext4（system.img 用）
+│   ├── dev/push_test.sh        # L2 真机零写入测试（TWRP adb 容器）
+│   ├── linux/                  # Linux Phase 1: initramfs 构建 + fbconsole 源码
+│   ├── qemu/                   # L1 本机 QEMU 测试（内核自动获取 + 启动脚本）
+│   └── ofox_ci_patch.sh        # OrangeFox CI 源码补丁
 ├── firmware/stock/             # 原厂小镜像存档（boot/recovery/lk/preloader/tee/logo 等）
 ├── docs/                       # 文档（见下方索引）
 ├── .github/workflows/          # GitHub Actions：云端编译 TWRP / OrangeFox
@@ -81,7 +85,22 @@ fastboot flash recovery prebuilt/TWRP-3.6.1_q5c62q_njx_20261018.img
 每次运行结束（无论成功/失败）都会自动生成 **Summary** 报告：镜像大小/SHA256/头部校验，
 或失败时的错误摘要与体积诊断，一屏可见。
 
-**③ 后续移植（Debian / 新 Android 等）**
+**③ Linux 尝鲜（Phase 1，进行中）**
+零刷机优先：L1 本机 QEMU 调逻辑 → L2 已刷的 TWRP 里零写入跑真机 → L3 只在里程碑刷
+recovery 分区（16MB，system 不动）。详见 [docs/dev-testing.md](docs/dev-testing.md)。
+
+```sh
+# 本地构建 initramfs + 可启动镜像（无需交叉工具链）
+sh tools/linux/build_phase1_initramfs.sh
+# L1 本机 QEMU（macOS 先 brew install qemu）
+sh tools/qemu/run_phase1.sh
+# L2 真机零写入（手机进 TWRP 后；fbconsole 来自 Actions「Build Linux Phase 1」产物）
+sh tools/dev/push_test.sh run ./fbconsole --demo
+# L3 真机全流程（刷 recovery 分区, 可随时刷回）
+fastboot flash recovery out/linux-phase1.img && fastboot oem reboot-recovery
+```
+
+**④ 后续移植（Debian / 新 Android 等）**
 直接使用本库素材：设备树 `analysis/boot/device.dtb`、解包后的内核/ramdisk、
 外设清单（[docs/hardware-analysis.md](docs/hardware-analysis.md)）、
 打包/解包工具 `tools/`。64 位与 Treble 路线见分析文档末章。

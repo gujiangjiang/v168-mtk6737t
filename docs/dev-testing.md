@@ -19,7 +19,9 @@
 调用户态逻辑：init 脚本、fb 绘制、输入解析、网络配置。
 
 ```sh
-# 在 macOS 上玩 ARM32 用户态 (Phase 1 将提供 tools/qemu/run_phase1.sh; 需 brew install qemu)
+# macOS 需先: brew install qemu
+sh tools/qemu/run_phase1.sh          # 首次自动构建 initramfs + 拉取 Debian ARM32 内核
+sh tools/qemu/run_phase1.sh --rebuild  # 改完代码重建再跑
 ```
 
 - 通用 ARM 内核只当"司机"，不代表真机驱动；
