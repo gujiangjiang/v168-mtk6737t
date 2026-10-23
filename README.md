@@ -1,4 +1,4 @@
-# v168_recovery — MT6737T (V168 / q5c62q_njx) 完整移植资源库
+# v168-mtk6737t — MT6737T (V168 / q5c62q_njx) 完整移植资源库
 
 一部杂牌 MTK 手机（FreemeOS 6.0 / Android 6.0）的**完整复刻与移植资源库**：
 固件解包产物、分析工具、设备树、预编译 Recovery、云端编译流水线全部在此。
