@@ -1,5 +1,17 @@
 # v168-mtk6737t — MT6737T (V168 / q5c62q_njx) 完整移植资源库
 
+[![Build TWRP](https://github.com/gujiangjiang/v168-mtk6737t/actions/workflows/build_twrp.yml/badge.svg)](https://github.com/gujiangjiang/v168-mtk6737t/actions/workflows/build_twrp.yml)
+[![Build OrangeFox](https://github.com/gujiangjiang/v168-mtk6737t/actions/workflows/build_orangefox.yml/badge.svg)](https://github.com/gujiangjiang/v168-mtk6737t/actions/workflows/build_orangefox.yml)
+[![Last commit](https://img.shields.io/github/last-commit/gujiangjiang/v168-mtk6737t/main)](https://github.com/gujiangjiang/v168-mtk6737t/commits/main)
+![License](https://img.shields.io/badge/license-MIT%20%2F%20GPLv3-blue)
+
+![Device](https://img.shields.io/badge/device-V168%20%28q5c62q__njx%29-blue)
+![SoC](https://img.shields.io/badge/SoC-MT6737T-orange)
+![Kernel](https://img.shields.io/badge/kernel-3.18.19%20ARM32-lightgrey)
+![Userspace](https://img.shields.io/badge/userspace-Android%206.0%2032--bit-green)
+![TWRP](https://img.shields.io/badge/TWRP-3.6.1__9--0-success)
+![Kernel ramdisk](https://img.shields.io/badge/initramfs-gzip%20only-orange)
+
 一部杂牌 MTK 手机（FreemeOS 6.0 / Android 6.0）的**完整复刻与移植资源库**：
 固件解包产物、分析工具、设备树、预编译 Recovery、云端编译流水线全部在此。
 
