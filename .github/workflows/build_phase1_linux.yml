@@ -1,0 +1,86 @@
+name: Build Linux Phase 1 (initramfs + fbconsole)
+
+# Phase 1 Linux 尝鲜包 (q5c62q_njx / MT6737T):
+#   1. 交叉编译 fbconsole (ARM32 静态, 可直接经 TWRP adb 零写入运行)
+#   2. 组装 initramfs (官方静态 busybox + 自定 init + fbconsole)
+#   3. 产出可刷 recovery 分区的 linux-phase1.img (原机内核, 系统分区不动)
+#   4. 产出 QEMU 直接用 -initrd 加载的 phase1-initramfs.cpio.gz
+#
+# 用法速览 (详见 docs/dev-testing.md 与 tools/qemu/README.md):
+#   L1 本机 QEMU : sh tools/qemu/run_phase1.sh
+#   L2 真机零写入: 手机进 TWRP -> sh tools/dev/push_test.sh run ./fbconsole --info
+#   L3 真机全流程: fastboot flash recovery linux-phase1.img && fastboot oem reboot-recovery
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Install ARM32 cross toolchain
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gcc-arm-linux-gnueabihf
+
+      - name: Cross-compile fbconsole (ARM32 static)
+        run: |
+          mkdir -p tools/linux/bin
+          arm-linux-gnueabihf-gcc -O2 -static -Wall -Wextra \
+            tools/linux/src/fbconsole.c -o tools/linux/bin/fbconsole
+          arm-linux-gnueabihf-strip tools/linux/bin/fbconsole
+          file tools/linux/bin/fbconsole
+          ls -la tools/linux/bin/
+
+      - name: Build initramfs + device image
+        run: |
+          sh tools/linux/build_phase1_initramfs.sh
+
+      - name: Summary (always)
+        if: always()
+        run: |
+          {
+            echo "# Linux Phase 1 构建结果 (q5c62q_njx / MT6737T)"
+            echo
+            if [ -f out/phase1-initramfs.cpio.gz ] && [ -f out/linux-phase1.img ]; then
+              echo "## ✅ 构建成功"
+              echo
+              echo "| 产物 | 大小 | SHA256 |"
+              echo "|---|---|---|"
+              for f in tools/linux/bin/fbconsole out/phase1-initramfs.cpio.gz out/linux-phase1.img; do
+                [ -f "$f" ] || continue
+                S=$(stat -c %s "$f")
+                echo "| \`$(basename "$f")\` | ${S} 字节 | \`$(sha256sum "$f" | cut -d' ' -f1)\` |"
+              done
+              echo
+              echo "### 真机镜像头部校验"
+              echo
+              echo '```'
+              python3 tools/unpack_bootimg.py --info out/linux-phase1.img 2>/dev/null || echo "(解析失败)"
+              echo '```'
+              echo
+              echo "### 怎么用"
+              echo "1. **L2 真机零写入**: 手机进 TWRP → \`sh tools/dev/push_test.sh run ./fbconsole --info\` 或 \`--demo\`"
+              echo "2. **L1 本机 QEMU**: \`sh tools/qemu/run_phase1.sh\`（首次自动拉 Debian 内核）"
+              echo "3. **L3 真机全流程**: \`fastboot flash recovery linux-phase1.img && fastboot oem reboot-recovery\`"
+              echo "   （只写 16MB recovery 分区, system 不动; 随时可刷回原厂/TWRP）"
+            else
+              echo "## ❌ 构建失败"
+              echo
+              echo "请查看上方 Cross-compile / Build 步骤日志。"
+            fi
+          } 2>&1 | tee -a "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: linux-phase1
+          path: |
+            out/phase1-initramfs.cpio.gz
+            out/linux-phase1.img
+            tools/linux/bin/fbconsole
+          if-no-files-found: error
