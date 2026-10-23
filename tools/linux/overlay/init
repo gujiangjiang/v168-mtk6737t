@@ -1,0 +1,41 @@
+#!/bin/sh
+# ============================================================
+# v168-mtk6737t Linux Phase 1 init (busybox initramfs)
+#   - QEMU (virt): 检测到 ttyAMA0 -> 串口交互 shell
+#   - 真机 (MT6737T): 有 /bin/fbconsole 时亮屏 + 触摸演示
+# ============================================================
+PATH=/bin:/sbin
+export PATH
+
+/bin/busybox --install -s /bin 2>/dev/null
+
+mount -t proc proc /proc 2>/dev/null
+mount -t sysfs sysfs /sys 2>/dev/null
+mount -t devtmpfs devtmpfs /dev 2>/dev/null || {
+    mount -t tmpfs tmpfs /dev
+    mknod /dev/console c 5 1 2>/dev/null
+    mknod /dev/null c 1 3 2>/dev/null
+}
+
+echo "==============================================="
+echo " v168-mtk6737t Linux Phase 1"
+echo " kernel : $(cat /proc/version 2>/dev/null)"
+echo " cmdline: $(cat /proc/cmdline 2>/dev/null)"
+echo "==============================================="
+
+# --- QEMU: 串口交互 ---
+if [ -c /dev/ttyAMA0 ]; then
+    echo ">>> 检测到 ttyAMA0, 进入交互 shell (QEMU 模式)"
+    exec sh -l </dev/ttyAMA0 >/dev/ttyAMA0 2>&1
+fi
+
+# --- 真机: 亮屏 + 触摸演示 ---
+if [ -x /bin/fbconsole ]; then
+    echo ">>> 真机模式: 启动 fbconsole (触摸画十字线, 连点右下角退出)"
+    exec /bin/fbconsole --demo
+fi
+
+echo ">>> 未找到控制台/fbconsole, 空转中 (可重新构建含 tools/linux/bin/fbconsole 的版本)"
+while true; do
+    sleep 3600
+done
