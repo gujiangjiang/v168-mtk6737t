@@ -93,6 +93,7 @@ fastboot flash recovery prebuilt/TWRP-3.6.1_q5c62q_njx_20261018.img
 | [docs/hardware-analysis.md](docs/hardware-analysis.md) | 固件完整分析报告（引导链/分区表/DTB 外设/32位确认/K64/Treble 路线） |
 | [docs/device-tree.md](docs/device-tree.md) | 设备树逐项说明与调参指南 |
 | [docs/build-guide.md](docs/build-guide.md) | TWRP/OrangeFox 云端与本地编译指南 |
+| [docs/dev-testing.md](docs/dev-testing.md) | 免刷机/少刷机开发与测试指南（测试金字塔、TWRP 零写入容器、NAND 磨损量级） |
 | [docs/recovery-guide.md](docs/recovery-guide.md) | recovery 移植原理、工具用法、刷机与调试 |
 | [AGENTS.md](AGENTS.md) | 自动化代理协作规则（环境/提交/目录/禁止事项） |
 
