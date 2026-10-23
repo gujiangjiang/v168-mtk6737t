@@ -26,6 +26,11 @@ echo "==============================================="
 # --- QEMU: 串口交互 ---
 if [ -c /dev/ttyAMA0 ]; then
     echo ">>> 检测到 ttyAMA0, 进入交互 shell (QEMU 模式)"
+    # 若内核提供了 framebuffer (ramfb/simpledrm), 后台先画一屏信息
+    if [ -x /bin/fbconsole ] && { [ -e /dev/fb0 ] || [ -e /dev/graphics/fb0 ]; }; then
+        echo ">>> 检测到 framebuffer, 后台绘制信息屏"
+        /bin/fbconsole --text "v168-mtk6737t  Linux Phase 1" "fbconsole 已激活 (QEMU)" "串口 shell 已就绪; 试试 fbconsole --info" &
+    fi
     exec sh -l </dev/ttyAMA0 >/dev/ttyAMA0 2>&1
 fi
 

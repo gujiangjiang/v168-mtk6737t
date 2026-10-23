@@ -4,6 +4,7 @@ __pycache__/
 
 # Linux Phase 1 构建中间产物
 tools/linux/.cache/
+tools/qemu/.cache/
 tools/linux/.stage/
 tools/linux/bin/
 out/
